@@ -1,0 +1,68 @@
+Single File Programming Question
+A company maintains a database that has the details of all the employees. There are two levels of employees where level 1 is the top management having a salary of more than 100 dollars and level 2 is the staff who are getting a salary of less than 100 dollars. Create a class named Employee with empId and salary as attributes. Create another class empLevel that extends employee and categorizes the employee into various levels.
+
+
+
+Whitelist: extends, class Employee(these words must be included in the code section)
+
+Input format :
+The input should contain only the employee id and salary of the employee separated by space.
+
+Employee id should be of integer type and salary float type.
+
+Output format :
+The output of the program must display the employee id, salary, and level of the employee one below the other in the same order.
+
+Sample test cases :
+Input 1 :
+253 5.6
+Output 1 :
+253
+5.6
+2
+
+Ans:
+// You are using Java
+import java.util.*;
+class Employee
+{
+    int id;
+    float sal;
+    Employee(int id,float sal)
+    {
+        this.id=id;
+        this.sal=sal;
+    }
+}
+class Emp extends Employee
+{
+    Emp(int id,float sal)
+    {
+        super(id,sal);
+    }
+    int get()
+    {
+        if(sal>100)
+        {
+            return 1;
+            
+        }
+        else
+        {
+            return 2;
+        }
+    }
+}
+class Main{
+    public static void main(String[] args)
+    {
+        Scanner sc=new Scanner(System.in);
+        int id=sc.nextInt();
+        float sal=sc.nextFloat();
+        Emp em=new Emp(id,sal);
+        
+        System.out.println(em.id);
+        System.out.println(em.sal);
+        System.out.println(em.get());
+    }
+}
