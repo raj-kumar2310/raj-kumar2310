@@ -1,22 +1,25 @@
-# My Coding Journey 🚀   
+# My Coding Journey 🚀
 
-## 🔥 Progress Tracker  
-| Day  | Topic               | Status  |  
-|------|---------------------|---------|  
-| Day 1 | Basics of Programming | ✅ Completed |  
-| Day 2 | Loops & Conditions   | ✅ Completed |  
-| Day 3 | Functions & Arrays   | ✅ Completed |  
-| Day 4 | TBD                 | 🔄 In Progress |  
-| Day 5 | TBD                 | ⏳ Upcoming |  
+## 🔥 Weekly Progress Tracker
 
-(TBD - To Be Decided)  
+| Day      | Topic Covered                     
+|----------|----------------------------------|
+| Monday   | Java - Basics & Syntax           | 
+| Tuesday  | C++ - Loops & Conditions         | 
+| Wednesday| Python - Functions & Recursion   | 
+| Thursday | DSA - Arrays & Linked Lists      | 
+| Friday   | OOPS - Classes & Objects         | 
+| Saturday | String Manipulation & Patterns   | 
+| Sunday   | Problem-Solving & Coding Contest | 
 
-## 📌 Languages Used  
-- C++  
-- Python  
-- Java  
+## 📌 Languages Used
 
-## ✨ Future Plans  
-- More coding challenges  
-- DSA (Data Structures & Algorithms)  
+- C++
+- Python
+- Java
+
+## ✨ Future Plans
+
+- Data Structures & Algorithms (DSA)
 - Web Development
+- Competitive Programming
