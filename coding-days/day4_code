@@ -1,0 +1,53 @@
+Single File Programming Question
+The Acme Tennis Ball Company is designing a new box to ship its products. The marketing department wants a triangular box that can hold 4 balls, as in the illustration below. The balls fit exactly inside the box, just touching all three walls and the end caps of the container. All 3 walls of the box are the same size (equilateral triangle). Assume a tennis ball is 6 cm in diameter, and ignore the thickness of the box material. What will be the length and breadth of the material used to make the box? Write a program that finds the measure of a side of the box. Program must also display the length and breadth of the material used to make the triangular box.
+
+
+
+
+
+
+
+Input format :
+The input consists of the diameter of the box.
+
+Output format :
+The output displays the side of the box, length and breadth of the material used to make the triangular box separated by a space.
+
+Round off the float values to two decimal places.
+
+Sample test cases :
+Input 1 :
+6
+Output 1 :
+Side : 10.39
+Length : 31.18
+Breadth : 24.00
+Ans:
+
+// You are using Java
+import java.util.*;
+import java.math.*;
+import java.text.*;
+
+class Main{
+    public static void main(String[] args)
+    {
+        Scanner s=new Scanner(System.in);
+        DecimalFormat dc=new DecimalFormat("0.00");
+        double p=s.nextDouble();
+        // scanner.close();
+        double r=p/2;
+        
+        double side=(6*p/2)/Math.sqrt(3);
+        
+        double l=side*3;
+        double br=4*p;
+        
+        System.out.println("Side : "+dc.format(side));
+        System.out.println("Length : "+dc.format(l));
+        System.out.println("Breadth : "+dc.format(br));
+    
+    // System.out.println(r);
+    
+    }
+}
