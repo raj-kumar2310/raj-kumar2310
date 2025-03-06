@@ -1,0 +1,54 @@
+Single File Programming Question
+Mobile number validation
+
+ Let's implement the logic for mobile number validation using StringBuilder and embed it in our program. Mobile number should precede with "+91", followed by 10 digits. The indexOf() method returns index of given character value or substring. If it is not found, it returns -1. Write a program to validate the mobile number given as input. Use indexOf() to check whether "+91" is present or not.
+
+Create a driver class called Main. In the Main method, obtain the inputs from the console, validate the mobile number and prompt the user as given in sample I/O.
+
+Input format :
+Input consist of a mobile number
+
+Output format :
+Output prints whether the mobile number is valid or not
+
+Sample test cases :
+Input 1 :
++919874653210
+Output 1 :
+Mobile number valid
+Input 2 :
+9874653210
+Output 2 :
+Mobile number invalid
+
+Ans:
+
+// You are using Java
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        // Create a scanner to read input
+        Scanner sc = new Scanner(System.in);
+        
+        // Read the mobile number as input
+        String mobileNumber = sc.next();
+        
+        // Validate using compareTo to check if the mobile number starts with "+91"
+        if (mobileNumber.length() == 13 && mobileNumber.substring(0, 3).compareTo("+91") == 0) {
+            // Extract the digits after "+91"
+            String digits = mobileNumber.substring(3);
+            
+            // Check if the remaining part contains exactly 10 digits
+            if (digits.matches("\\d{10}")) {
+                System.out.println("Mobile number valid");
+            } else {
+                System.out.println("Mobile number invalid");
+            }
+        } else {
+            System.out.println("Mobile number invalid");
+        }
+        
+        sc.close();
+    }
+}
