@@ -1,0 +1,70 @@
+Single File Programming Question
+Write a program that will cycle all elements of an array from one position to the left.  
+
+
+
+Example:
+
+Input:
+
+8
+
+-1 2 -4 3 7 6 102 41
+
+Output:
+
+2 -4 3 7 6 102 41 -1
+
+Input format :
+The first line of the input consists of the value of n.
+
+The next input is the array elements.
+
+
+
+Refer to the sample input for formatting specifications.
+
+Output format :
+The output prints the resultant array.
+
+Note: There is an extra space at the end of the output.
+
+
+
+ Refer to the sample output for formatting specifications.
+
+Sample test cases :
+Input 1 :
+8
+-1 2 -4 3 7 6 102 41
+Output 1 :
+2 -4 3 7 6 102 41 -1 
+Input 2 :
+10
+15 20 36 98 45 12 77 48 96 100
+Output 2 :
+20 36 98 45 12 77 48 96 100 15 
+
+Ans:
+// You are using Java
+import java.util.*;
+class Mian
+{
+    public static void main(String[] args)
+    {
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        int[] a=new int[n];
+        for(int i=0;i<n;i++)
+        {
+             a[i] = sc.nextInt();
+        }
+        for(int i=1;i<n;i++)
+        {
+           System.out.print(a[i]+" ");
+        }
+           System.out.print(a[0]+" ");
+        
+        
+    }
+}
