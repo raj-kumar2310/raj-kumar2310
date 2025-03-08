@@ -1,0 +1,52 @@
+Single File Programming Question
+Write a Java Program to Create a Class named Player with the following member variables/attributes
+
+
+
+
+
+Create another Class called Main and write a main method to get the player details in a string separated by a comma. Use String. Split() function to display the details.
+
+Sample test cases :
+Input 1 :
+MS Dhoni,India,Wicket Keeper
+Output 1 :
+Player Details
+Player Name: MS Dhoni
+Country Name: India
+Skill: Wicket Keeper
+Input 2 :
+Virat Kholi,India,Batsman
+Output 2 :
+Player Details
+Player Name: Virat Kholi
+Country Name: India
+Skill: Batsman
+
+Ans:
+
+// You are using Java
+import java.util.*;
+class Player
+{
+    String name;
+    String cou;
+    String skill;
+}
+class Mian{
+    public static void main(String[] args)
+    {
+        Scanner sc=new Scanner(System.in);
+        Player play=new Player();
+        String detail = sc.nextLine();
+        String[] detailarr=detail.split(",");
+        play.name=detailarr[0];
+        play.cou=detailarr[1];
+        play.skill=detailarr[2];
+        
+        System.out.println("Player Details");
+        System.out.println("Player Name: "+play.name);
+        System.out.println("Country Name: "+play.cou);
+        System.out.println("Skill: "+play.skill);
+    }
+}
