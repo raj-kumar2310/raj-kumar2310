@@ -1,0 +1,58 @@
+Single File Programming Question
+write a program to count the frequency of each char and print along with the same character
+
+Input format :
+The input should be a string
+
+Output format :
+Refer the sample output
+
+Sample test cases :
+Input 1 :
+iamneo
+Output 1 :
+a-1
+e-1
+i-1
+m-1
+n-1
+o-1
+Input 2 :
+kollywood
+Output 2 :
+d-1
+k-1
+l-2
+o-3
+w-1
+y-1
+
+Ans:
+
+// You are using Java
+import java.util.HashMap;
+import java.util.Map;
+import java.util.TreeMap;
+ class CharFrequency {
+    public static void main(String[] args) {
+        // Read input string from the user
+        java.util.Scanner sc = new java.util.Scanner(System.in);
+        String input = sc.nextLine();
+        
+        // Create a HashMap to store character frequencies
+        HashMap<Character, Integer> freqMap = new HashMap<>();
+        
+        // Iterate over the input string to calculate frequencies
+        for (char ch : input.toCharArray()) {
+            freqMap.put(ch, freqMap.getOrDefault(ch, 0) + 1);
+        }
+        
+        // Use TreeMap to sort characters in lexicographical order
+        Map<Character, Integer> sortedMap = new TreeMap<>(freqMap);
+        
+        // Print the result in the specified format
+        for (Map.Entry<Character, Integer> entry : sortedMap.entrySet()) {
+            System.out.print(entry.getKey() + "-" + entry.getValue() + " ");
+        }
+    }
+}
