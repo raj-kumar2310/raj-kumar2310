@@ -1,0 +1,73 @@
+Single File Programming Question
+Write a program to validate the given password
+
+Criteria
+
+1)Length should be greater than 8
+
+2)Alteast should contain one Uppercase, Lowercase, number and special character
+
+
+
+If any one of the mentioned criteria is missing, then its invalid password
+
+If all criteria is fulfilled, its a valid password 
+
+
+
+Input format :
+The input shoud a string
+
+Output format :
+Refer the sample output
+
+Sample test cases :
+Input 1 :
+Coimbatore@123
+Output 1 :
+Valid password
+Input 2 :
+Namma ooru Kovai
+Output 2 :
+Invalid password
+
+Ans:
+
+// You are using Java
+import java.util.Scanner;
+
+ class PasswordValidator {
+
+    public static void main(String[] args) {
+        // Reading the password input from the user
+        Scanner sc = new Scanner(System.in);
+        String password = sc.nextLine();
+        
+        // Criteria checks
+        boolean isValidLength = password.length() > 8;
+        boolean hasUpperCase = false;
+        boolean hasLowerCase = false;
+        boolean hasDigit = false;
+        boolean hasSpecialChar = false;
+        
+        // Iterate through each character in the password to check criteria
+        for (char ch : password.toCharArray()) {
+            if (Character.isUpperCase(ch)) {
+                hasUpperCase = true;
+            } else if (Character.isLowerCase(ch)) {
+                hasLowerCase = true;
+            } else if (Character.isDigit(ch)) {
+                hasDigit = true;
+            } else if (!Character.isLetterOrDigit(ch)) {
+                hasSpecialChar = true;
+            }
+        }
+        
+        // Validate the password based on the criteria
+        if (isValidLength && hasUpperCase && hasLowerCase && hasDigit && hasSpecialChar) {
+            System.out.println("Valid password");
+        } else {
+            System.out.println("Invalid password");
+        }
+    }
+}
