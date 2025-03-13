@@ -1,0 +1,89 @@
+Single File Programming Question
+Problem statement
+
+Write java to create Diamond Alphabet Pattern
+    A
+   ABC
+  ABCDE
+ ABCDEFG
+ABCDEFGHI
+ ABCDEFG
+  ABCDE
+   ABC
+    A
+
+
+Input format :
+The input consists of the number of rows
+
+Output format :
+Pattern as shown in sample output
+
+Sample test cases :
+Input 1 :
+5
+Output 1 :
+    A
+   ABC
+  ABCDE
+ ABCDEFG
+ABCDEFGHI
+ ABCDEFG
+  ABCDE
+   ABC
+    A
+Input 2 :
+4
+Output 2 :
+   A
+  ABC
+ ABCDE
+ABCDEFG
+ ABCDE
+  ABC
+   A
+
+
+
+AnS:
+
+import java.util.*;
+
+ class DiamondAlphabetPattern {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        // Input: the number of rows
+        int n = scanner.nextInt();
+        
+        // Upper half of the diamond including the middle line
+        for (int i = 1; i <= n; i++) {
+            // Print spaces
+            for (int j = i; j < n; j++) {
+                System.out.print(" ");
+            }
+            // Print alphabet sequence
+            for (int j = 1; j <= 2 * i - 1; j++) {
+                System.out.print((char) ('A' + j - 1));
+            }
+            // Move to the next line
+            System.out.println();
+        }
+        
+        // Lower half of the diamond (excluding the middle line)
+        for (int i = n - 1; i >= 1; i--) {
+            // Print spaces
+            for (int j = n; j > i; j--) {
+                System.out.print(" ");
+            }
+            // Print alphabet sequence
+            for (int j = 1; j <= 2 * i - 1; j++) {
+                System.out.print((char) ('A' + j - 1));
+            }
+            // Move to the next line
+            System.out.println();
+        }
+        
+        scanner.close();
+    }
+}
