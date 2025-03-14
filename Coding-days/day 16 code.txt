@@ -1,0 +1,38 @@
+Single File Programming Question
+Write a program to remove all the spaces inbetween the string
+
+
+
+Input format :
+The input should be a string
+
+Output format :
+Refer the sample output
+
+Sample test cases :
+Input 1 :
+India is my    country
+Output 1 :
+Indiaismycountry
+Input 2 :
+All      Indians are my brothers and    sisters
+Output 2 :
+AllIndiansaremybrothersandsisters
+Note :
+The program will be evaluated only after the “Submit Code” is clicked.
+Extra spaces and new line characters in the program output will result in the failure of the test case.
+
+ANS:
+
+// You are using Java
+import java.util.*;
+class Main
+{
+    public static void main(String[] args)
+    {
+        Scanner sc=new Scanner(System.in);
+        String a=sc.nextLine();
+        String b=a.replaceAll("\\s","");
+        System.out.println(b);
+    }
+}
