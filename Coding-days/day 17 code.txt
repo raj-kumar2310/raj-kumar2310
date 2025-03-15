@@ -1,0 +1,48 @@
+Single File Programming Question
+Write a program to toggle each case in a string
+
+Input format :
+The input should be a string
+
+Output format :
+Refer the sample output
+
+Sample test cases :
+Input 1 :
+INDIAN ocean
+Output 1 :
+indian OCEAN
+Input 2 :
+You Can Do It
+Output 2 :
+yOU cAN dO iT
+Note :
+The program will be evaluated only after the “Submit Code” is clicked.
+Extra spaces and new line characters in the program output will result in the failure of the test case.
+
+Ans:
+
+// You are using Java
+import java.util.*;
+class Main{
+    public static void main(String[] args)
+    {
+        Scanner sc=new Scanner(System.in);
+        String s=sc.nextLine();
+        int l=s.length();
+        String b="";
+        for(char c:s.toCharArray())
+        {
+            if(Character.isUpperCase(c))
+            {
+             b+=Character.toLowerCase(c);
+            }else
+            {
+             b+=Character.toUpperCase(c);
+                
+            }
+        }
+        
+        System.out.print(b);
+    }
+}
