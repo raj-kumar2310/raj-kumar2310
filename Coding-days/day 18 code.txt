@@ -1,0 +1,51 @@
+Single File Programming Question
+Problem statement:
+
+Write a regular expression to represent all valid identifiers in java language.
+
+Rules: 
+
+The allowed characters are: 
+
+1. a to z, A to Z, 0 to 9, -,#
+
+2. The 1st character should be an alphabet symbol only.
+
+3. The length of the identifier should be at least 2.
+
+
+
+Sample test cases :
+Input 1 :
+ashok
+Output 1 :
+ashok:Valid Identifier
+Input 2 :
+?ashok
+Output 2 :
+?ashok:Invalid Identifier
+
+ANS:
+
+// You are using Java
+import java.util.*;
+import java.util.regex.*;
+class Main{
+    public static void main(String [] args)
+    {
+        Pattern p=Pattern.compile("^[a-zA-Z][a-zA-Z0-9-#]+");
+        Scanner sc=new Scanner(System.in);
+        String sr=sc.nextLine();
+        Matcher m=p.matcher(sr);
+        
+        if(m.find()&&m.group().equals(sr))
+        {
+            System.out.println(sr+":Valid Identifier");
+        }
+        else
+        {
+            System.out.println(sr+":Invalid Identifier");
+            
+        }
+    }
+}
