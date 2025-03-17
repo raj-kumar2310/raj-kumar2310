@@ -1,0 +1,114 @@
+Single File Programming Question
+Problem statement: 
+
+Write a java program finding data type of user input using Regular Expression.
+
+Input format :
+The input consists of different inputs of integer, string, double and date with different formats.
+
+Date formats :
+
+dd/mm/yyyy : eg: 01/12/2022
+mm/dd/yyyy : eg: 12/24/2022
+dd-mon-yy : eg: 01-apr-22
+dd-mon-yyyy : eg: 01-apr-2022
+dd-month-yy: eg:01-april-22
+dd-month-yyyy: eg: 01-april-2022
+Output format :
+The output prints the value with the appropriate datatype. Refer to the sample input and output for the formatting specifications.
+
+Sample test cases :
+Input 1 :
+100
+Output 1 :
+The datatype of 100 is: java.lang.Integer
+Input 2 :
+52.87
+Output 2 :
+The datatype of 52.87 is: java.lang.Double
+Input 3 :
+21-apr-1994
+Output 3 :
+The datatype of 21-apr-1994 is: java.util.Date
+Input 4 :
+Born to win
+Output 4 :
+The datatype of Born to win is: java.lang.String
+
+ANS:
+
+// You are using Java
+import java.util.*;
+class Main 
+{
+	public static void main(String[] arg)
+	{
+
+		String input; //= "56.73";
+		Scanner s =  new Scanner(System.in);
+		input = s.nextLine();
+		String dataType = null;
+
+		// checking for Integer
+		if (input.matches("\\d+")) 
+		{
+			dataType = "java.lang.Integer";
+		}
+
+		// checking for floating point numbers
+		else if (input.matches("\\d*[.]\\d+"))
+		{
+			dataType = "java.lang.Double";
+		}
+
+		// checking for date format dd/mm/yyyy
+		else if (input.matches(	"\\d{2}[/]\\d{2}[/]\\d{4}")) 
+		{
+			dataType = "java.util.Date";
+		}
+
+		// checking for date format mm/dd/yyyy
+		else if (input.matches("\\d{2}[/]\\d{2}[/]\\d{4}"))
+		{
+			dataType = "java.util.Date";
+		}
+
+		// checking for date format dd-mon-yy
+		else if (input.matches("\\d{2}[-]\\w{3}[-]\\d{2}")) 
+		{
+			dataType = "java.util.Date";
+		}
+
+		// checking for date format dd-mon-yyyy
+		else if (input.matches(	"\\d{2}[-]\\w{3}[-]\\d{4}"))
+		{
+			dataType = "java.util.Date";
+		}
+
+		// checking for date format dd-month-yy
+		else if (input.matches("\\d{2}[-]\\w+[-]\\d{2}"))
+		{
+			dataType = "java.util.Date";
+		}
+
+		// checking for date format dd-month-yyyy
+		else if (input.matches("\\d{2}[-]\\w+[-]\\d{4}"))
+		{
+			dataType = "java.util.Date";
+		}
+
+		// checking for date format yyyy-mm-dd
+		else if (input.matches(	"\\d{4}[-]\\d{2}[-]\\d{2}"))
+		{
+			dataType = "java.util.Date";
+		}
+
+		// checking for String
+		else 
+		{
+			dataType = "java.lang.String";
+		}
+
+		System.out.println("The datatype of " + input + " is: " + dataType);
+	}
+}
