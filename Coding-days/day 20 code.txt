@@ -1,0 +1,42 @@
+Single File Programming Question
+Write a Java program to count the number of decimal places in a given number.
+
+Input format :
+The input must be a string
+
+Output format :
+Refer the sample output
+
+Sample test cases :
+Input 1 :
+12.123
+Output 1 :
+Original Number: 12.123
+3
+Input 2 :
+12.098765
+Output 2 :
+Original Number: 12.098765
+6
+
+ANS:
+
+// You are using Java
+import java.util.*;
+class Main {
+ 
+   public static void main(String[] args)
+   {
+       Scanner s=new Scanner(System.in);
+	   String n =s.nextLine();
+	   System.out.println("Original Number: "+n);
+	   System.out.println(validate(n));
+	  
+        }
+
+   public static Integer validate(String n) {
+	   	if(n.contains("."))
+			return n.replaceAll(".*\\.(?=\\d?)", "").length();
+		return 0;
+  }
+}
