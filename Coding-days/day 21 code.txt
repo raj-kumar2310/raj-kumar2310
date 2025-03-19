@@ -1,0 +1,55 @@
+Single File Programming Question
+Write a Java program that matches a word containing 'g', not at the start or end of the word.
+
+Input format :
+The input must be a string
+
+Output format :
+Refer the sample output
+
+Sample test cases :
+Input 1 :
+gourmand
+Output 1 :
+Not matched!
+Input 2 :
+wig
+Output 2 :
+Not matched!
+Input 3 :
+piggie bank
+Output 3 :
+Found a match!
+Input 4 :
+Welcome to iamneo
+Output 4 :
+Not matched!
+
+ANS:
+
+// You are using Java
+import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+class Main 
+{
+    public static void main(String[] args) 
+    {
+        Scanner s=new Scanner(System.in);
+        String str=s.nextLine();
+	    System.out.println(validate(str));
+    }
+    public static String validate(String text) 
+    {
+        Pattern pattern = Pattern.compile("\\Bg\\B");
+		 Matcher m = pattern.matcher(text);
+	    if (m.find())
+	    {
+	        return "Found a match!";
+	    }
+        else
+        {
+            return "Not matched!";
+        }
+    }
+}
