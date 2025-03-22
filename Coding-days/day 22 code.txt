@@ -1,0 +1,79 @@
+Single File Programming Question
+Write a program to validate an IP address(IPv4) with the help of Regular Expressions.
+
+
+
+The IP address is a string in the form “A.B.C.D”, where the value of A, B, C, and D may range from 0 to 255. Leading zeros are allowed. The length of A, B, C, or D can’t be greater than 3.
+
+Input format :
+The input must be a string
+
+Output format :
+Valid IP address or not along with IP address as shown in the sample output.
+
+Sample test cases :
+Input 1 :
+000.12.12.034
+Output 1 :
+IP address 000.12.12.034 is Valid
+Input 2 :
+000.12.234.23.23
+Output 2 :
+IP address 000.12.234.23.23 is Invalid
+Input 3 :
+I.67.nt.3an
+Output 3 :
+IP address I.67.nt.3an is Invalid
+
+ANS:
+
+// You are using Java
+import java.util.regex.*;
+import java.util.*;
+ class IPAddressValidation {
+ 
+    
+    public static boolean isValidIPAddress(String ip)
+    {
+ 
+        
+        String zeroTo255
+            = "(\\d{1,2}|(0|1)\\"
+              + "d{2}|2[0-4]\\d|25[0-5])";
+
+        String regex
+            = zeroTo255 + "\\."
+              + zeroTo255 + "\\."
+              + zeroTo255 + "\\."
+              + zeroTo255;
+ 
+
+        Pattern p = Pattern.compile(regex);
+ 
+
+        if (ip == null) {
+            return false;
+        }
+
+        Matcher m = p.matcher(ip);
+
+        return m.matches();
+    }
+ 
+
+    public static void main(String args[])
+    {
+        Scanner sc = new Scanner(System.in);
+        
+        String str1 = sc.nextLine();
+        System.out.print("IP address " + str1 +" is ");
+        if(isValidIPAddress(str1))
+        System.out.print("Valid");
+        else
+        System.out.print("Invalid");
+        
+ 
+      
+    }
+}
+
