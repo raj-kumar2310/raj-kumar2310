@@ -1,0 +1,149 @@
+Single File Programming Question
+Problem Statement: Stationary Shop Management System
+
+Create a Java program that manages information about students. The program should handle multiple functionalities, including inputting details for multiple students, calculating their total fees, and displaying details based on a specified threshold.
+
+Use classes and objects to model students and encapsulate their information.
+Utilize constructors for initialization and method calls to perform operations on student data.
+Use arrays to store multiple instances of student objects, allowing for easy iteration and manipulation of student data.
+Encapsulate student attributes (e.g., student ID, name, fees) using private access modifiers and provide getter methods for accessing this information.
+Define methods within the Student class to calculate total fees (calculateTotalFee()) and display student details (display()).
+Use conditional statements to determine which students meet the specified fee threshold and control the flow of the program accordingly.
+Input format :
+The first input is an integer n, representing the number of students.
+
+For each student, the input includes:
+
+Student ID (integer)
+Student Name (string)
+Tuition Fee (double)
+Exam Fee (double)
+The last input is a double value representing the minimum total fee threshold.
+
+Output format :
+Display each student whose total fee (sum of tuition fee and exam fee) is greater than or equal to the specified threshold.
+
+If no student meets the threshold, display "No students found with Total Fee : threshold"
+
+
+
+Refer to Sample Output for Formatting Specifications.
+
+Sample test cases :
+Input 1 :
+3
+1001 
+Alice 
+1500 
+100
+1002 
+Bob 
+1800 
+120
+1003
+Carol 
+2000 
+150
+4900
+Output 1 :
+No students found with Total Fee : 4900.0
+Input 2 :
+3
+1001 
+Alice 
+1500 
+100
+1002 
+Bob 
+1800 
+120
+1003
+Carol 
+2000 
+150
+900
+Output 2 :
+Student ID: 1001
+Student Name: Alice 
+Tuition Fee: $1500.0
+Exam Fee: $100.0
+
+Student ID: 1002
+Student Name: Bob 
+Tuition Fee: $1800.0
+Exam Fee: $120.0
+
+Student ID: 1003
+Student Name: Carol 
+Tuition Fee: $2000.0
+Exam Fee: $150.0
+
+ANS:
+
+// You are using Java
+import java.util.*;
+class Student
+{
+    private int id;
+    private String name;
+    private double fee;
+    private double ex;
+    
+   public  Student(int id,String name,double fee,double ex)
+    {
+      this. id= id;
+      this. name= name;
+      this.fee = fee;
+      this.ex = ex;
+    }
+    public double Total()
+    {
+        return this.fee+this.ex;
+    }
+    public void Dis()
+    {
+        System.out.println("Student ID: "+id);
+        System.out.println("Student Name: "+name);
+        System.out.println("Tuition Fee: $"+fee);
+        System.out.println("Exam Fee: $"+ex);
+    }
+    
+}
+class Station{
+public static void main(String[] args)
+{
+    Scanner sc=new Scanner(System.in);
+    int n=sc.nextInt();
+    Student[] stu=new Student[n];
+        sc.nextLine();
+    
+    for(int i=0;i<n;i++)
+    {
+        int id=sc.nextInt();
+        sc.nextLine();
+        String name=sc.nextLine();
+        double fee=sc.nextDouble();
+        double ex=sc.nextDouble();
+        
+        sc.nextLine();
+        stu[i]=new Student(id,name,fee,ex);
+    }
+    
+    double fre=sc.nextDouble();
+    boolean re=false;
+    
+    for(Student s:stu)
+    {
+        if(s.Total()>=fre)
+        {
+            s.Dis();
+            System.out.println();
+            re=true;
+        }
+    }
+    if(!re)
+    {
+        System.out.println("No students found with Total Fee : "+fre);
+    }
+}
+}
