@@ -1,0 +1,51 @@
+Single File Programming Question
+Create two classes a Box class and a Main class, create an object for the Box class in the Main class and calculate the volume of box.
+
+Input format :
+Input to get width,height and depth separated by single space.
+
+Output format :
+Display the volume of the box.
+
+If inputs <= 0 then print "Invalid".
+
+Code constraints :
+Inputs (double type).
+
+Sample test cases :
+Input 1 :
+2.2 1.1 3
+Output 1 :
+7.260000000000002
+Input 2 :
+3 2 4
+Output 2 :
+24.0
+
+ANS:
+
+// You are using Java
+import java.util.*;
+class Box{
+    Double a;
+    Double b;
+    Double c;
+}
+public class Main
+{
+    public static void main(String[] args)
+    {
+        Scanner sc=new Scanner(System.in);
+        Box bo=new Box();
+        bo.a=sc.nextDouble();
+        bo.b=sc.nextDouble();
+        bo.c=sc.nextDouble();
+        if(bo.a<=0)
+        {
+            System.out.println("Invalid");
+            System.exit(0);
+        }
+        double v=bo.a*bo.b*bo.c;
+        System.out.println(v);
+    }
+}
