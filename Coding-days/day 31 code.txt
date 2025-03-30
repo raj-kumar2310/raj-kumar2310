@@ -1,0 +1,128 @@
+Single File Programming Question
+The UniversitySystem demonstrates the concepts of inheritance using a simple university management scenario. It has a base class Person with common attributes name and id, and two subclasses: Student and Professor. Each subclass adds specific attributes and methods. The program prompts the user to enter details for either a student or a professor, creates an instance of the corresponding class, displays their information, and performs a specific action based on the role.
+
+Input format :
+Role (Student/Professor): A string indicating the role of the person (e.g., "Student" or "Professor").
+
+Name: A string representing the name of the person.
+
+ID: A string representing the ID of the person.
+
+Major (if Student) or Department (if Professor): A string representing either the major (for a student) or the department (for a professor).
+
+Output format :
+Name: Displayed as "Name: [name]"
+
+ID: Displayed as "ID: [id]"
+
+Major (if Student) or Department (if Professor): Displayed as "Major: [major]" or "Department: [department]"
+
+Action message: Displayed as "[name] is enrolling in a course." for students or "[name] is teaching a course." for professors.
+
+Code constraints :
+Role: The role input should be either "Student" or "Professor" (case-insensitive). Any other role should produce an error message "Invalid role entered."
+
+Name: The name should be a non-empty string.
+
+ID: The ID should be a non-empty string.
+
+Major (for Student) and Department (for Professor): These should be non-empty strings.
+
+Sample test cases :
+Input 1 :
+Student
+Alice Johnson
+S12345
+Computer Science
+Output 1 :
+Name: Alice Johnson
+ID: S12345
+Major: Computer Science
+Alice Johnson is enrolling in a course.
+Input 2 :
+Admin
+Charlie Brown
+A11223
+Output 2 :
+Invalid role entered.
+
+ANS:
+
+// You are using Java
+import java.util.*;
+class Prof
+{
+    String name;
+    String id;
+    String  dep;
+    Prof(String name,String id,String dep)
+    {
+        this.name=name;
+        this.id=id;
+        this.dep=dep;
+    }
+}
+class Stut extends Prof
+{
+    Stut(String name,String id,String dep)
+    {
+        super(name,id,dep);
+    }
+    // public static void get()
+    // {
+        
+    // }
+    
+}
+class Main
+{
+    public static void main(String[] args)
+    {
+        Scanner sc=new Scanner(System.in);
+        
+        String na=sc.nextLine().trim();
+        
+        // if("Student".equalsIgnoreCase(na) )
+        // System.out.println(na);
+        
+        String name=sc.nextLine().trim();
+        
+        
+        String id=sc.nextLine().trim();
+        // sc.nextLine();
+        
+        String dep=sc.nextLine().trim();
+        
+        // sc.nextLine();
+        switch(na)
+        {
+            case "Student":
+            Stut stu=new Stut(name,id,dep);
+            System.out.println("Name: "+stu.name);
+            System.out.println("ID: "+stu.id);
+            System.out.println("Major: "+stu.dep);
+            System.out.println(stu.name+" is enrolling in a  course.");
+            break;
+            
+        
+        // else if( "Professor".equalsIgnoreCase(na))
+        case "Professor":
+            Prof pr=new Prof(name,id,dep);
+            System.out.println("Name: "+pr.name);
+            System.out.println("ID: "+pr.id);
+            System.out.println("Department: "+pr.dep);
+            System.out.println(pr.name+" is teaching a  course.");
+            break;
+        
+        // else
+        default:
+            // Stut st=new Stut(name,id,dep);
+            // st.get();
+            System.out.println("Invalid role entered.");
+            break;
+        
+        //  System.exit(0);
+        }
+        sc.close();
+    }
+}
