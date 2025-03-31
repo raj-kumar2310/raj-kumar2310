@@ -1,0 +1,170 @@
+Single File Programming Question
+Employee Details:
+
+Create a class called "Employee" in which the employee's name, ID, and salary are declared as private attributes, and the company name is a static variable. The data types of the members are as follows:
+
+String eName; 
+int eId; 
+int eSalary; 
+String companyName ; // static variable
+
+
+Note: Use the public setter and getter methods to set and read the value of the attributes.
+
+Initial companyName = "ABC Corp"
+
+
+
+Whitelist: static String, class Employee(these words must be present in the code section)
+
+Input format :
+The first input represents the number of employee details to be entered.
+
+The next n inputs represent employee details with name, ID, and salary.
+
+The last input represents the company name to be updated.
+
+Output format :
+Display the employee details entered by the user and also display the updated employee details.
+
+
+
+Refer to the sample input and output for format specifications.
+
+Sample test cases :
+Input 1 :
+2
+Sachin
+40
+90000
+Dhoni
+42
+95000
+XYZCorp
+Output 1 :
+Employee Name: Sachin
+Employee ID: 40
+Employee Salary: 90000
+Employee Company Name: ABC Corp
+Employee Name: Dhoni
+Employee ID: 42
+Employee Salary: 95000
+Employee Company Name: ABC Corp
+Updated Details
+Employee Name: Sachin
+Employee ID: 40
+Employee Salary: 90000
+Employee Company Name: XYZCorp
+Employee Name: Dhoni
+Employee ID: 42
+Employee Salary: 95000
+Employee Company Name: XYZCorp
+Input 2 :
+3
+Sachin
+40
+90000
+Dhoni
+42
+95000
+Angel
+30
+98000
+ERPCorp
+Output 2 :
+Employee Name: Sachin
+Employee ID: 40
+Employee Salary: 90000
+Employee Company Name: ABC Corp
+Employee Name: Dhoni
+Employee ID: 42
+Employee Salary: 95000
+Employee Company Name: ABC Corp
+Employee Name: Angel
+Employee ID: 30
+Employee Salary: 98000
+Employee Company Name: ABC Corp
+Updated Details
+Employee Name: Sachin
+Employee ID: 40
+Employee Salary: 90000
+Employee Company Name: ERPCorp
+Employee Name: Dhoni
+Employee ID: 42
+Employee Salary: 95000
+Employee Company Name: ERPCorp
+Employee Name: Angel
+Employee ID: 30
+Employee Salary: 98000
+Employee Company Name: ERPCorp 
+
+ANS:
+
+// You are using Java
+import java.util.*;
+class Employee
+{
+    private String name;
+    private int id;
+    private int sal;
+    static String com="ABC Corp";
+    public  Employee(String name,int id,int sal)
+    {
+        this.name=name;
+        this.id=id;
+        this.sal=sal;
+        // this.com=com;
+    }
+    public void display()
+{
+System.out.println("Employee Name: "+name);
+System.out.println("Employee ID: "+id);
+System.out.println("Employee Salary: "+sal);
+System.out.println("Employee Company Name: "+com);
+    
+}
+
+public static void update(String newcom)
+{
+    com=newcom;
+}
+
+}
+class Main
+{
+    public static void main(String[] args)
+    {
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        sc.nextLine();
+        Employee[] emp=new Employee[n];
+        for(int i=0;i<n;i++)
+        {
+        String name=sc.nextLine();
+        int id=sc.nextInt();
+        int sal=sc.nextInt();
+        sc.nextLine();
+        
+        emp[i]=new Employee( name, id, sal);
+        
+        }
+        
+        for(int i=0;i<n;i++)
+        {
+            emp[i].display();
+            
+        }
+        
+        String newcom=sc.nextLine();
+        
+        Employee.update(newcom);
+        System.out.println("Updated Details");
+        
+        for(int i=0;i<n;i++)
+        {
+            emp[i].display();
+            
+        }
+        sc.close();
+    }
+}
