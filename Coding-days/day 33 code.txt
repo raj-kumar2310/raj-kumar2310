@@ -1,0 +1,166 @@
+Single File Programming Question
+A restaurant menu management system, where different types of menu items (Appetizer, Main Course, and Dessert) are created and displayed. The program prompts the user for details about a menu item and then creates an instance of the appropriate subclass (Appetizer, Main Course, or Dessert). It displays the details of the menu item and performs an action specific to the type of menu item.
+
+Input format :
+Name of the menu item (String)
+
+Description of the menu item (String)
+
+Price of the menu item (Double)
+
+Type of menu item (String: "Appetizer", "Main Course", or "Dessert")
+
+If Appetizer: Type of appetizer (String)
+
+If Main Course: Dish type of main course (String)
+
+If Dessert: Flavor of dessert (String)
+
+Output format :
+Display the name of the menu item.
+
+Display the description of the menu item.
+
+Display the price of the menu item.
+
+For Appetizers: Display the type and serve the appetizer.
+
+For Main Courses: Display the dish type and prepare the main course.
+
+For Desserts: Display the flavor and serve the dessert.
+
+Code constraints :
+The name and description inputs should be non-empty strings.
+
+The price input should be a positive double.
+
+The type of menu item should be either "Appetizer", "Main Course", or "Dessert".
+
+The additional inputs for each type should be non-empty strings.
+
+
+
+Sample test cases :
+Input 1 :
+Caesar Salad
+Fresh romaine with Caesar dressing
+8.50
+Appetizer
+Salad
+Output 1 :
+Name: Caesar Salad
+Description: Fresh romaine with Caesar dressing
+Price: $8.5
+Type: Salad
+Serving appetizer: Caesar Salad.
+Input 2 :
+Water
+Pure bottled water
+1.00
+Drink
+Output 2 :
+Invalid menu item type entered.
+
+ANS:
+
+import java.util.Scanner;
+
+abstract class MenuItem {
+    String name;
+    String description;
+    double price;
+
+    public MenuItem(String name, String description, double price) {
+        this.name = name;
+        this.description = description;
+        this.price = price;
+    }
+
+    public abstract void display();
+}
+
+class Appetizer extends MenuItem {
+    String type;
+
+    public Appetizer(String name, String description, double price, String type) {
+        super(name, description, price);
+        this.type = type;
+    }
+
+    @Override
+    public void display() {
+        System.out.println("Name: " + name);
+        System.out.println("Description: " + description);
+        System.out.println("Price: $" + price);
+        System.out.println("Type: " + type);
+        System.out.println("Serving appetizer: " + name + ".");
+    }
+}
+
+class MainCourse extends MenuItem {
+    String dishType;
+
+    public MainCourse(String name, String description, double price, String dishType) {
+        super(name, description, price);
+        this.dishType = dishType;
+    }
+
+    @Override
+    public void display() {
+        System.out.println("Name: " + name);
+        System.out.println("Description: " + description);
+        System.out.println("Price: $" + price);
+        System.out.println("Dish type: " + dishType);
+        System.out.println("Preparing main course: " + name + ".");
+    }
+}
+
+class Dessert extends MenuItem {
+    String flavor;
+
+    public Dessert(String name, String description, double price, String flavor) {
+        super(name, description, price);
+        this.flavor = flavor;
+    }
+
+    @Override
+    public void display() {
+        System.out.println("Name: " + name);
+        System.out.println("Description: " + description);
+        System.out.println("Price: $" + price);
+        System.out.println("Flavor: " + flavor);
+        System.out.println("Serving dessert: " + name + ".");
+    }
+}
+
+class MenuManagementSystem {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Input for the menu item
+        String name = scanner.nextLine();
+        String description = scanner.nextLine();
+        double price = scanner.nextDouble();
+        scanner.nextLine();  // Consume newline left over by nextDouble()
+
+        String itemType = scanner.nextLine();
+        MenuItem menuItem = null;
+
+        if (itemType.equals("Appetizer")) {
+            String appetizerType = scanner.nextLine();
+            menuItem = new Appetizer(name, description, price, appetizerType);
+        } else if (itemType.equals("Main Course")) {
+            String dishType = scanner.nextLine();
+            menuItem = new MainCourse(name, description, price, dishType);
+        } else if (itemType.equals("Dessert")) {
+            String flavor = scanner.nextLine();
+            menuItem = new Dessert(name, description, price, flavor);
+        } else {
+            System.out.println("Invalid menu item type entered.");
+            return;
+        }
+
+        // Display the details of the menu item
+        menuItem.display();
+    }
+}
