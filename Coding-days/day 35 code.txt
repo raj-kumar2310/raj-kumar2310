@@ -1,0 +1,93 @@
+Single File Programming Question
+Create a Java class called Vehicle with the following specifications:
+
+
+
+The Vehicle class should have a protected string variable named type.
+
+Implement a constructor to initialize the type variable.
+
+
+
+Implement a public method named displayType() that prints the value of the type.
+
+Create a subclass of Vehicle called Car with the following specifications:
+
+
+
+The Car class should have a private string variable named brand.
+Implement a constructor to initialize both the type and brand variables.
+Implement a public method named displayBrand() that prints the value of brand.
+In the Main class, prompt the user to enter the type and brand of a car. Create an object of the Car class with the provided input and display the type and brand of the car using the displayType() and displayBrand() methods.
+
+
+Whitelist: Vehicle, Car, Main, displayBrand(), displayBrand(), extends (these words must be present in the code section)
+
+Input format :
+The first line of the input should be car type
+
+The second line of the input should be the car brand
+
+Output format :
+Refer to the sample output
+
+Sample test cases :
+Input 1 :
+Sedan
+BMW
+Output 1 :
+Type: Sedan
+Brand: BMW
+
+ANS:
+
+// You are using Java
+import java.util.Scanner;
+
+class Vehicle {
+    protected String type;
+
+    // Constructor to initialize the type
+    public Vehicle(String type) {
+        this.type = type;
+    }
+
+    // Method to display the type of the vehicle
+    public void displayType() {
+        System.out.println("Type: " + type);
+    }
+}
+
+class Car extends Vehicle {
+    private String brand;
+
+    // Constructor to initialize both type and brand
+    public Car(String type, String brand) {
+        super(type);
+        this.brand = brand;
+    }
+
+    // Method to display the brand of the car
+    public void displayBrand() {
+        System.out.println("Brand: " + brand);
+    }
+}
+
+ class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+    
+        String type = scanner.nextLine();  // Read the car type
+        String brand = scanner.nextLine(); // Read the car brand
+
+       
+        Car car = new Car(type, brand);
+
+     
+        car.displayType();
+        car.displayBrand();
+
+        scanner.close();
+    }
+}
