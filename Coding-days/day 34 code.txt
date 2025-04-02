@@ -1,0 +1,174 @@
+Single File Programming Question
+John is creating a Java program to manage employee information using inheritance. The program has a base class Employee and derived classes Manager, Developer, and Intern, each with specific attributes. Users input employee details, and the program creates instances of the respective classes based on the role. Finally, the program prints the details of each employee, showcasing the use of inheritance for streamlined management and display of employee data.
+
+Input format :
+The first line contains an integer n, the number of employees.
+
+The next n lines each contain the details of an employee in the format:
+
+<Role> <Name> <Age> <Salary> [<additional attributes>]
+
+<Role> can be Manager, Developer, or Intern.
+
+<Name> is a string representing the employee's name.
+
+<Age> is an integer representing the employee's age.
+
+<Salary> is a float representing the employee's salary.
+
+<additional attributes> are specific to the role.
+
+For Manager: <TeamSize> (integer)
+
+For Developer: <ProgrammingLanguage> (string)
+
+For Intern: <DurationMonths> (integer)
+
+Output format :
+For each employee, output their details in the format.
+
+Role: <Role>, Name: <Name>, Age: <Age>, Salary: <Salary>, <Role-specific details>
+
+For Manager: TeamSize: <TeamSize>
+
+For Developer: ProgrammingLanguage: <ProgrammingLanguage>
+
+For Intern: DurationMonths: <DurationMonths>
+
+Code constraints :
+The input data will not exceed 100 employees.
+
+Name length will not exceed 50 characters.
+
+Age will be a positive integer less than 100.
+
+Salary will be a positive float.
+
+TeamSize, if applicable, will be a positive integer less than 50.
+
+ProgrammingLanguage will be a string not exceeding 20 characters.
+
+DurationMonths, if applicable, will be a positive integer less than 24.
+
+Sample test cases :
+Input 1 :
+2
+Manager Carol 50 120000 15
+Developer Dave 25 90000 Python
+Output 1 :
+Role: Manager, Name: Carol, Age: 50, Salary: 120000.0, TeamSize: 15
+Role: Developer, Name: Dave, Age: 25, Salary: 90000.0, ProgrammingLanguage: Python
+Input 2 :
+3
+Manager Grace 55 150000 20
+Developer Henry 28 85000 Ruby
+Intern Ivy 20 15000 12
+Output 2 :
+Role: Manager, Name: Grace, Age: 55, Salary: 150000.0, TeamSize: 20
+Role: Developer, Name: Henry, Age: 28, Salary: 85000.0, ProgrammingLanguage: Ruby
+Role: Intern, Name: Ivy, Age: 20, Salary: 15000.0, DurationMonths: 12
+
+ANS:
+
+// You are using Java
+import java.util.Scanner;
+
+// Base class: Employee
+class Employee {
+    String name;
+    int age;
+    float salary;
+
+    public Employee(String name, int age, float salary) {
+        this.name = name;
+        this.age = age;
+        this.salary = salary;
+    }
+
+    public void printDetails() {
+        // Default implementation, can be overridden by subclasses
+    }
+}
+
+// Derived class: Manager
+class Manager extends Employee {
+    int teamSize;
+
+    public Manager(String name, int age, float salary, int teamSize) {
+        super(name, age, salary);
+        this.teamSize = teamSize;
+    }
+
+    @Override
+    public void printDetails() {
+        System.out.println("Role: Manager, Name: " + name + ", Age: " + age + ", Salary: " + salary + ", TeamSize: " + teamSize);
+    }
+}
+
+// Derived class: Developer
+class Developer extends Employee {
+    String programmingLanguage;
+
+    public Developer(String name, int age, float salary, String programmingLanguage) {
+        super(name, age, salary);
+        this.programmingLanguage = programmingLanguage;
+    }
+
+    @Override
+    public void printDetails() {
+        System.out.println("Role: Developer, Name: " + name + ", Age: " + age + ", Salary: " + salary + ", ProgrammingLanguage: " + programmingLanguage);
+    }
+}
+
+// Derived class: Intern
+class Intern extends Employee {
+    int durationMonths;
+
+    public Intern(String name, int age, float salary, int durationMonths) {
+        super(name, age, salary);
+        this.durationMonths = durationMonths;
+    }
+
+    @Override
+    public void printDetails() {
+        System.out.println("Role: Intern, Name: " + name + ", Age: " + age + ", Salary: " + salary + ", DurationMonths: " + durationMonths);
+    }
+}
+
+ class EmployeeManagement {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        int n = scanner.nextInt(); // Read number of employees
+        scanner.nextLine(); // Consume the newline character
+        
+        // Create an array to store employee objects
+        Employee[] employees = new Employee[n];
+        
+        for (int i = 0; i < n; i++) {
+            String role = scanner.next();
+            String name = scanner.next();
+            int age = scanner.nextInt();
+            float salary = scanner.nextFloat();
+            
+            if (role.equals("Manager")) {
+                int teamSize = scanner.nextInt();
+                employees[i] = new Manager(name, age, salary, teamSize);
+            } else if (role.equals("Developer")) {
+                String programmingLanguage = scanner.next();
+                employees[i] = new Developer(name, age, salary, programmingLanguage);
+            } else if (role.equals("Intern")) {
+                int durationMonths = scanner.nextInt();
+                employees[i] = new Intern(name, age, salary, durationMonths);
+            }
+            scanner.nextLine(); // Consume the newline character
+        }
+        
+        // Print details of all employees
+        for (Employee employee : employees) {
+            employee.printDetails();
+        }
+        
+        scanner.close();
+    }
+}
