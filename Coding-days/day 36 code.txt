@@ -1,0 +1,80 @@
+Single File Programming Question
+Problem Statement:
+
+Write a Java program that demonstrates method overloading for polymorphism to perform square, cube, and division mathematical operations.
+
+The program should call three different versions of a method named calculate(), each performing a different mathematical operation.
+
+The first version of calculate() should take an integer argument and return the square of that argument.
+The second version should take an integer argument and return the cube of that argument.
+The third version should take two floating-point arguments and return the quotient of those arguments.
+Input format :
+The first line represents the square of the first integer input value.
+
+The second line represents the cube of the second integer input value.
+
+The third and fourth line represents the division of the two floating-point input values.
+
+Output format :
+The output consists of 3 lines. Each line represents the result of a different mathematical operation.
+
+
+
+Refer to the sample output for the formatting specifications.
+
+Code constraints :
+The basic salary, bonus, hourly rate, and hours worked are positive numbers
+
+Sample test cases :
+Input 1 :
+4
+3
+5.0
+2.0
+Output 1 :
+Square: 16
+Cube: 27
+Division: 2.50
+Input 2 :
+5
+2
+10.0
+2.0
+Output 2 :
+Square: 25
+Cube: 8
+Division: 5.00
+
+ANS:
+
+import java.util.Scanner;
+class MathOperations {
+// You are using Java
+public static  int calculate(int a)
+{
+    return a*a;
+}
+public static int calculateCube(int b)
+{
+    return b*b*b;
+}
+public static float calculate(float p,float q)
+{
+    return p/q;
+}
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int firstInteger = scanner.nextInt();
+        int secondInteger = scanner.nextInt();
+        float firstFloat = scanner.nextFloat();
+        float secondFloat = scanner.nextFloat();
+        int squareResult = calculate(firstInteger);
+        int cubeResult = calculateCube(secondInteger);
+        float divisionResult = calculate(firstFloat, secondFloat);
+        System.out.printf("Square: %d%n", squareResult);
+        System.out.printf("Cube: %d%n", cubeResult);
+        System.out.printf("Division: %.2f%n", divisionResult);
+        scanner.close();
+    }
+}
+
