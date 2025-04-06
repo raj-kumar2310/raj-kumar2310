@@ -1,0 +1,76 @@
+Single File Programming Question
+Write a Java program to compute the area of a rectangle using method overriding to demonstrate runtime polymorphism.
+
+Create a base class Shape with a method calculateArea().
+Create a subclass Rectangle that extends Shape and overrides the calculateArea() method.
+The program should prompt the user to enter the length and breadth of the rectangle.
+Create an instance of Rectangle using a reference of type Shape.
+Call the calculateArea() method to compute and print the area of the rectangle to the console.
+
+
+Input format :
+The program should prompt the user to enter the length and breadth of the rectangle on separate lines.
+
+Output format :
+The program should print a single line to the console, which shows the area of the rectangle. The line should be in the following format:
+
+
+
+"Area of rectangle is: [area]"
+
+
+
+where [area] is the calculated area of the rectangle, rounded to two decimal places.
+
+Sample test cases :
+Input 1 :
+10
+20
+Output 1 :
+Area of rectangle is: 200.0
+Input 2 :
+200
+300
+Output 2 :
+Area of rectangle is: 60000.0
+
+ANS:
+
+// You are using Java
+import java.util.*;
+class calculateArea
+{
+    protected double a;
+    protected double b;
+    public calculateArea(double a,double b)
+    {
+     this.a=a;   
+     this .b=b;   
+    }
+}
+
+class Rectangle extends calculateArea
+{
+    public Rectangle(double a,double b)
+    {
+        super(a,b);
+    }
+    
+    public double cal()
+    {
+        return a*b;
+    }
+}
+
+class Main
+{
+    public static void main(String [] args)
+    {
+        Scanner sc=new Scanner(System.in);
+        double a=sc.nextDouble();
+        double b=sc.nextDouble();
+        Rectangle are=new Rectangle(a,b);
+        System.out.println("Area of rectangle is: "+are.cal());
+        
+    }
+}
