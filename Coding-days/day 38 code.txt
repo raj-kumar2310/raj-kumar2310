@@ -1,0 +1,123 @@
+Single File Programming Question
+Problem Statement:
+
+You are tasked with creating an application that calculates the salary of teachers based on their job title. The program should have a superclass called Teacher with a method calculateSalary() that returns the basic salary. There should be two subclasses called FullTimeTeacher and PartTimeTeacher which override the calculateSalary() method to add a bonus or calculate pay based on hourly rates, respectively.
+
+The program should prompt the user to enter the details of a FullTimeTeacher and a PartTimeTeacher, including their name, basic salary, bonus for full-time teachers, and hourly rate and hours worked for part-time teachers.
+
+The program should then create objects of the FullTimeTeacher and PartTimeTeacher classes and call their respective calculateSalary() methods. Finally, the program should display the calculated salaries for both teachers.
+
+Input format :
+The program takes user input through standard input. The user is prompted to enter the following information:
+
+Full-Time Teacher name
+Full-Time Teacher basic salary
+Full-Time Teacher bonus
+Part-Time Teacher name
+Part-Time Teacher hourly rate
+Part-Time Teacher hours worked
+The input is provided in the order listed above, with each value on a separate line.
+
+Output format :
+The program outputs the calculated salaries for the full-time teacher and part-time teacher.
+
+"Full-Time Teacher Salary: <full_time_teacher_salary>"
+
+"Part-Time Teacher Salary: <part_time_teacher_salary>"
+
+
+
+Refer to the sample output for the formatting specifications.
+
+
+
+Code constraints :
+The basic salary, bonus, hourly rate, and hours worked are positive numbers
+
+Sample test cases :
+Input 1 :
+Smith
+50000
+10000
+Johnson
+50
+30
+Output 1 :
+Full-Time Teacher Salary: 60000.00
+Part-Time Teacher Salary: 1500.00
+Input 2 :
+John Doe
+70000
+15000
+Jane Doe
+45
+40
+Output 2 :
+Full-Time Teacher Salary: 85000.00
+Part-Time Teacher Salary: 1800.00
+
+ANS:
+
+import java.util.Scanner;
+// You are using Java
+class teacher
+{
+    String name;
+}
+
+class FullTimeTeacher extends teacher
+{
+     private    String fullTimeTeacherName ;
+     private   double fullTimeTeacherBasicSalary ;
+     private   double fullTimeTeacherBonus;
+     
+     public  FullTimeTeacher(String fullTimeTeacherName,
+       double fullTimeTeacherBasicSalary,
+        double fullTimeTeacherBonus)
+        {
+            this.fullTimeTeacherName=fullTimeTeacherName;
+            this.fullTimeTeacherBasicSalary = fullTimeTeacherBasicSalary ;
+            this.fullTimeTeacherBonus=fullTimeTeacherBonus;
+        }
+        
+        public double calculateSalary() 
+        {
+            return fullTimeTeacherBasicSalary + fullTimeTeacherBonus;
+        }
+}
+class PartTimeTeacher extends teacher
+{
+    
+   private String partTimeTeacherName;
+   private double partTimeTeacherHourlyRate ;
+   private int partTimeTeacherHoursWorked ; 
+   public  PartTimeTeacher(String partTimeTeacherName,double partTimeTeacherHourlyRate,int partTimeTeacherHoursWorked)
+   {
+       this.partTimeTeacherName=partTimeTeacherName;
+       this.partTimeTeacherHourlyRate=partTimeTeacherHourlyRate;
+       this.partTimeTeacherHoursWorked =partTimeTeacherHoursWorked ;
+   }
+   public double calculateSalary()
+   {
+       return partTimeTeacherHourlyRate*partTimeTeacherHoursWorked;
+   }
+
+}
+class TeacherSalaryCalculator {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        String fullTimeTeacherName = scanner.nextLine();
+        double fullTimeTeacherBasicSalary = scanner.nextDouble();
+        double fullTimeTeacherBonus = scanner.nextDouble();
+        scanner.nextLine();
+        String partTimeTeacherName = scanner.nextLine();
+        double partTimeTeacherHourlyRate = scanner.nextDouble();
+        int partTimeTeacherHoursWorked = scanner.nextInt();
+
+        FullTimeTeacher fullTimeTeacher = new FullTimeTeacher(fullTimeTeacherName, fullTimeTeacherBasicSalary, fullTimeTeacherBonus);
+        PartTimeTeacher partTimeTeacher = new PartTimeTeacher(partTimeTeacherName, partTimeTeacherHourlyRate, partTimeTeacherHoursWorked);
+        System.out.printf("Full-Time Teacher Salary: %.2f%n", fullTimeTeacher.calculateSalary());
+        System.out.printf("Part-Time Teacher Salary: %.2f%n", partTimeTeacher.calculateSalary());
+    }
+}
