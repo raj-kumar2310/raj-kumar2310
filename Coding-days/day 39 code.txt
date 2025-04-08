@@ -1,0 +1,81 @@
+Single File Programming Question
+Implement a temperature converter program in Java that uses method overloading to convert a temperature from Celsius to Fahrenheit and vice versa based on user input. The program should ask the user to enter a temperature value and unit, and then display the converted temperature in the other unit.
+
+
+
+The program should:
+
+Use the Scanner class to read user input from the console.
+
+Use the convert method to perform the temperature conversion.
+
+Display the converted temperature along with the original temperature and units.
+
+The convert method should have the following signature:
+
+public double convert(double celsius)
+
+public double convert(double fahrenheit, boolean toCelsius)
+
+The first method should convert a temperature in Celsius to Fahrenheit, and 
+
+The second method should convert a temperature in Fahrenheit to Celsius if toCelsius is true, or return the same temperature in Fahrenheit otherwise.
+
+Input format :
+The first line of input requires the temperature value and the second line of input requests to enter the temperature unit C or F .
+
+Output format :
+The program uses the convert method to convert the temperature to Fahrenheit or Celsius and display the result.
+
+Sample test cases :
+Input 1 :
+25
+F
+Output 1 :
+25.0 F = -3.888888888888889 C
+Input 2 :
+25 
+C
+Output 2 :
+25.0 C = 77.0 F
+
+ANS:
+
+// You are using Java
+import java.util.Scanner;
+
+class TemperatureConverter {
+    // Convert Celsius to Fahrenheit
+    public double convert(double celsius) {
+        return (celsius * 9 / 5) + 32;
+    }
+
+    // Convert Fahrenheit to Celsius
+    public double convert(double fahrenheit, boolean toCelsius) {
+        if (toCelsius) {
+            return (fahrenheit - 32) * 5 / 9;
+        }
+        return fahrenheit;
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        double temperature = scanner.nextDouble();
+        String unit = scanner.next().trim();
+        
+        TemperatureConverter converter = new TemperatureConverter();
+        
+        if (unit.equalsIgnoreCase("C")) {
+            double converted = converter.convert(temperature);
+            System.out.printf("%.1f C = %.1f F", temperature, converted);
+        } else if (unit.equalsIgnoreCase("F")) {
+            double converted = converter.convert(temperature, true);
+            System.out.printf("%.1f F = %.12f C ", temperature, converted);
+        } else {
+            System.out.println("Invalid unit");
+        }
+        
+        scanner.close();
+    }
+}
