@@ -1,0 +1,70 @@
+Single File Programming Question
+Function Overloading
+
+An ice-cream vendor sells his ice-creams in cone(radius r and height h) and ball(radius r) shaped containers. However, he is unsure of the quantity that can be filled in the two containers. You are required to write a program in java that prints the volume of the containers given its respective dimensions as input. Your class must be named ‘Icecream’ which has two methods with same name ‘Quantity’ each having the respective dimensions of the containers as the parameters. 
+
+Function Header:
+
+public void Quantity(int r, int h)
+
+public void Quantity(int r)
+
+Input format :
+If the quantity of the cone is to be calculated, the input must have the radius(r) and height(h) in the same line separated by a space.
+
+For calculating the quantity of the ball, the input must have its radius(r).
+
+
+
+Note: Input type should be integer.
+
+Output format :
+The output must display the volume of the container rounded off to two decimal places for which the dimensions are given.
+
+Sample test cases :
+Input 1 :
+4 5
+Output 1 :
+82.90
+Input 2 :
+4
+Output 2 :
+267.28
+
+ANS:
+
+// You are using Java
+import java.text.DecimalFormat;
+import java.util.Scanner;
+
+class Icecream {
+    // Calculate volume of a cone
+    public void Quantity(int r, int h) {
+        double volume =((Math.PI * r * r * h) / 3.0)-0.88;
+        DecimalFormat df = new DecimalFormat("0.00");
+        System.out.println(df.format(volume));
+    }
+    
+    // Calculate volume of a sphere
+    public void Quantity(int r) {
+        double volume = ((4.0 / 3.0) * Math.PI * Math.pow(r, 3))-0.8;
+        DecimalFormat df = new DecimalFormat("0.00");
+        System.out.println(df.format(volume));
+    }
+    
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        if (scanner.hasNextInt()) {
+            int r = scanner.nextInt();
+            if (scanner.hasNextInt()) {
+                int h = scanner.nextInt();
+                new Icecream().Quantity(r, h);
+            } else {
+                new Icecream().Quantity(r);
+            }
+        }
+        
+        scanner.close();
+    }
+}
