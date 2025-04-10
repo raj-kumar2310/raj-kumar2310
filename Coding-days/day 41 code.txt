@@ -1,0 +1,96 @@
+METHOD OVERLOADING USING TYPE CONVERSION
+
+
+
+Write a Java program demonstrating method overloading with type conversion in a complex scenario.
+
+Define a class MathOperations with three overloaded methods named computeSum, but with different parameter types:
+
+computeSum(int a, int b)
+computeSum(double a, double b)
+computeSum(float a, long b, short c)
+In the main method, perform the following tasks:
+
+Call computeSum() with different data types such as byte, int, float, and double, ensuring implicit type conversion occurs.
+Mix primitive types in a way that forces Java's automatic type conversion to resolve the method call.
+Demonstrate ambiguity issues that arise when implicit conversion creates multiple valid options.
+If an ambiguous method call occurs, resolve it using explicit type casting.
+Input format :
+The first line represents the sum of two integer input values.
+
+The second line represents the sum of two double input values.
+
+The third line represents the sum of one float, one long, and one short input value.
+
+Output format :
+Displays the sum of two integer values using computeSum(int, int).
+
+Displays the sum of two double values using computeSum(double, double).
+
+Displays the sum of one float, one long, and one short using computeSum(float, long, short).
+
+Sample test cases :
+Input 1 :
+10 20  
+15.5 30.5  
+5.2 7 3  
+50 75.5  
+Output 1 :
+computeSum(int, int) called: Sum = 30
+computeSum(double, double) called: Sum = 46.0
+computeSum(float, long, short) called: Sum = 15.2
+computeSum(double, double) called: Sum = 125.5
+
+ANS:
+
+// You are using Java
+import java.util.*;
+
+class sum
+{
+    public int sum(int a,int b)
+    {
+        return a+b;
+    }
+    public double sum(double c,double d)
+    {
+        return c+d;
+    }
+    public float sum(float e,long f,short g)
+    {
+        return e+f+g;
+    }
+    // public double sum(double x,double y,boolean flag)
+    // {
+    //     return flag? x+y:0;
+    // }
+}
+
+class Main
+{
+    public static void main(String[] args)
+    {
+        Scanner sc=new Scanner(System.in);
+        int a=sc.nextInt();
+        int b=sc.nextInt();
+        sc.nextLine();
+        double c=sc.nextDouble();
+        double d=sc.nextDouble();
+        sc.nextLine();
+        float e =sc.nextFloat();
+        long f=sc.nextLong();
+        short g=sc.nextShort();
+        sc.nextLine();
+        double x=sc.nextDouble();
+        double y=sc.nextDouble();
+        
+        sum ob=new sum();
+        // boolean flag=sc.nextBoolean();
+        
+        System.out.println("computeSum(int,int) called: Sum = "+ob.sum( a, b));
+        System.out.println("computeSum(double,double) called: Sum = "+ob.sum( c, d));
+        System.out.println("computeSum(float,long,short) called: Sum = "+ob.sum( e, f, g));
+        System.out.println("computeSum(double,double) called: Sum = "+ob.sum( x, y));
+        
+    }
+}
