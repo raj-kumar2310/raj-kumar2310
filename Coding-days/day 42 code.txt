@@ -1,0 +1,73 @@
+Single File Programming Question
+Indoor Game
+
+Ajju has a Carom board and TT table (Table Tennis). Ree needs those games. She can get it if it gives the correct answer to the Ajju’s question. He asked an area of the carom board and TT table. Ree needs your help, Help her to get those games from Ajju.
+
+NOTE: Use the polymorphism concept and write the java program for the above problem.
+
+Input format :
+Input consist of 3 integers.
+
+
+
+First input represents the side of carrom
+
+Second input represents length of TT table
+
+Third input represents breadth of TT table.
+
+Output format :
+Output consist of 2 integers.
+
+
+
+First output represents the area of carrom.
+
+Second output represents area of TT table.
+
+Sample test cases :
+Input 1 :
+5
+6
+10
+Output 1 :
+Area of the Carrom: 25cm
+Area of the TT: 60cm
+Input 2 :
+3
+5
+34
+Output 2 :
+Area of the Carrom: 9cm
+Area of the TT: 170cm 
+ANS:
+
+// You are using Java
+import java.util.Scanner;
+
+class IndoorGame {
+    // Calculate area of carrom board (square)
+    public void Area(int side) {
+        int area = side * side;
+        System.out.print("Area of the Carrom: " + area + "cm ");
+    }
+    
+    // Calculate area of TT table (rectangle)
+    public void Area(int length, int breadth) {
+        int area = length * breadth;
+        System.out.print("Area of the TT: " + area + "cm");
+    }
+    
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int side = scanner.nextInt();
+        int length = scanner.nextInt();
+        int breadth = scanner.nextInt();
+        
+        IndoorGame game = new IndoorGame();
+        game.Area(side);
+        game.Area(length, breadth);
+        
+        scanner.close();
+    }
+}
