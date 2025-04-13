@@ -1,0 +1,76 @@
+Single File Programming Question
+To Calculate the Perimeter of the Pool Pocket
+
+Akhil has a pool table(8 ball-pool table) and it is rectangular in shape. Akhil wants to calculate the perimeter of the pool table and the perimeter of its pocket. Help him to find out. Create a class with the name PoolTable which has three Public instance variables length, width, and pocketSize which represent the dimensions of the pool table and the diameter of its pocket. Create a method "calculatePerimeter()" which calculates the perimeter of the pool table and "calculatePerimeter()" which calculates the Perimeter of the pocket.
+
+Input format :
+Input consists of 3 values
+
+The first input represents the length of the pool table in meters
+
+The second input represents the width of the pool table in meters
+
+The third input represents the diameter of the pocket in meters
+
+Output format :
+The output consists of two double values
+
+The first output represents the perimeter of the pool table with precision value '1'.
+
+The second output represents the perimeter of the pocket with precision value '1'.
+
+Sample test cases :
+Input 1 :
+3
+4
+5
+Output 1 :
+14.0
+15.7
+Input 2 :
+5
+6
+7
+Output 2 :
+22.0
+22.0
+
+ANS:
+
+// You are using Java
+import java.util.Scanner;
+
+class PoolTable {
+    public double length;
+    public double width;
+    public double pocketSize;
+
+    public PoolTable(double length, double width, double pocketSize) {
+        this.length = length;
+        this.width = width;
+        this.pocketSize = pocketSize;
+    }
+
+    // Calculate perimeter of the pool table
+    public double calculatePerimeter() {
+        return 2 * (length + width);
+    }
+    
+    // Calculate perimeter of the pocket
+    public double calculatePerimeter(double pocketSize) {
+        return Math.PI * pocketSize;
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        double length = scanner.nextDouble();
+        double width = scanner.nextDouble();
+        double pocketSize = scanner.nextDouble();
+        
+        PoolTable table = new PoolTable(length, width, pocketSize);
+        
+        System.out.printf("%.1f %.1f", table.calculatePerimeter(), table.calculatePerimeter(pocketSize));
+        
+        scanner.close();
+    }
+}
