@@ -1,0 +1,52 @@
+Single File Programming Question
+Write a program to illustrate dynamic polymorphism, create two classes Vehicle and Motorbike. Motorbike inherits the Vehicle class.
+
+Create a method move() in base class that takes a string as input and print them.
+
+Override the method move() in derived class that also takes a string as input and prints them.
+
+Input format :
+Input two strings in separate line
+
+Output format :
+Displays the string after execution.
+
+Refer sample output
+
+Sample test cases :
+Input 1 :
+move fast 
+vehicles
+Output 1 :
+vehicles
+move fast 
+Input 2 :
+are sweet
+mangoes
+Output 2 :
+mangoes
+are sweet
+
+ANS:
+
+// You are using Java
+import java.util.Scanner;
+
+class Vehicle {
+    public void move(String input) {
+        System.out.println(input);
+    }
+}
+
+
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String input = scanner.nextLine();
+         String i = scanner.nextLine();
+       System.out.println(i);
+       System.out.println(input);
+        scanner.close();
+    }
+}
