@@ -1,0 +1,145 @@
+Single File Programming Question
+Problem Statement:
+
+Suppose you are building a company management system. You want to create and store information about different types of employees in the company, such as their name, age, and department, and display their specific roles. You decide to use polymorphism to accomplish this.
+
+Write a Java program that creates instances of employees in different departments (e.g., Engineering, Marketing, HR) based on user input for their names, ages, and department. Then, call the role method on each employee to display their specific role.
+
+The Employee class should have private fields for the name, age, and department of the employee, a constructor that sets these fields, and getter methods for these fields.
+The Employee class should have a role method that displays a generic message indicating that the employee is performing their role.
+The Engineering, Marketing, and HR classes should extend the Employee class and have their own role methods that display a specific role for that department.
+The Main class should prompt the user to enter the name, age, and department of each employee, create instances of each employee based on this input, call the role method on each employee, and display a message indicating that the program has finished.
+The program should use polymorphism to call the role method on each employee.
+Input format :
+The input consists of the name, age, and department of three employees (one for each department: Engineering, Marketing, and HR). The input should be provided in the following format:
+
+Name of the Engineering employee
+Age of the Engineering employee
+Name of the Marketing employee
+Age of the Marketing employee
+Name of the HR employee
+Age of the HR employee
+
+
+Output format :
+The output consists of the specific roles of each employee followed by a message indicating that the program has finished.
+
+Refer to the sample output for the formatting specifications.
+
+Code constraints :
+The basic salary, bonus, hourly rate, and hours worked are positive numbers
+
+Sample test cases :
+Input 1 :
+John Doe
+30
+Jane Smith
+28
+Emily Davis
+35
+Output 1 :
+John Doe (Engineering): Solving technical problems.
+Jane Smith (Marketing): Creating marketing strategies.
+Emily Davis (HR): Managing employee relations.
+Program has finished.
+Input 2 :
+Alice Johnson
+25
+Bob Brown
+32
+Claire White
+29
+Output 2 :
+Alice Johnson (Engineering): Solving technical problems.
+Bob Brown (Marketing): Creating marketing strategies.
+Claire White (HR): Managing employee relations.
+Program has finished.
+
+ANS:
+
+// You are using Java
+import java.util.Scanner;
+
+class Employee {
+    private String name;
+    private int age;
+    private String department;
+
+    public Employee(String name, int age, String department) {
+        this.name = name;
+        this.age = age;
+        this.department = department;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public void role() {
+        System.out.println(name + " (" + department + "): Performing general duties.");
+    }
+}
+
+class Engineering extends Employee {
+    public Engineering(String name, int age) {
+        super(name, age, "Engineering");
+    }
+
+    @Override
+    public void role() {
+        System.out.println(getName() + " (Engineering): Solving technical problems.");
+    }
+}
+
+class Marketing extends Employee {
+    public Marketing(String name, int age) {
+        super(name, age, "Marketing");
+    }
+
+    @Override
+    public void role() {
+        System.out.println(getName() + " (Marketing): Creating marketing strategies.");
+    }
+}
+
+class HR extends Employee {
+    public HR(String name, int age) {
+        super(name, age, "HR");
+    }
+
+    @Override
+    public void role() {
+        System.out.println(getName() + " (HR): Managing employee relations.");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        String engName = scanner.nextLine();
+        int engAge = Integer.parseInt(scanner.nextLine().trim());
+
+        String mktName = scanner.nextLine();
+        int mktAge = Integer.parseInt(scanner.nextLine().trim());
+
+        String hrName = scanner.nextLine();
+        int hrAge = Integer.parseInt(scanner.nextLine().trim());
+
+        Employee engEmployee = new Engineering(engName, engAge);
+        Employee mktEmployee = new Marketing(mktName, mktAge);
+        Employee hrEmployee = new HR(hrName, hrAge);
+
+        engEmployee.role();
+        mktEmployee.role();
+        hrEmployee.role();
+
+        System.out.println("Program has finished.");
+
+        scanner.close();
+    }
+}
