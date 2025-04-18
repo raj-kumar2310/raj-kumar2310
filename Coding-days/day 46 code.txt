@@ -1,0 +1,97 @@
+Single File Programming Question
+Problem Statement:
+Create a Java program that demonstrates constructor overloading in a class named Overloading. The program should include default and parameterized constructors to initialize attributes based on different input combinations. The main method should invoke these constructors with appropriate values and print the details of each instance.
+
+
+
+Input format :
+Input should be of type string representing the name of the state and integer representing the temperature in Celsius separated by space.
+
+
+
+Output format :
+The first line should display the name of the state.
+
+The second line should display the humidity level based on the temperature:
+
+The third line should display the temperature followed by "°C".
+
+
+
+Refer to Sample Output for Formatting Specifications.
+
+Sample test cases :
+Input 1 :
+Rajsthan 20
+Output 1 :
+State Name: Rajsthan
+Humidity: Moderate
+Temperature: 20°C
+
+Input 2 :
+Andhra 25
+Output 2 :
+State Name: Andhra
+Humidity: Moderate
+Temperature: 25°C
+
+Input 3 :
+Goa 35
+Output 3 :
+State Name: Goa
+Humidity: High
+Temperature: 35°C
+
+ANS:
+
+import java.util.Scanner;
+
+
+class Overloading {
+    private String state;
+    private int temperature;
+    private String humidity;
+
+    // Default Constructor
+    public Overloading() {
+        this.state = "Unknown";
+        this.temperature = 0;
+        this.humidity = "Low";
+    }
+
+    // Parameterized Constructor
+    public Overloading(String state, int temperature) {
+        this.state = state;
+        this.temperature = temperature;
+        this.humidity = determineHumidity(temperature);
+    }
+
+    // Method to determine humidity level
+    private String determineHumidity(int temperature) {
+        if (temperature < 20) {
+            return "Low";
+        } else if (temperature <= 30) {
+            return "Moderate";
+        } else {
+            return "High";
+        }
+    }
+
+    // Method to display details
+    public void displayDetails() {
+        System.out.println("State Name: " + state + " Humidity: " + humidity + " Temperature: " + temperature + "°C");
+    }
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String stateName = scanner.next();
+        int temperature = scanner.nextInt();
+
+        // Create object using parameterized constructor to calculate humidity
+        Overloading stateDetails = new Overloading(stateName, temperature);
+        stateDetails.displayDetails();
+
+        scanner.close();
+    }
+}
+   
+
