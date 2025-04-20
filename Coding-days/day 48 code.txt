@@ -1,0 +1,230 @@
+Single File Programming Question
+Banking Scenario with Due Date Condition
+
+
+
+Considering the Banking Scenario, You have different types of accounts like Current Account, Savings Account which inherits the base class Account.
+
+
+
+Create a base class Account with the fields - String name, int number, int balance and Date startDate.
+
+Create two subclasses CurrentAccount & SavingsAccount which extends Account.
+
+
+
+Declare a method in Account class - calculateInterest which would return the interest (double) and get duedate (Date) as parameter. Since the Account class itself does not know how to compute calculateInterest, we mark the method and class abstract.
+
+
+
+In SavingsAccount & CurrentAccount - The interest is calculated as simple interest. (Interest 12% for the savings account and 5% for the Current account.)
+
+
+
+Get the input from the user and print calculated interest. Refer sample input and output.
+
+
+
+Note:
+
+Utility methods to calculate months between two date objects.
+
+
+
+import java.util.*;
+
+  
+
+  public int monthsDifference(Date startDate, Date endDate)  
+
+    
+
+    Calendar c1 = new GregorianCalendar();
+
+    c1.setTime(startDate);
+
+    
+
+    Calendar c2 = new GregorianCalendar();
+
+    c2.setTime(endDate);
+
+    
+
+    int ans = (c2.get(c2.YEAR) - c1.get(c1.YEAR))*12;
+
+    ans += c2.get(c2.MONTH)-c1.get(c1.MONTH);
+
+    
+
+    return ans;
+
+  }
+
+
+
+Question Instructions:
+
+
+
+Create a base class Account with the fields - String name, int number, int balance and Date startDate.
+Create two subclasses CurrentAccount & SavingsAccount which extends Account.
+Declare a method in Account class - calculateInterest which would return the interest (double) and get duedate (Date) as parameter. Since the Account class itself does not know how to compute calculateInterest, we mark the method and class abstract.
+Create a driver class named Main to test the above classes.
+The solution code should be written inside the main() method of the class named Main
+
+
+Input format :
+The first line of the input consists of Account Type.
+
+The second line of the input consists of Name.
+
+The third line of the input consists of the Account Number.
+
+The fourth line of the input consists of the amount.
+
+The fifth and six-line consist of Start Date and End Date.
+
+Output format :
+The output prints the calculated Interest value.
+
+Sample test cases :
+Input 1 :
+1
+Karthick
+101521502
+7000
+22/04/2013
+22/04/2016
+Output 1 :
+2520.0
+Input 2 :
+2
+Karthick
+111521502
+4000
+22/04/2014
+22/04/2015
+Output 2 :
+200.0
+
+ANS:
+
+// You are using Java
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.Scanner;
+
+abstract class Account{
+
+	// Fill your code
+	String name;int number;int balance;Date startDate;
+	public Account(String name,int number,int balance,Date startDate)
+	{
+	    this.name=name;
+	    this.number=number;
+	    this.balance=balance;
+	    this.startDate=startDate;
+	}
+	
+	public abstract double calculateInterest(Date dueDate);
+}
+
+class CurrentAccount extends Account{
+	
+
+	public CurrentAccount(String name, int number, int balance, Date startDate) {
+		super(name, number, balance, startDate);
+	
+	}
+
+	public double calculateInterest(Date dueDate) {
+		// Fill your code
+		
+		int mon =  monthsDifference(this.startDate,dueDate);
+		double inte=(balance * 0.05 * mon)/12;
+		return inte;
+	}
+	
+	public int monthsDifference(Date startDate, Date endDate) {
+	    // Fill your code
+	    Calendar c1=new GregorianCalendar();
+	    c1.setTime(startDate);
+	    
+	    Calendar c2=new GregorianCalendar();
+	    c2.setTime(endDate);
+	    
+	    int ans = (c2.get(Calendar.YEAR) - c1.get(Calendar.YEAR)) * 12;
+	    ans+= c2.get(Calendar.MONTH) - c1.get(Calendar.MONTH) ;
+	    return ans;
+	    
+	}
+}
+
+class SavingsAccount extends Account{
+
+	
+	public SavingsAccount(String name, int number, int balance, Date startDate) {
+		super(name, number, balance, startDate);
+	
+	}
+
+	public double calculateInterest(Date dueDate) {
+		// Fill your code
+		int mon = mothdif(this.startDate,dueDate);
+		double inte=(balance * 0.12 * mon)/12;
+		return inte;
+		
+	}
+	
+	public int mothdif(Date startDate, Date endDate) {
+	    // Fill your code
+	      Calendar c1=new GregorianCalendar();
+	    c1.setTime(startDate);
+	    
+	    Calendar c2=new GregorianCalendar();
+	    c2.setTime(endDate);
+	    
+	    int ans = (c2.get(Calendar.YEAR) - c1.get(Calendar.YEAR)) * 12;
+	    ans+= c2.get(Calendar.MONTH) - c1.get(Calendar.MONTH) ;
+	    return ans;
+	}
+	
+}
+
+class AccountsMain{
+	public static void main(String args[]) throws ParseException {
+		// Fill your code
+		Scanner sc=new Scanner(System.in);
+		int type =Integer.parseInt(sc.nextLine());
+		String name=sc.nextLine();
+		int number =Integer.parseInt(sc.nextLine());
+		int balance =Integer.parseInt(sc.nextLine());
+	    String start =sc.nextLine();
+	    String end =sc.nextLine();
+	    
+	    SimpleDateFormat sdf=new SimpleDateFormat("dd/MM/yyyy");
+	    Date startDate = sdf.parse(start);
+	    Date endDate = sdf.parse(end);
+	    
+	    Account acc;
+	    if(type==1)
+	    {
+	        acc= new SavingsAccount(name,number,balance,startDate);
+	    }
+	    else
+	    {
+	        acc= new CurrentAccount(name,number,balance,startDate);
+	        
+	    }
+	    
+	    double interest =acc.calculateInterest(endDate);
+	    System.out.println(interest);
+	
+	
+	}
+}
