@@ -1,0 +1,260 @@
+Single File Programming Question
+Product Details
+
+
+
+Create an interface Product with two abstract methods void ProductDetails() and void show_Bill()
+
+
+
+void ProductDetails()  This method will take input from the user about the order placed(no_of items, name of the individual product and cost of the individual product and then calculate the total bill of the order using the following conditions:
+
+
+
+if total bill is <= 10000 than, GST 0%
+
+if the total bill is > 10000 and <=30000 then add 5 % GST in the total bill
+
+if the total bill is >30000 and <= 50000 then add 7% GST in the total bill
+
+if the total bill is > 50000 then add 9% GST to the total bill
+
+
+
+void show_Bill()  This method will display the total bill.
+
+
+
+Also, create class Customer with two methods:
+
+void getdetails(); This function will input details of the customer
+
+void showdetails(); This function will print details of the customer.
+
+
+
+Create OrderOnline class which is a Driver class. It will inherit the properties of the Product interface and Customer class.
+
+Refer to the input format and output format.
+
+
+
+
+
+Question Instructions:
+
+
+
+Create an interface Product with the above defined methods  void ProductDetails() and void show_Bill()
+Also create a Customer class with two methods void getdetails() and void showdetails().
+Create a driver class named OrderOnline to test the above classes.
+The solution code should be written inside the main() method of the class named OrderOnline
+
+
+Input format :
+Number of customers(N)
+
+First customer ID
+
+First customer Name
+
+Number of items(
+
+First Product name
+
+Cost of the first product
+
+Second Product name
+
+Cost of Second product
+
+.
+
+.
+
+.
+
+Second customer ID
+
+Second customer Name
+
+Number of items
+
+First Product name
+
+Cost of the first product
+
+.
+
+.
+
+.
+
+.
+
+Nth customer ID
+
+Nth customer Name
+
+Number of items
+
+First Product name
+
+Cost of the first product
+
+Second Product name
+
+Cost of Second product
+
+.
+
+.
+
+.
+
+Output format :
+First customer ID
+
+First customer name
+
+First customer total bill
+
+Second customer ID
+
+Second customer name
+
+Second customer total bill
+
+.
+
+.
+
+.
+
+.
+
+Nth customer ID
+
+Nth customer name
+
+Nth customer total bill
+
+Sample test cases :
+Input 1 :
+2
+618
+Rahul
+2
+jeans
+5000
+shirt
+8000
+121
+Karan
+1
+shoes
+2000
+Output 1 :
+ID:618
+NAME:Rahul
+Bill:13650
+ID:121
+NAME:Karan
+Bill:2000
+Input 2 :
+2
+120
+Radhika
+3
+jeans
+5000
+shirt
+18000
+shoes
+10000
+151
+Raj
+1
+shoes
+11000
+Output 2 :
+ID:120
+NAME:Radhika
+Bill:35310
+ID:151
+NAME:Raj
+Bill:11550
+
+
+ANS:
+
+
+import java.util.*;
+
+interface Product {
+    void ProductDetails();
+    void show_Bill();
+}
+
+class Customer {
+    int id;
+    String name;
+
+    public void getdetails(Scanner sc) {
+        id = Integer.parseInt(sc.nextLine());
+        name = sc.nextLine();
+    }
+
+    public void showdetails() {
+        System.out.println("ID:" + id);
+        System.out.println("NAME:" + name);
+    }
+}
+
+ class OrderOnline extends Customer implements Product {
+
+    double totalBill = 0;
+
+    public void ProductDetails() {
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.nextLine());
+
+        for (int i = 0; i < n; i++) {
+            OrderOnline order = new OrderOnline();
+            order.getdetails(sc);
+
+            int numItems = Integer.parseInt(sc.nextLine());
+            double subtotal = 0;
+
+            for (int j = 0; j < numItems; j++) {
+                String prodName = sc.nextLine(); // not used in output
+                double cost = Double.parseDouble(sc.nextLine());
+                subtotal += cost;
+            }
+
+            // Apply GST
+            if (subtotal > 50000) {
+                subtotal += subtotal * 0.09;
+            } else if (subtotal > 30000) {
+                subtotal += subtotal * 0.07;
+            } else if (subtotal > 10000) {
+                subtotal += subtotal * 0.05;
+            }
+
+            order.totalBill = (int) subtotal; // round down for output format
+
+            order.showdetails();
+            order.show_Bill();
+        }
+    }
+
+    public void show_Bill() {
+        System.out.println("Bill:" + (int) totalBill);
+    }
+
+    public static void main(String[] args) {
+        OrderOnline onlineOrder = new OrderOnline();
+        onlineOrder.ProductDetails();
+    }
+}
+
