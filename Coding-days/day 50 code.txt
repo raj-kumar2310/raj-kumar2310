@@ -1,0 +1,126 @@
+Single File Programming Question
+Growing String and Number
+
+
+
+Define an interface ‘Growing’ which declares the method isGrowing(). Create a class ‘GrowingNumber’ which implements the interface. Override the method isGrowing() to check if the given number is a growing number or not. (A growing number is one in which no digit is exceeded by the digit to its left Ex., 369 is an increasing number but 362 is not).                                  
+
+
+
+Create another class ‘GrowingString’ which also implements the same interface. Override the method isGrowing() to check whether the given string is growing string or not. (If on moving from Left to Right, each character in the string comes after the previous character in the alphabetical order. Ex., ANT is an increasing string whereas APPLE is not). 
+
+
+
+Write a java program to check whether the given number is a growing number or not and the given string is a growing string or not.
+
+
+
+Question Instructions:
+
+
+
+Create an interface Growing with methods isGrowing().
+Create 2 more classes GrowingNumber and GrowingString which implements Growing interface. 
+Create a driver class named Main which uses both these classes defined above.
+The solution code should be written inside the main() method of the class named Main
+
+
+Input format :
+Number followed by String in first line (space separated)
+
+Output format :
+Growing number or Not growing number in the first line
+
+Growing string or Not growing string in the second line
+
+
+
+Refer sample outputs
+
+Sample test cases :
+Input 1 :
+369 ANT
+Output 1 :
+Growing number
+Growing string
+Input 2 :
+369 APPLE
+Output 2 :
+Growing number
+Not growing string
+Input 3 :
+362 APPLE
+Output 3 :
+Not growing number
+Not growing string
+Input 4 :
+362 ANT
+Output 4 :
+Not growing number
+Growing string
+
+ANS:
+
+import java.util.*;
+
+interface Growing {
+    boolean isGrowing();
+}
+
+class GrowingNumber implements Growing {
+    int number;
+
+    GrowingNumber(int number) {
+        this.number = number;
+    }
+
+    public boolean isGrowing() {
+        String numStr = String.valueOf(number);
+        for (int i = 0; i < numStr.length() - 1; i++) {
+            if (numStr.charAt(i) > numStr.charAt(i + 1)) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
+
+class GrowingString implements Growing {
+    String text;
+
+    GrowingString(String text) {
+        this.text = text;
+    }
+
+    public boolean isGrowing() {
+        for (int i = 0; i < text.length() - 1; i++) {
+            if (text.charAt(i) > text.charAt(i + 1)) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int num = sc.nextInt();
+        String str = sc.next();
+
+        GrowingNumber gn = new GrowingNumber(num);
+        GrowingString gs = new GrowingString(str);
+
+        if (gn.isGrowing()) {
+            System.out.print("Growing number ");
+        } else {
+            System.out.print("Not growing number ");
+        }
+
+        if (gs.isGrowing()) {
+            System.out.print("Growing string ");
+        } else {
+            System.out.print("Not growing string ");
+        }
+    }
+}
