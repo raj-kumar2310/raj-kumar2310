@@ -1,0 +1,60 @@
+Single File Programming Question
+Write a simple program to demonstrate interface.
+
+Interface details:
+
+Set the value of integer as 10 and then call the display function.
+
+In display method, obtain the value of the string and display them.
+
+In main method, display the integer value.
+
+Input format :
+The input consists of the string.
+
+Output format :
+The first line of the output prints the string.
+
+The second line prints the integer value which is set as 10.
+
+Code constraints :
+Integers and strings only.
+
+Sample test cases :
+Input 1 :
+spring
+Output 1 :
+spring
+10
+Input 2 :
+neet
+Output 2 :
+neet
+10
+
+ANS:
+
+// You are using Java
+import java.util.*;
+interface Display
+{
+   void display (String str);
+}
+class Main implements Display
+{
+    int value=10;
+    
+    public void display(String str)
+    {
+        System.out.println(str);
+    }
+    
+    public static void main(String[] args)
+    {
+        Scanner sc=new Scanner(System.in);
+        String str=sc.nextLine();
+        Main ob=new Main();
+        ob.display(str);
+        System.out.println(ob.value);
+    }
+}
