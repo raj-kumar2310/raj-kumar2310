@@ -1,0 +1,223 @@
+Single File Programming Question
+Interface - AirFare
+
+
+
+The Interface defines a rule that any classes that implement it should override all the methods. Let's implement an Interface in our application.
+
+
+
+
+
+Create a class AirIndia that implements an Airfare interface with the following private attributes
+
+Create a default constructor and a parameterized constructor. Include appropriate getters and setters.
+
+Include following methods given below
+
+
+
+Create a class KingFisher that implements an Airfare interface with the following private attributes
+
+Create a default constructor and a parameterized constructor. Include appropriate getters and setters. 
+
+Include following methods given below
+
+
+
+Create a class Indigo that implements an Airfare interface with the following private attributes
+
+Create a default constructor and a parameterized constructor. Include appropriate getters and setters. 
+
+Include following methods given below
+
+
+
+Create an interface Airfare with the following method
+
+
+
+For the KingFisher class multiply the amount by 4 and for the Indigo class multiply the product by 8.
+
+Create a driver class called Main to test the above classes.
+
+Round off the double value to 2 decimal places.
+
+Note:
+
+Strictly adhere to the Object-Oriented specifications given in the problem statement. All class names, attribute names and method names should be the same as specified in the problem statement.
+
+
+
+Question Instructions:
+
+
+
+Create an interface Airfare with the above defined methods
+Create 3 more classes AirIndia, KingFisher, and Indigo which implements Airfare interface. Include getters, setters, default and parametrized constructors for all 3 classes.
+Create a driver class named Main to test the above classes
+The solution code should be written inside the main() method of the class named Main
+
+
+
+
+
+
+
+
+
+
+Input format :
+The first line of the input is the choice. 1 for AirIndia, 2 for KingFisher and 3 for Indigo.
+
+The second line of the input consists of the hours of travel.
+
+The third line of the input consists of the CostPerHour.
+
+Output format :
+The output prints the total amount. Refer sample input and output.
+
+Sample test cases :
+Input 1 :
+1
+5
+5400
+Output 1 :
+27000.00
+Input 2 :
+2
+8
+2500
+Output 2 :
+80000.00
+Input 3 :
+3
+2
+4800
+Output 3 :
+76800.00   
+ANS:
+
+import java.util.*;
+
+interface Airfare {
+    public double calculateAmount();
+}
+
+class AirIndia implements Airfare {
+    private int hours;
+    private double costPerHour;
+
+    public AirIndia() {}
+
+    public AirIndia(int hours, double costPerHour) {
+        this.hours = hours;
+        this.costPerHour = costPerHour;
+    }
+
+    public int getHours() {
+        return hours;
+    }
+
+    public void setHours(int hours) {
+        this.hours = hours;
+    }
+
+    public double getCostPerHour() {
+        return costPerHour;
+    }
+
+    public void setCostPerHour(double costPerHour) {
+        this.costPerHour = costPerHour;
+    }
+
+    public double calculateAmount() {
+        return hours * costPerHour;
+    }
+}
+
+class KingFisher implements Airfare {
+    private int hours;
+    private double costPerHour;
+
+    public KingFisher() {}
+
+    public KingFisher(int hours, double costPerHour) {
+        this.hours = hours;
+        this.costPerHour = costPerHour;
+    }
+
+    public int getHours() {
+        return hours;
+    }
+
+    public void setHours(int hours) {
+        this.hours = hours;
+    }
+
+    public double getCostPerHour() {
+        return costPerHour;
+    }
+
+    public void setCostPerHour(double costPerHour) {
+        this.costPerHour = costPerHour;
+    }
+
+    public double calculateAmount() {
+        return hours * costPerHour * 4;
+    }
+}
+
+class Indigo implements Airfare {
+    private int hours;
+    private double costPerHour;
+
+    public Indigo() {}
+
+    public Indigo(int hours, double costPerHour) {
+        this.hours = hours;
+        this.costPerHour = costPerHour;
+    }
+
+    public int getHours() {
+        return hours;
+    }
+
+    public void setHours(int hours) {
+        this.hours = hours;
+    }
+
+    public double getCostPerHour() {
+        return costPerHour;
+    }
+
+    public void setCostPerHour(double costPerHour) {
+        this.costPerHour = costPerHour;
+    }
+
+    public double calculateAmount() {
+        return hours * costPerHour * 8;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int choice = sc.nextInt();
+        int hours = sc.nextInt();
+        double cost = sc.nextDouble();
+
+        Airfare airline;
+
+        if (choice == 1) {
+            airline = new AirIndia(hours, cost);
+        } else if (choice == 2) {
+            airline = new KingFisher(hours, cost);
+        } else {
+            airline = new Indigo(hours, cost);
+        }
+
+        double total = airline.calculateAmount();
+        System.out.printf("%.2f", total);
+    }
+}
