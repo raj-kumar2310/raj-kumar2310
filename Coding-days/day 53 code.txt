@@ -1,0 +1,73 @@
+Single File Programming Question
+Write a program to find the sum of divisors using the concept of abstract classes.
+
+
+
+Create an abstract class "AbstractClass" which contains abstract methods getValue() and divisorSum(int n). Then write a class called Calculator which extends the abstract class.
+
+
+
+getValue(): Method needs to get input from the user.
+
+
+
+divisorSum(int n): Method get's "n" as a parameter and returns the sum of the numbers divisor.
+
+
+
+Eg: The divisor of the number 4 is 1, 2, 4. Output is 1+2+4 = 7
+
+Input format :
+The first line of the input consists of an integer.
+
+Output format :
+The output prints the sum of its proper divisors.
+
+Code constraints :
+0 <= n <= 9999
+
+Sample test cases :
+Input 1 :
+4
+Output 1 :
+7
+Input 2 :
+1000
+Output 2 :
+2340
+
+ANS:
+
+// You are using Java
+import java.util.Scanner;
+
+abstract class AbstractClass {
+    abstract void getValue();
+    abstract int divisorSum(int n);
+}
+
+class Calculator extends AbstractClass {
+    int number;
+
+    void getValue() {
+        Scanner sc = new Scanner(System.in);
+        number = sc.nextInt();
+    }
+
+    int divisorSum(int n) {
+        int sum = 0;
+        for (int i = 1; i <= n; i++) {
+            if (n % i == 0) {
+                sum += i;
+            }
+        }
+        return sum;
+    }
+
+    public static void main(String[] args) {
+        Calculator calc = new Calculator();
+        calc.getValue();
+        int result = calc.divisorSum(calc.number);
+        System.out.print(result);
+    }
+}
