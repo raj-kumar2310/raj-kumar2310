@@ -1,0 +1,83 @@
+Single File Programming Question
+You are tasked with implementing a Java program that handles complex numbers and performs operations to calculate their modulus and conjugate.
+
+Define an abstract class named Complex that represents the structure of a complex number, including its real and imaginary parts.
+Include methods for calculating the modulus (getModulus()) and conjugate (getConjugate()).
+Implement a subclass Modulus that extends Complex.
+Override the getModulus() method to calculate the modulus of the complex number using the formula.
+                              
+
+Override the getConjugate() method to return the conjugate of the complex number, which is:
+                              
+
+Input format :
+The user will be prompted to enter the real and imaginary parts of a complex number.
+
+Inputs should be provided as two separate numeric values (double or integer).
+
+Output format :
+The program will output the calculated modulus and conjugate of the complex number.
+
+The modulus will be a single numeric value (double).
+
+The conjugate will be displayed in the form of real_part + imaginary_part i.
+
+Sample test cases :
+Input 1 :
+1
+2
+Output 1 :
+Modulus of the complex number: 2.23606797749979
+Conjugate of the complex number: 1.0 + -2.0i
+Input 2 :
+3
+2
+Output 2 :
+Modulus of the complex number: 3.605551275463989
+Conjugate of the complex number: 3.0 + -2.0i
+
+ANS:
+
+import java.util.Scanner;
+
+abstract class Complex {
+    protected double real;
+    protected double imaginary;
+
+    public Complex(double real, double imaginary) {
+        this.real = real;
+        this.imaginary = imaginary;
+    }
+
+    public abstract double getModulus();
+    public abstract String getConjugate();
+}
+
+class Modulus extends Complex {
+
+    public Modulus(double real, double imaginary) {
+        super(real, imaginary);
+    }
+
+    @Override
+    public double getModulus() {
+        return Math.sqrt(real * real + imaginary * imaginary);
+    }
+
+    @Override
+    public String getConjugate() {
+        return real + " + " + (-imaginary) + "i";
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        double real = scanner.nextDouble();
+        double imaginary = scanner.nextDouble();
+
+        Modulus complex = new Modulus(real, imaginary);
+        System.out.print("Modulus of the complex number: " + complex.getModulus() + " ");
+        System.out.print("Conjugate of the complex number: " + complex.getConjugate());
+    }
+}
