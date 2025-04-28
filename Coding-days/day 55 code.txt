@@ -1,0 +1,218 @@
+Single File Programming Question
+Calculate the perimeter of five different geometric shapes and print their sum.
+
+Sort them in ascending order and print.
+
+Create an abstract class math with the following methods
+
+void rectanglePerimeter();
+
+void squarePerimeter();
+
+void trianglePerimeter();
+
+void trapezoidPerimeter();
+
+void circlePerimeter();
+
+
+
+create a class perimeter that extends maths and has two more methods
+
+void calculateSum();
+
+void sortPerimeter();
+
+
+
+The main method to trigger the above functions.
+
+The geometric shapes considered are rectangle, square, triangle, trapezoid, and circle.
+
+
+
+Formulas to calculate perimeter :
+
+Rectangle - 2(length+breadth).
+
+Square - 4*side.
+
+Triangle - the sum of all three sides.
+
+Trapezoid - the sum of all four sides.
+
+Circle - 2*pi*radius.
+
+Input format :
+The first line of the input consists of the length and breadth.
+
+The second line consists of the side of the square.
+
+The third line consists of the three sides of a triangle.
+
+The fourth line consists of the four sides of a trapezoid.
+
+The fifth line of the output is the radius of the circle.
+
+Output format :
+The first line of the output prints the perimeter of the rectangle.
+
+The second line of the output prints the perimeter of the square.
+
+The third line of the output prints the perimeter of the triangle.
+
+The fourth line of the output prints the perimeter of the trapezoid.
+
+The fifth line of the output prints the perimeter of the circle.
+
+Next line prints the sum of all perimeters.
+
+The last line prints the perimeter in sorted order.
+
+Note - There is an extra space at the last line of the output.
+
+Sample test cases :
+Input 1 :
+10 12
+6
+3 4 6
+2 4 6 8
+2
+Output 1 :
+44
+24
+13
+20
+12
+113
+12 13 20 24 44 
+Input 2 :
+2 14
+7
+5 4 3
+2 4 6 8
+5
+Output 2 :
+32
+28
+12
+20
+30
+122
+12 20 28 30 32 
+
+ANS:
+
+// You are using Java
+import java.util.*;
+
+abstract class maths {
+    abstract void rectanglePerimeter();
+    abstract void squarePerimeter();
+    abstract void trianglePerimeter();
+    abstract void trapezoidPerimeter();
+    abstract void circlePerimeter();
+}
+
+class perimeter extends maths {
+    double[] perimeters = new double[5];
+    int index = 0;
+
+    double length, breadth;
+    double side;
+    double t1, t2, t3;
+    double trap1, trap2, trap3, trap4;
+    double radius;
+
+    public perimeter(double length, double breadth, double side,
+                     double t1, double t2, double t3,
+                     double trap1, double trap2, double trap3, double trap4,
+                     double radius) {
+        this.length = length;
+        this.breadth = breadth;
+        this.side = side;
+        this.t1 = t1;
+        this.t2 = t2;
+        this.t3 = t3;
+        this.trap1 = trap1;
+        this.trap2 = trap2;
+        this.trap3 = trap3;
+        this.trap4 = trap4;
+        this.radius = radius;
+    }
+
+    void rectanglePerimeter() {
+        double peri = 2 * (length + breadth);
+        perimeters[index++] = peri;
+        System.out.print((int)peri + " ");
+    }
+
+    void squarePerimeter() {
+        double peri = 4 * side;
+        perimeters[index++] = peri;
+        System.out.print((int)peri + " ");
+    }
+
+    void trianglePerimeter() {
+        double peri = t1 + t2 + t3;
+        perimeters[index++] = peri;
+        System.out.print((int)peri + " ");
+    }
+
+    void trapezoidPerimeter() {
+        double peri = trap1 + trap2 + trap3 + trap4;
+        perimeters[index++] = peri;
+        System.out.print((int)peri + " ");
+    }
+
+    void circlePerimeter() {
+        double peri = 2 * Math.PI * radius;
+        perimeters[index++] = peri;
+        System.out.print((int)peri + " ");
+    }
+
+    void calculateSum() {
+        int sum = 0;
+        for (double d : perimeters) {
+            sum += (int)d;
+        }
+        System.out.print(sum + " ");
+    }
+
+    void sortPerimeter() {
+        Arrays.sort(perimeters);
+        for (double d : perimeters) {
+            System.out.print((int)d + " ");
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        double length = sc.nextDouble();
+        double breadth = sc.nextDouble();
+        double side = sc.nextDouble();
+        double t1 = sc.nextDouble();
+        double t2 = sc.nextDouble();
+        double t3 = sc.nextDouble();
+        double trap1 = sc.nextDouble();
+        double trap2 = sc.nextDouble();
+        double trap3 = sc.nextDouble();
+        double trap4 = sc.nextDouble();
+        double radius = sc.nextDouble();
+
+        perimeter p = new perimeter(length, breadth, side,
+                                    t1, t2, t3,
+                                    trap1, trap2, trap3, trap4,
+                                    radius);
+        p.rectanglePerimeter();
+        p.squarePerimeter();
+        p.trianglePerimeter();
+        p.trapezoidPerimeter();
+        p.circlePerimeter();
+        p.calculateSum();
+        p.sortPerimeter();
+    }
+}
