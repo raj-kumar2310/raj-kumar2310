@@ -1,0 +1,102 @@
+Single File Programming Question
+Write a Java program to find the smallest and largest elements of the diagonals of a square matrix using an interface called Matrix. 
+
+The program should have a method named diagonalsMinMax which takes a 2D integer array as input and prints the smallest and largest elements of both the diagonals. Implement this method in a class called Main which implements the Matrix interface.
+
+
+
+The program should take the size of the matrix as input in the first line and then the elements of the matrix in the following lines. The output should display the smallest and largest elements of both the diagonals in the format specified in the sample output.
+
+Input format :
+The first line of input contains an integer N, the size of the square matrix.
+The following N lines contain N integers each, representing the elements of the matrix.
+
+
+Output format :
+The output displays the smallest and largest elements of both the diagonals of the matrix.
+The first line displays the smallest and largest elements of the main diagonal in the format "Smallest Element - 1: x" and "Greatest Element - 1: y", respectively, where x and y are the smallest and largest elements of the main diagonal.
+The second line displays the smallest and largest elements of the secondary diagonal in the format "Smallest Element - 2: p" and "Greatest Element - 2: q", respectively, where p and q are the smallest and largest elements of the secondary diagonal.
+
+
+Code constraints :
+Only Square matrix (N x N)
+
+Sample test cases :
+Input 1 :
+5
+7 8 9 0 1
+2 3 4 5 6
+5 4 2 0 8
+23 5 6 8 9
+12 5 6 7 32
+Output 1 :
+Smallest Element - 1: 2
+Greatest Element - 1: 32
+Smallest Element - 2: 1
+Greatest Element - 2: 12
+Input 2 :
+4
+12 34 56 78
+23 45 67 89
+10 20 30 40
+20 15 45 60
+Output 2 :
+Smallest Element - 1: 12
+Greatest Element - 1: 60
+Smallest Element - 2: 20
+Greatest Element - 2: 78
+
+ANS:
+
+// You are using Java
+import java.util.Scanner;
+
+interface Matrix {
+    void diagonalsMinMax(int[][] matrix, int N);
+}
+
+public class Main implements Matrix {
+    
+    @Override
+    public void diagonalsMinMax(int[][] matrix, int N) {
+        int mainDiagonalMin = Integer.MAX_VALUE;
+        int mainDiagonalMax = Integer.MIN_VALUE;
+        int secondaryDiagonalMin = Integer.MAX_VALUE;
+        int secondaryDiagonalMax = Integer.MIN_VALUE;
+
+        for (int i = 0; i < N; i++) {
+            // Main diagonal: matrix[i][i]
+            mainDiagonalMin = Math.min(mainDiagonalMin, matrix[i][i]);
+            mainDiagonalMax = Math.max(mainDiagonalMax, matrix[i][i]);
+            
+            // Secondary diagonal: matrix[i][N-i-1]
+            secondaryDiagonalMin = Math.min(secondaryDiagonalMin, matrix[i][N - i - 1]);
+            secondaryDiagonalMax = Math.max(secondaryDiagonalMax, matrix[i][N - i - 1]);
+        }
+
+        // Printing the results
+        System.out.println("Smallest Element - 1: " + mainDiagonalMin);
+        System.out.println("Greatest Element - 1: " + mainDiagonalMax);
+        System.out.println("Smallest Element - 2: " + secondaryDiagonalMin);
+        System.out.println("Greatest Element - 2: " + secondaryDiagonalMax);
+    }
+    
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        Main obj = new Main();
+
+        int N = sc.nextInt();
+        int[][] matrix = new int[N][N];
+        
+        // Taking input for the matrix
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                matrix[i][j] = sc.nextInt();
+            }
+        }
+
+        obj.diagonalsMinMax(matrix, N);
+        sc.close();
+    }
+}
+ 
