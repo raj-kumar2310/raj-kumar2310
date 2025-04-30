@@ -1,0 +1,51 @@
+Single File Programming Question
+Create a dynamic integer array and print the sum over the array of each element * (array element  index  + 1)
+
+Input format :
+The first line of input consists of a positive integer n.
+
+The next n lines of input consist of integers that are sequentially assigned to each array element
+
+Output format :
+The output consists of the sum over the array of each array element * (array element index + 1)
+
+Sample test cases :
+Input 1 :
+5
+1 2 3 4 5
+Output 1 :
+55
+Input 2 :
+4
+1 3 5 7
+Output 2 :
+50
+Code Size : 1024 kb
+Note :
+The program will be evaluated only after the “Submit Code” is clicked.
+Extra spaces and new line characters in the program output will result in the failure of the test case. 
+ANS:
+
+// You are using Java
+import java.util.*;
+class Main{
+    public static void main(String [] args)
+    {
+        Scanner sc=new Scanner(System.in);
+        int a=sc.nextInt();
+        int b=0;
+        int[] arr=new int[a];
+        for(int i=0;i<a;i++)
+        {
+            arr[i]=sc.nextInt();
+            
+        }
+        for(int i=0;i<a;i++)
+        {
+            b+=arr[i]*(i+1);
+            
+        }
+        
+        System.out.println(b);
+    }
+}
