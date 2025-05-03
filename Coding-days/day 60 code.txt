@@ -1,0 +1,122 @@
+Single File Programming Question
+Create a Notification interface which has three methods
+
+notificationBySms()
+notificationByEmail()
+notificationByCourier()﻿
+
+
+Create two class as Icici and Hdfc which implements Notification.
+
+
+
+Create a main class which gets input from user and display suitable notification. Refer sample input and output.
+
+Input format :
+First line of the input consists of bank code (1 for ICICI and 2 for HDFC)
+
+Second line of the input consists of notification type (1 for SMS, 2 for Email and 3 for Courier)
+
+Output format :
+The output prints the bank name with notification type.
+
+Sample test cases :
+Input 1 :
+1
+2
+Output 1 :
+ICICI - Notification by Email
+Input 2 :
+2
+3
+Output 2 :
+HDFC - Notification by Courier
+Input 3 :
+3
+1
+Output 3 :
+Invalid Input
+
+ANS:
+
+// You are using Java
+import java.util.Scanner;
+
+interface Notification {
+    void notificationBySms();
+    void notificationByEmail();
+    void notificationByCourier();
+}
+
+class Icici implements Notification {
+    @Override
+    public void notificationBySms() {
+        System.out.println("ICICI - Notification by SMS");
+    }
+
+    @Override
+    public void notificationByEmail() {
+        System.out.println("ICICI - Notification by Email");
+    }
+
+    @Override
+    public void notificationByCourier() {
+        System.out.println("ICICI - Notification by Courier");
+    }
+}
+
+class Hdfc implements Notification {
+    @Override
+    public void notificationBySms() {
+        System.out.println("HDFC - Notification by SMS");
+    }
+
+    @Override
+    public void notificationByEmail() {
+        System.out.println("HDFC - Notification by Email");
+    }
+
+    @Override
+    public void notificationByCourier() {
+        System.out.println("HDFC - Notification by Courier");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        
+        int bankCode = sc.nextInt();
+        int notificationType = sc.nextInt();
+        
+        Notification notification = null;
+
+        // Instantiate the appropriate bank object
+        if (bankCode == 1) {
+            notification = new Icici();
+        } else if (bankCode == 2) {
+            notification = new Hdfc();
+        } else {
+            System.out.println("Invalid Input");
+            return; // Exit if bank code is invalid
+        }
+
+        // Handle notification type
+        switch (notificationType) {
+            case 1:
+                notification.notificationBySms();
+                break;
+            case 2:
+                notification.notificationByEmail();
+                break;
+            case 3:
+                notification.notificationByCourier();
+                break;
+            default:
+                System.out.println("Invalid Input");
+                break;
+        }
+
+        sc.close();
+    }
+}
