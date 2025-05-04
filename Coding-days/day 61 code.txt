@@ -1,0 +1,59 @@
+Single File Programming Question
+Problem Statement:
+
+NumberFormatException
+
+
+
+The application attempts to convert a string into an integer using Integer.parseInt(). When a non-numeric string is provided, a NumberFormatException is thrown. The exception is then caught and handled by displaying an error message.
+
+
+
+Sample Input:
+
+"abc"
+
+
+
+Sample output:
+
+Error: Unable to convert "abc" to a Number.
+
+
+
+
+
+Input format :
+First line contains a string as input.
+
+Output format :
+Converted integer printed or error message printed.
+
+Sample test cases :
+Input 1 :
+12
+Output 1 :
+The number is: 12
+Input 2 :
+abc
+Output 2 :
+java.lang.NumberFormatException: For input string: "abc"
+
+ANS:
+
+// You are using Java
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String input = sc.nextLine();
+
+        try {
+            int number = Integer.parseInt(input);
+            System.out.print("The number is: " + number);
+        } catch (NumberFormatException e) {
+            System.out.print(e);
+        }
+    }
+}
