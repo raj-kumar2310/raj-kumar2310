@@ -1,0 +1,99 @@
+Single File Programming Question
+Problem Statement:
+
+Using Multiple Catch Blocks
+
+
+
+Write a program that performs multiple operations, including parsing an integer from a string and accessing an array. Handle NumberFormatException and ArrayIndexOutOfBoundsException with multiple catch blocks.
+
+
+
+Requirements:
+
+Parse an integer from a string.
+Access an element in an array.
+Use multiple catch blocks to handle NumberFormatException and ArrayIndexOutOfBoundsException.
+
+
+sample input:
+
+"abc"
+
+5
+
+1 2 3 4 5
+
+6
+
+
+
+sample output:
+
+NumberFormatException : cannot convert string type to number type
+
+ArrayIndexOutOfBoundsException : cannot access array element at this index.
+
+Input format :
+first line contains a string input.
+Second line contains the value for integer n specifying the size.
+Third line tells the elements in the arrays with the size n.
+the index i where the element needs to be accessed.
+Output format :
+ExceptionType : custom message.
+
+
+
+Sample test cases :
+Input 1 :
+123
+3
+10
+20
+30
+1
+Output 1 :
+Parsed number: 123
+Element at index: 20
+Input 2 :
+abc
+2
+5
+10
+1
+Output 2 :
+Invalid number format.
+
+ANS:
+
+import java.util.*;
+
+ class MultipleCatchExample {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        String numberStr = scan.nextLine();
+        
+        int n = scan.nextInt();
+        
+        int[] numbers = new int[n];
+        int elem;
+        for(int i = 0;i<n;i++){
+            elem = scan.nextInt();
+            numbers[i] = elem;
+        }
+        
+        int index = scan.nextInt();
+    
+        
+        try {
+            int number = Integer.parseInt(numberStr);
+            System.out.println("Parsed number: " + number);
+            System.out.println("Element at index: " + numbers[index]);
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid number format.");
+        }
+         catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("Invalid index.");
+        }
+    }
+}
