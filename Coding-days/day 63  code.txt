@@ -1,0 +1,48 @@
+Single File Programming Question
+ StringIndexOutOfBoundsException
+
+
+
+One of the prominent exception which you will see is StringIndexOutOfBoundsException. It occurs when the program try to access the string beyond its length. So when you try to access the string beyond its length it throws this exception. Let's try to handle this exception.
+
+Create a Main class. Obtain a string and an index position and print the character at the index position else print the exception.
+
+Input format :
+First line of the input consist of a string
+
+Second line of the input consist of the string index
+
+Output format :
+Output prints the character at specified index otherwise throws exception
+
+Sample test cases :
+Input 1 :
+hello
+6
+Output 1 :
+java.lang.StringIndexOutOfBoundsException: String index out of range: 6
+Input 2 :
+hello
+4
+Output 2 :
+o
+
+ANS:
+
+// You are using Java
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        String input = sc.nextLine();
+        int index = Integer.parseInt(sc.nextLine());
+
+        try {
+            System.out.println(input.charAt(index));
+        } catch (StringIndexOutOfBoundsException e) {
+            System.out.println(e);
+        }
+    }
+}
