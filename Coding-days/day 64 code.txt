@@ -1,0 +1,64 @@
+Single File Programming Question
+Write a program to create main method in LinkedListMain class, get the names and store them in a LinkedList. Next delete the names at index X and display the remaining data in the list.
+
+Input format :
+Number of names(N) in first-line as an integer.
+
+N names in separate lines.
+
+The last line of the input consists of the position of the name to be deleted.
+
+Output format :
+Print the names after deleting them.
+
+Sample test cases :
+Input 1 :
+10
+Andhra Pradesh
+Arunachal Pradesh
+Assam
+Bihar
+Chhattisgarh
+Goa
+Gujarat
+Haryana
+Himachal Pradesh
+Jharkhand
+4
+Output 1 :
+Andhra Pradesh
+Arunachal Pradesh
+Assam
+Chhattisgarh
+Goa
+Gujarat
+Haryana
+Himachal Pradesh
+Jharkhand
+
+ANS:
+
+// You are using Java
+// You are using Java
+import java.util.*;
+
+class LinkedListMain {
+     public static void main(String[] args) {
+          Scanner scanner = new Scanner(System.in);
+           int n = scanner.nextInt();
+            scanner.nextLine();
+             LinkedList<String> names = new LinkedList<>();
+              
+               for (int i = 0; i < n; i++) {
+                    names.add(scanner.nextLine());
+               }
+                
+                 int index = Integer.parseInt(scanner.nextLine().trim());
+                  if (index >= 0 && index < names.size()) {
+                       names.remove(index-1);
+                  }
+                   
+                    names.forEach(System.out::println);
+                     scanner.close();
+     }
+} 
