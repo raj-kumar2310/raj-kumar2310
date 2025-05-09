@@ -1,0 +1,61 @@
+Single File Programming Question
+Problem statement:
+
+Write a java program to convert ArrayList To String Array using the toArray() method.
+
+Input format :
+The first input gets the n integer values.
+
+The second input gets the string values for the n elements.
+
+Output format :
+The output prints the elements as per the input.
+
+Sample test cases :
+Input 1 :
+4
+toronto
+quebec
+vancouver
+calgary
+Output 1 :
+toronto
+quebec
+vancouver
+calgary
+Input 2 :
+4
+Chennai
+Coimbatore
+Madurai
+Salem
+Output 2 :
+Chennai
+Coimbatore
+Madurai
+Salem
+
+ANS:
+
+// You are using Java
+// You are using Java
+import java.util.*;
+class ArrayListToStringArray {
+     public static void main(String[] args) {
+          Scanner scanner = new Scanner(System.in);
+           int n = Integer.parseInt(scanner.nextLine().trim());
+           
+            ArrayList<String> list = new ArrayList<>();
+             for (int i = 0; i < n; i++) {
+                  list.add(scanner.nextLine().trim());
+             }
+             
+              String[] array = list.toArray(new String[0]);
+              
+               for (String str : array) {
+                    System.out.println(str);
+               }
+               
+                scanner.close();
+     }
+}
