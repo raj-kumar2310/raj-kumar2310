@@ -1,0 +1,100 @@
+Single File Programming Question
+Create an integer queue and perform the following operations in it.
+
+Add elements to the queue.
+
+Remove the element from the queue.
+
+Print the head of the queue.
+
+Then print the size of the queue.
+
+Print the status of the searched element.
+
+Input format :
+The first line consists of the value of n.
+
+The next n lines consist of the queue elements.
+
+The last line consists of the element to be searched.
+
+Output format :
+The first line of the output prints the queue elements.
+
+The second line prints the removed element.
+
+The third line prints the queue after removing the head element.
+
+The fourth line prints the head of the queue.
+
+The fifth line prints the size of the queue.
+
+The last line prints the status of the searched element.
+
+Sample test cases :
+Input 1 :
+5
+1
+2
+3
+4
+5
+4
+Output 1 :
+[1, 2, 3, 4, 5]
+removed element : 1
+[2, 3, 4, 5]
+head of the queue : 2
+Size of the queue : 4
+The element is present.
+Input 2 :
+5
+120
+240
+360
+480
+864
+218
+Output 2 :
+[120, 240, 360, 480, 864]
+removed element : 120
+[240, 360, 480, 864]
+head of the queue : 240
+Size of the queue : 4
+The element is not present.
+
+ANS:
+
+// You are using Java
+import java.util.*;
+class IntegerQueue {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Queue<Integer> queue = new LinkedList<>();
+        
+        int n = scanner.nextInt();
+        for (int i = 0; i < n; i++) {
+            queue.add(scanner.nextInt());
+        }
+        
+        int searchElement = scanner.nextInt();
+        
+        System.out.println(queue);
+        
+        int removedElement = queue.poll();
+        System.out.println("removed element : " + removedElement);
+        
+        System.out.println(queue);
+        
+        System.out.println("head of the queue : " + queue.peek());
+        
+        System.out.println("Size of the queue : " + queue.size());
+        
+        if (queue.contains(searchElement)) {
+            System.out.println("The element is present.");
+        } else {
+            System.out.println("The element is not present.");
+        }
+        
+    }
+}
