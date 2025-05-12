@@ -1,0 +1,53 @@
+Single File Programming Question
+Ajay is  developing a system for a library to keep track of book borrowings. Each book has a unique identifier, and every borrowing record contains the book identifier and the number of times it has been borrowed. Your task is to create a program that reads a list of borrowing records and prints each book identifier along with the total number of times it has been borrowed.
+
+Input format :
+The first line of input contains an integer n, the number of borrowing records.
+
+The next n lines each contain a string book_id (the identifier of the book) and an integer borrow_count (the number of times the book was borrowed in that record).
+
+Output format :
+Print each book_id and its total borrow count in the following format:
+
+Each line should contain a book_id and its total borrow count, separated by a space.
+
+The books should be listed in alphabetical order of their book_id.
+
+Sample test cases :
+Input 1 :
+3
+bookA 4
+bookB 2
+bookA 3
+Output 1 :
+bookA 7
+bookB 2
+
+ANS:
+
+// You are using Java
+// You are using Java
+// You are using Java
+import java.util.*;
+
+class LibraryBorrowing {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        int n = scanner.nextInt();
+        scanner.nextLine();  // Consume the remaining newline character
+        Map<String, Integer> borrowCounts = new TreeMap<>();
+        
+        for (int i = 0; i < n; i++) {
+            String bookId = scanner.next();
+            int borrowCount = scanner.nextInt();
+            borrowCounts.put(bookId, borrowCounts.getOrDefault(bookId, 0) + borrowCount);
+        }
+        
+        for (Map.Entry<String, Integer> entry : borrowCounts.entrySet()) {
+            System.out.println(entry.getKey() + " " + entry.getValue());
+        }
+        
+        scanner.close();
+    }
+}
