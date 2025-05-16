@@ -1,0 +1,67 @@
+Single File Programming Question
+Scott is  developing a program to manage student enrollments at a university. Each student can enroll in multiple courses, and each course has a certain number of credits. Your task is to create a program that reads a list of enrollments and calculates the total number of credits each student has enrolled in.
+
+Input format :
+The first line of input contains an integer n, representing the number of enrollments.
+
+The next n lines each describe an enrollment. Each enrollment consists of:
+
+student_id: A string representing the unique identifier of the student.
+
+course_id: A string representing the unique identifier of the course.
+
+credits: An integer representing the number of credits for the course.
+
+Output format :
+For each student, output their student_id followed by their total number of credits enrolled in.
+
+Print each student's information on a new line.
+
+Students should be listed in alphabetical order of their student_id.
+
+Sample test cases :
+Input 1 :
+1
+S001 C001 3
+Output 1 :
+S001 3
+
+ANS:
+
+// You are using Java
+// You are using Java
+import java.util.*;
+
+class StudentEnrollment {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        int n = scanner.nextInt();
+        scanner.nextLine();  // Consume the remaining newline character
+        Map<String, Integer> studentCredits = new HashMap<>();
+        
+        for (int i = 0; i < n; i++) {
+            String[] enrollment = scanner.nextLine().split(" ");
+            String studentId = enrollment[0];
+            int credits = Integer.parseInt(enrollment[2]);
+            
+            // Update the studentCredits map
+            if (studentCredits.containsKey(studentId)) {
+                studentCredits.put(studentId, studentCredits.get(studentId) + credits);
+            } else {
+                studentCredits.put(studentId, credits);
+            }
+        }
+        
+        // Create a sorted list of student IDs
+        List<String> sortedStudentIds = new ArrayList<>(studentCredits.keySet());
+        Collections.sort(sortedStudentIds);
+        
+        // Output the results in sorted order
+        for (String studentId : sortedStudentIds) {
+            System.out.println(studentId + " " + studentCredits.get(studentId));
+        }
+        
+        scanner.close();
+    }
+}
