@@ -1,0 +1,45 @@
+Single File Programming Question
+Write a java program to find the kth smallest element in an ArrayList.
+
+Input format :
+First Integer represents N value.
+
+Next N values represent array elements.
+
+Last value describes K.
+
+Output format :
+Dispaly the Kth smallest value in the list.
+
+Sample test cases :
+Input 1 :
+5
+11 13 15 12 14
+2
+Output 1 :
+K'th smallest element is 12
+K'th largest element is 14
+
+ANS:
+
+Single File Programming Question
+Write a java program to find the kth smallest element in an ArrayList.
+
+Input format :
+First Integer represents N value.
+
+Next N values represent array elements.
+
+Last value describes K.
+
+Output format :
+Dispaly the Kth smallest value in the list.
+
+Sample test cases :
+Input 1 :
+5
+11 13 15 12 14
+2
+Output 1 :
+K'th smallest element is 12
+K'th largest element is 14
