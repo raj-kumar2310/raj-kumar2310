@@ -1,0 +1,50 @@
+Single File Programming Question
+Input a positive integer N (N > 0), input N strings, and sort the strings in place in the order of increasing length. Print the sorted strings using ArrayList as an implementation of the List interface for storing the individual strings.
+
+Input format :
+Input number of elements
+
+Input each string on a separate line
+
+Output format :
+Print the list of strings sorted by their length
+
+Sample test cases :
+Input 1 :
+3
+aa
+b
+ccc
+Output 1 :
+[b, aa, ccc]
+
+ANS:
+
+// You are using Java
+// You are using Java
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class Q01Simple_Sort
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		Scanner input = new Scanner(System. in);
+		// Input number of elements
+		int number_of_elements = input. nextInt();
+		input. nextLine();
+		if (number_of_elements <= 0) return;
+		List<String> list = new ArrayList<>(); 
+		for (int ctr = 0; ctr < number_of_elements; ctr++) {
+	        // Input next string
+			String str = input. nextLine();
+			list.add(str);
+		}
+		Collections.sort(list, new Comparator<String>() {
+			public int compare(String o1, String o2) {
+			return o1.length() - o2.length();
+		}});
+		System.out.println(list);	
+	}
+}
