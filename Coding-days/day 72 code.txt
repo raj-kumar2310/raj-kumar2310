@@ -1,0 +1,84 @@
+Single File Programming Question
+Problem Statement
+
+
+
+Write a program to print the following pattern.
+
+
+
+Input: 5
+
+
+
+Output:
+
+* 
+
+* * 
+
+* * * 
+
+* * * * 
+
+* * * * * 
+
+* * * * 
+
+* * * 
+
+* * 
+
+* 
+
+Input format :
+The input consists of an integer n, representing the number of rows.
+
+Output format :
+The output displays the required pattern.
+
+
+
+Refer to the sample output for the formatting specifications.
+
+Code constraints :
+1 ≤ n ≤ 20
+
+Sample test cases :
+Input 1 :
+5
+Output 1 :
+* 
+* * 
+* * * 
+* * * * 
+* * * * * 
+* * * * 
+* * * 
+* * 
+* 
+
+ANS:
+
+#include <iostream>
+using namespace std;
+
+int main(){
+    int rows;
+    cin >> rows;
+    int columns = 1;
+    for(int i = 1; i < rows*2; i++){
+        for(int j = 1; j <= columns; j++){
+            cout << "* ";
+        }
+
+        if(i < rows) {
+            columns++;
+        }
+        else{
+            columns--;
+        }
+        cout << endl;
+    }
+    return 0;
+}
