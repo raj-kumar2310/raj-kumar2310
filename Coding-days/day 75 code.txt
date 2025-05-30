@@ -1,0 +1,64 @@
+Single File Programming Question
+Problem Statement
+
+
+
+Students at that college were working on software that required a student's name, roll number, and a total mark out of 500. It should display the entered details along with the percentage.
+
+
+
+Note: If the mark is > 500 it should display "Invalid, Total mark is out of 500".
+
+Input format :
+The first line of the input consists of the name as a character datatype
+
+The second line of the input consists of the roll number as an integer datatype
+
+The third line of the input consists of the mark as an integer datatype
+
+Output format :
+The output displays the student's information along with the percentage if the mark is >500 it will display Invalid, Total mark is out of 500".
+
+Code constraints :
+Total mark <= 500
+
+Sample test cases :
+Input 1 :
+Raghav
+12
+490
+Output 1 :
+Student details:
+Name	 RollNo	  Total	 Percentage
+Raghav		12		490		98
+Input 2 :
+Janu
+12
+600
+Output 2 :
+Invalid, Total mark is out of 500
+
+ANS:
+
+// You are using GCC
+#include<iostream>
+#include<string>
+using namespace std;
+int main()
+{
+    string a;
+    int b,c;
+    cin>>a>>b>>c;
+    int p=(c*100)/500;
+    // cout<<p;
+    if(c<=500){
+        cout<<"Student details:"<<endl;
+     
+    cout<<"Name     RollNo   Total  Percentage"<<endl;
+    cout<<a<<"      "<<b<<"   "<<"   "<<c<<"     "<<p;
+    }else
+    {
+        cout<<"Invalid, Total mark is out of 500";
+    }
+    
+}
