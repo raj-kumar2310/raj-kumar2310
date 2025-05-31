@@ -1,0 +1,61 @@
+Single File Programming Question
+Problem statement
+
+
+
+You have been assigned the task of writing a program that calculates the sum of a series where each term is the factorial of a number divided by that number.
+
+
+
+Your program should take the integer value n as input and calculate the sum of the series from 1 to 'n'. 
+
+
+
+The series is defined as: 1!/1 + 2!/2 + 3!/3 + ... + n!/n.
+
+
+
+Function Specifications
+
+
+
+int fact(int n)
+
+Input format :
+The input consists of an integer n representing the upper limit.
+
+Output format :
+The output displays the sum of the hiven series.
+
+Code constraints :
+1 <= n <= 10
+
+Sample test cases :
+Input 1 :
+5
+Output 1 :
+34
+
+ANS:
+
+// You are using GCC
+#include<iostream>
+using namespace std;
+
+int main()
+{
+    int fact;
+    cin>>fact;
+    
+    int f=1,d,sum=0;
+    if(fact>0){
+    
+    for(int i=1;i<=fact;i++)
+    {
+        f=f*i;
+        d=f/i;
+        sum=sum+d;
+    }
+    }
+   cout<<sum;
+}
