@@ -1,0 +1,72 @@
+Single File Programming Question
+Problem Statement
+
+
+
+The event organizing company Buzzcraft focuses on event management in a way that creates a win-win situation for all involved stakeholders.
+
+
+
+Buzzcraft doesn't look at building one-time associations with clients, instead, it aims at creating long-lasting collaborations that will span years to come. This goal of the company has helped them evolve and gain more clients within a considerable time.
+
+
+
+The number of clients of the company from the start day of their journey till now is recorded sensibly and it seemed to have followed a specific series like 2, 3, 5, 7, 11, 13, 17, 19, 23, ... 
+
+
+
+Write a program that takes an integer N as the input and outputs the series of N terms.
+
+Input format :
+The input consists of an integer N.
+
+Output format :
+The output prints the series consisting of N terms, each separated by space.
+
+
+
+Refer to the sample output for formatting specifications.
+
+Code constraints :
+1 ≤ N ≤ 15
+
+Sample test cases :
+Input 1 :
+5
+Output 1 :
+2 3 5 7 11 
+Input 2 :
+10
+Output 2 :
+2 3 5 7 11 13 17 19 23 29 
+
+ANS:
+
+// You are using GCC
+#include<iostream>
+using namespace std;
+int main()
+{
+    int n;
+    cin>>n;
+    int c=0,nu=2;
+    while(c<n)
+    {
+        bool isprime=true;
+        for(int i=2;i<nu;i++)
+        {
+            if(nu % i==0)
+            {
+                isprime=false;
+                break;
+            }
+        }
+        if(isprime){
+            cout<<nu<<" ";
+            c++;
+        }
+        nu++;
+    }
+    cout<<endl;
+    return 0;
+}
