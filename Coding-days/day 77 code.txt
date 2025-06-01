@@ -1,0 +1,73 @@
+Single File Programming Question
+Problem Statement
+
+
+
+Sam is working on a text analysis tool, and he needs your help to implement a class that counts the occurrences of a specific character in a given string.
+
+
+
+Your task is to create a class called Occurrence with methods to initialize the string and character and count the occurrences of the character within the string.
+
+Input format :
+The first line of input consists of a string.
+
+The second line consists of a single character.
+
+Output format :
+The output prints an integer, representing the count of occurrences of the character within the string.
+
+
+
+Refer to the sample output for formatting specifications.
+
+Code constraints :
+The input string consists of only lowercase English letters.
+
+The character is a valid ASCII character.
+
+Sample test cases :
+Input 1 :
+utter
+t
+Output 1 :
+2
+Input 2 :
+world
+e
+Output 2 :
+0
+
+ANS:
+
+// You are using GCC
+#include<iostream>
+#include<string>
+using namespace std;
+// class Occurrence{
+    
+    
+
+int main()
+{
+    string a;
+    char b;
+    cin>>a>>b;
+    int l=a.length();
+    
+    int co =0;
+    for(int i=0;i<l;i++)
+    {
+        if( b== a[i])
+        {
+            co++;
+        }
+    }
+     
+     cout<<co;
+     
+     
+    
+    
+    
+}
