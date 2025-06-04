@@ -1,0 +1,63 @@
+Single File Programming Question
+Problem Statement
+
+
+
+HelpIndia, a famous NGO has been selective in identifying events to raise funds for charity. 
+
+
+
+Suzanne is a volunteer from the NGO who was selling tickets to the public for the charity event. She sold 'X' more adult tickets than children tickets and she sold twice as many senior tickets as children tickets.
+
+
+
+Assume that an adult ticket costs 5,childrenticketcosts2 and a senior ticket cost $3.
+
+
+
+Suzanne made 'Y' dollars from ticket sales. Find the number of adult, children, and senior tickets sold.
+
+Input format :
+The first input is an integer value X that corresponds to the number of adult tickets sold more than children's tickets.
+
+The second input is an integer value Y that corresponds to the money in dollars made by Suzanne from ticket sales.
+
+Output format :
+The first line of the output should display the number of children's tickets sold.
+
+The second line of the output should display the number of adult tickets sold.
+
+The third line of the output should display the number of senior tickets sold.
+
+
+
+Refer to the sample output for further formatting specifications.
+
+Sample test cases :
+Input 1 :
+10
+700
+Output 1 :
+Number of children tickets sold : 50
+Number of adult tickets sold : 60
+Number of senior tickets sold : 100
+
+ANS:
+
+// You are using GCC
+#include<iostream>
+#include<cmath>
+using namespace std;
+int main()
+{
+    int a,b;
+    cin>>a>>b;
+    int child=(b-5*a)/13;
+    int adu=a+child;
+    int sen=2*child;
+    
+    cout<<"Number of children tickets sold : "<<child<<endl;
+    cout<<"Number of adult tickets sold : "<<adu<<endl;
+    cout<<"Number of senior tickets sold : "<<sen<<endl;
+    // cout<<"Number of children tickets sold : "<<child<<endl;
+}
