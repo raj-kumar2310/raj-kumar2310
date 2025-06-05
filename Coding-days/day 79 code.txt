@@ -1,0 +1,73 @@
+Single File Programming Question
+Problem Statement
+
+
+
+Imagine you are helping an employee calculate their income tax based on their annual salary. The tax is calculated using the following progressive tax system:
+
+
+
+10% for salary up to Rs. 20,000.00
+15% for salary above Rs. 20,000.00
+
+
+Formula: Tax = Salary * Tax Rate
+
+
+
+Use default arguments for the rates as shown in the function specification.
+
+
+
+Function Specifications: void calculateTax(double rate1 = 0.10, double rate2 = 0.15)
+
+Input format :
+The first line of input consists of a double value S, representing the salary.
+
+Output format :
+The output prints the calculated tax amount as a double value, rounded off to two decimal places.
+
+
+
+Refer to the sample output for formatting specifications.
+
+Code constraints :
+The given test cases fall under the following constraints:
+
+1.0 ≤ S ≤ 1,00,000.0
+
+Sample test cases :
+Input 1 :
+500.0
+Output 1 :
+50.00
+Input 2 :
+29000.0
+Output 2 :
+4350.00
+
+ANS:
+
+// You are using GCC
+#include<iostream>
+#include<iomanip>
+using namespace std;
+int main()
+{
+    double a;
+    cin>>a;
+    double b=0.10;
+    double c=0.15;
+    if(a<=20000)
+    {
+        cout<<fixed<<setprecision(2)<<a*b;
+    }
+    else if(a>20000)
+    {
+        cout<<fixed<<setprecision(2)<<a*c;
+    }
+    else {
+        cout<<"Invalid";
+        
+    }
+}
