@@ -1,0 +1,52 @@
+Single File Programming Question
+Problem Statement
+
+
+
+Write a C++ code to print the area of a pentagon given its diagonal. The formula is:
+
+
+
+ $$   \frac{1}{8}  {d^2 (-5+ \sqrt{45})\sqrt{ \sqrt{20} + 5 } } $$ 
+
+Input format :
+The input contains a single floating point value.
+
+Output format :
+The output displays the area of the rhombus as a floating point value. Else prints -1 if the input is a negative value.
+
+Code constraints :
+Input>0
+
+Sample test cases :
+Input 1 :
+5.1
+Output 1 :
+17.0928
+Input 2 :
+-4
+Output 2 :
+-1
+
+ANS:
+
+// You are using GCC
+#include<iostream>
+#include<cmath>
+using namespace std;
+int main()
+{
+    float d;
+    cin>>d;
+    
+    double a=(1.0/8)*pow(d,2)*(-5+sqrt(45))*sqrt(sqrt(20)+5);
+    
+    if(d<0)
+    {
+        cout<<"-1";
+    }
+    else
+    {
+        cout<<a;
+    }
+}
