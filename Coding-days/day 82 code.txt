@@ -1,0 +1,92 @@
+Single File Programming Question
+Write a program to print a 2D array in spiral form.
+
+Input format :
+The first line of input consists of the number of rows and columns separated by space.
+
+The second line of input consists of their matrix values.
+
+Output format :
+The output prints the spiral matrix in a single line separated by space.
+
+Sample test cases :
+Input 1 :
+3 3
+1 2 3
+8 9 4
+7 6 5
+Output 1 :
+1 2 3 4 5 6 7 8 9 
+Input 2 :
+3 4
+5 7 3 2 
+8 9 0 7  
+5 1 4 6 
+Output 2 :
+5 7 3 2 7 6 4 1 5 8 9 0 
+Input 3 :
+4 4
+2 3 4 6
+6 7 5 3
+8 6 5 4
+9 8 0 6 
+Output 3 :
+2 3 4 6 3 4 6 0 8 9 8 6 7 5 5 6 
+
+ANS:
+
+#include<iostream>
+using namespace std;
+int main()
+{
+   int a[100][100];
+    int i, j, k=0;
+    int n,m;
+    cin>>n>>m;
+     
+     int rs = 0, re = n, cs = 0, ce = m; 
+    for(i=0;i<n;i++)
+    {
+        for(j=0;j<m;j++)
+        {
+           
+           cin>>a[i][j];
+        }
+       
+    }
+    
+
+    while(rs<re && cs<ce)
+    {
+        for(i=cs;i<ce;i++)
+        {
+            cout<<a[rs][i]<<" ";
+        }
+        rs++;
+        
+        for(i=rs;i<re;i++)
+        {
+            cout<<a[i][ce-1]<<" ";
+        }
+        ce--;
+        
+        if(rs<re) 
+        { 
+            for(i=ce-1; i>=cs; --i)
+            { 
+                cout<<a[re - 1][i]<<" "; 
+            } 
+            re--; 
+        } 
+        
+         if(cs<ce) 
+        { 
+            for(i=re-1; i>=rs; --i)
+            { 
+                cout<<a[i][cs]<<" "; 
+            } 
+            cs++; 
+        } 
+    }
+    return 0;
+}
