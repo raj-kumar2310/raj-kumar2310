@@ -1,0 +1,52 @@
+Single File Programming Question
+"Singing Champs" is a famous reality series. The show organizers have planned to roll out the show’s 5th season in the coming month. The auditions for the show are announced in various Cities widely and the organizers have inaugurated the first audition today.
+
+ 
+
+A large mass of people gathered at the venue. Based on the selection procedure for the first level, all the people are made to stand in a queue. Participants who are standing in the even positions of the queue are selected initially. Of the selected people a queue is formed and again out of these only people in even positions are selected. This continues until we are left with one person.
+
+ 
+
+To help them in the selection procedure, the organizers approached you to write a recursive method for determining the position of that final person in the original queue.
+
+
+
+In the Main function, obtain input from the user in the console and display the position(original queue) of that person who is left by calling the findPos method 
+
+Input format :
+The input consists of an integer N.
+
+Output format :
+The output prints the position (original queue) of the person who is left.
+
+
+
+Sample test cases :
+Input 1 :
+5
+Output 1 :
+4
+
+ANS:
+
+#include <iostream>
+using namespace std;
+
+int findPos(int &pos) {
+    static int x = 1;
+    x = x * 2;
+    if (pos > x) {
+        return findPos(pos);
+    }
+    if (pos == x) {
+        return x;
+    }
+    return x / 2;
+}
+
+int main() {
+    int num;
+    cin >> num;
+    cout << findPos(num);
+    return 0;
+}
