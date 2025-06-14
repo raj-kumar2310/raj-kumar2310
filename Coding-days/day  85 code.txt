@@ -1,0 +1,215 @@
+Single File Programming Question
+Problem Statement
+
+
+
+﻿Write a program that calculates the determinant of a square matrix. The program should take the size of the square matrix as input, followed by the elements of the matrix. It should then display the matrix and calculate the determinant. Finally, it should output the determinant value.
+
+
+
+The Matrix class has the following member functions:
+
+
+
+Matrix(int n): Constructor that takes an integer n as a parameter to initialize a square matrix of size n by dynamically allocating memory.
+
+void readMatrix(): Reads the elements of the matrix from the standard input.
+
+void displayMatrix(): Displays the matrix on the standard output.
+
+int determinant(): Calculates and returns the determinant of the matrix using a recursive approach.
+
+int determinantOfSubMatrix(int** subMatrix, int subSize): Helper function used by determinant() to calculate the determinant of a submatrix.
+
+Input format :
+The first line contains an integer n represents the size of the square matrix.
+
+The next n lines contain n integers each, representing the elements of the matrix.
+
+Output format :
+The program should display the matrix in a square format.
+
+It should output a single line with the determinant value.
+
+
+
+Refer to the sample output for format specifications.
+
+Code constraints :
+1 ≤ n ≤ 10
+
+0 ≤ elements of matrix ≤ 10
+
+Sample test cases :
+Input 1 :
+4
+2 4 1 7
+3 2 5 1
+1 2 3 4
+5 6 7 8
+Output 1 :
+Matrix:
+2 4 1 7
+3 2 5 1
+1 2 3 4
+5 6 7 8
+Determinant: 4
+Input 2 :
+3
+1 2 3
+4 5 6
+7 8 9
+Output 2 :
+Matrix:
+1 2 3
+4 5 6
+7 8 9
+Determinant: 0
+Input 3 :
+2
+5 -2
+3 1
+Output 3 :
+Matrix:
+5 -2
+3 1
+Determinant: 11
+
+ANS:
+
+#include <iostream>
+using namespace std;
+
+class Matrix {
+private:
+    int** matrix;
+    int size;
+
+public:
+    Matrix(int n) : size(n) {
+        this->matrix = new int*[this->size];
+        for (int i = 0; i < this->size; i++) {
+            this->matrix[i] = new int[this->size];
+        }
+    }
+
+    void readMatrix() {
+        for (int i = 0; i < this->size; i++) {
+            for (int j = 0; j < this->size; j++) {
+                cin >> this->matrix[i][j];
+            }
+        }
+    }
+
+    void displayMatrix() {
+        cout << "Matrix:" << endl;
+        for (int i = 0; i < this->size; i++) {
+            for (int j = 0; j < this->size; j++) {
+                if (j == 0) {
+                    cout << this->matrix[i][j];  
+                } else {
+                    cout << " " << this->matrix[i][j];  
+                }
+            }
+            cout << endl;
+        }
+    }
+
+    int determinant() {
+        if (this->size == 1) {
+            return this->matrix[0][0];
+        }
+
+        int det = 0;
+        int** subMatrix = new int*[this->size - 1];
+        for (int i = 0; i < this->size - 1; i++) {
+            subMatrix[i] = new int[this->size - 1];
+        }
+
+        for (int col = 0; col < this->size; col++) {
+            int subMatrixRow = 0;
+
+            for (int i = 1; i < this->size; i++) {
+                int subMatrixCol = 0;
+                for (int j = 0; j < this->size; j++) {
+                    if (j != col) {
+                        subMatrix[subMatrixRow][subMatrixCol++] = this->matrix[i][j];
+                    }
+                }
+                subMatrixRow++;
+            }
+
+            int sign = (col % 2 == 0) ? 1 : -1;
+            int subDet = this->determinantOfSubMatrix(subMatrix, this->size - 1);
+            det += sign * this->matrix[0][col] * subDet;
+        }
+
+        for (int i = 0; i < this->size - 1; i++) {
+            delete[] subMatrix[i];
+        }
+        delete[] subMatrix;
+
+        return det;
+    }
+
+    int determinantOfSubMatrix(int** subMatrix, int subSize) {
+        if (subSize == 1) {
+            return subMatrix[0][0];
+        }
+
+        int subDet = 0;
+        int** subSubMatrix = new int*[subSize - 1];
+        for (int i = 0; i < subSize - 1; i++) {
+            subSubMatrix[i] = new int[subSize - 1];
+        }
+
+        for (int col = 0; col < subSize; col++) {
+            int subSubMatrixRow = 0;
+
+            for (int i = 1; i < subSize; i++) {
+                int subSubMatrixCol = 0;
+                for (int j = 0; j < subSize; j++) {
+                    if (j != col) {
+                        subSubMatrix[subSubMatrixRow][subSubMatrixCol++] = subMatrix[i][j];
+                    }
+                }
+                subSubMatrixRow++;
+            }
+
+            int sign = (col % 2 == 0) ? 1 : -1;
+            int subSubDet = this->determinantOfSubMatrix(subSubMatrix, subSize - 1);
+            subDet += sign * subMatrix[0][col] * subSubDet;
+        }
+
+        for (int i = 0; i < subSize - 1; i++) {
+            delete[] subSubMatrix[i];
+        }
+        delete[] subSubMatrix;
+
+        return subDet;
+    }
+
+    ~Matrix() {
+        for (int i = 0; i < this->size; i++) {
+            delete[] this->matrix[i];
+        }
+        delete[] this->matrix;
+    }
+};
+
+int main() {
+    int n;
+
+    cin >> n;
+
+    Matrix matrix(n);
+
+    matrix.readMatrix();
+
+    matrix.displayMatrix();
+
+    int det = matrix.determinant();
+    cout << "Determinant: " << det << endl;
+
+    return 0;
+}
