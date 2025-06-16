@@ -1,0 +1,80 @@
+Single File Programming Question
+Problem Statement
+
+
+
+David runs a car rental service and wants to create a RentalCost class to calculate the total cost for renting a car. The class should take the number of days and the daily rate as inputs to compute the final rental cost.
+
+
+
+Your task is to implement this class to calculate the total cost and offer a loyalty discount if the rental duration is long enough.
+
+
+
+Note: totalCost = numberOfDays * dailyRate * (1 - (loyaltyDiscount / 100))
+
+Where loyaltyDiscount is 10 if numberOfDays >= 7, otherwise 0.
+
+Input format :
+The first line contains an integer representing numberOfDays.
+
+The second line contains a float representing dailyRate.
+
+Output format :
+The first line of output displays "Total rental cost: ₹x" where x is the calculated total cost rounded to 2 decimal places.
+
+The second line displays "Loyalty discount applied" if the number of days is 7 or more, otherwise "No loyalty discount".
+
+
+
+Refer to the sample output for formatting specifications.
+
+Code constraints :
+The given test cases fall under the following conditions:
+
+1 ≤ numberOfDays ≤ 30
+
+20.0 ≤ dailyRate ≤ 500.0
+
+Sample test cases :
+Input 1 :
+5
+50.0
+Output 1 :
+Total rental cost: ₹250.00
+No loyalty discount
+Input 2 :
+10
+75.5
+Output 2 :
+Total rental cost: ₹679.50
+Loyalty discount applied
+
+ANS:
+
+// You are using GCC
+#include<iostream>
+#include<iomanip>
+using namespace std;
+int main()
+{
+    int n;
+    float a;
+    cin>>n>>a;
+    float b;
+    
+    if(n>=7)
+    {
+        b=n*a*(1-0.10);
+        cout<<"Total rental cost: ₹"<<fixed<<setprecision(2)<<b<<endl;
+        cout<<"Loyalty discount applied";
+        
+    }
+    else
+    {
+        b=n*a;
+        cout<<"Total rental cost: ₹"<<fixed<<setprecision(2)<<b<<endl;
+        cout<<"No loyalty discount";
+    }
+    
+}
