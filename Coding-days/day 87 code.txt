@@ -1,0 +1,100 @@
+Single File Programming Question
+Problem Statement
+
+
+
+In the recruitment process, applicants employment statuses are recorded as 'E' for employed and 'U' for unemployed. Write a program that takes the status of N applicants as input and saves them in a file named employee.txt that can store the data for a maximum of 50 applicants. Read the file to count and display the number of employed and unemployed applicants.
+
+Input format :
+The first line consists of an integer N, representing the number of applicants.
+
+The second line consists of N space-separated characters, where each character is either 'E' (for Employed) or 'U' (for Unemployed), representing the employment status of each applicant.
+
+Output format :
+If the number of applicants exceeds 50 (N > 50), the output prints "Exceeding limit!" and terminates.
+
+Otherwise, the code reads the contents of the file and displays the following:
+
+The first line displays "Employed: " followed by the counts of employed applicants.
+The second line displays "Unemployed: " followed by the counts of unemployed applicants.
+
+
+Contents of the file: The employment status of N applicants (E for Employed, U for Unemployed) in separate lines.
+
+Code constraints :
+1 ≤ N ≤ 50
+
+Employment status: E for Employed, U for Unemployed
+
+Sample test cases :
+Input 1 :
+5
+E U U E E
+Output 1 :
+Employed: 3
+Unemployed: 2
+Input 2 :
+51 
+E U E E U E U E E U E U E E U E E U E U E U E E U E U E E U E E U E U E U E E U E U E E U E U E E E E
+Output 2 :
+Exceeding limit!
+Input 3 :
+2
+U U
+Output 3 :
+Employed: 0
+Unemployed: 2
+Input 4 :
+3
+E E E
+Output 4 :
+Employed: 3
+Unemployed: 0
+
+ANS:
+
+#include <iostream>
+#include <fstream>
+
+using namespace std;
+
+int main() {
+    int N;
+    cin >> N;
+
+    char status;
+    ofstream of("employee.txt");
+
+    if (of.is_open()) {
+        for (int i = 0; i < N; i++) {
+            cin >> status;
+            of << status << endl;
+        }
+        of.close();
+    } 
+
+    if (N > 50) { 
+        cout << "Exceeding limit!" << endl;
+        return 0;
+    }
+
+    ifstream inputFile("employee.txt");
+
+    if (inputFile.is_open()) {
+        int count1 = 0;
+        int count2 = 0;
+        char status;
+
+        while (inputFile >> status) {
+            if (status == 'E') 
+                count1++;
+            else if (status == 'U') 
+                count2++;
+        }
+        cout << "Employed: " << count1 << endl;
+        cout << "Unemployed: " << count2 << endl;
+        inputFile.close();
+    }
+
+    return 0;
+}
