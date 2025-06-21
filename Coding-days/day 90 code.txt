@@ -1,0 +1,81 @@
+Single File Programming Question
+Problem Statement
+
+
+
+Azhar is given the task of writing a program to update every array element by multiplying the previous and the next element. He seeks your assistance in the program since he is unable to solve.
+
+
+
+Help him in the task.
+
+Note: For the first and last elements, multiply the actual element with the next or previous.
+
+For example, given an array 3 2 4 5 1 7, the result is 6 12 10 4 35 7. Here, each element is updated as follows:
+
+
+
+First element: 3 * 2 = 6
+Second element: 3 * 4 = 12
+Third element: 2 * 5 = 10
+Fourth element: 4 * 1 = 4
+Fifth element: 5 * 7 = 35
+Last element: 1 * 7 = 7.
+Input format :
+The first line of input consists of an integer N, representing the number of array elements.
+
+The second line consists of N space-separated integers, representing the elements of the array.
+
+Output format :
+The output prints the updated array elements, separated by a space.
+
+
+
+Refer to the sample output for formatting specifications.
+
+Code constraints :
+1 ≤ N ≤ 10
+
+0 ≤ N ≤ 10000
+
+Sample test cases :
+Input 1 :
+6
+3 2 4 5 1 7
+Output 1 :
+6 12 10 4 35 7 
+Input 2 :
+3
+10 2 0
+Output 2 :
+20 0 0 
+
+
+ANS:
+
+#include<iostream> 
+using namespace std; 
+
+int main() {  
+    int n;
+    cin>>n;
+    
+    int arr[n];
+    for (int i=0; i<n; i++) 
+        cin>> arr[i]; 
+    
+    int prev = arr[0]; 
+    arr[0] = arr[0] * arr[1]; 
+  
+    for (int i=1; i<n-1; i++) { 
+        int curr = arr[i]; 
+        arr[i] = prev * arr[i+1];
+        prev = curr; 
+    } 
+  
+    arr[n-1] = prev * arr[n-1]; 
+     
+    for (int i=0; i<n; i++) 
+      cout << arr[i] << " "; 
+    return 0; 
+} 
