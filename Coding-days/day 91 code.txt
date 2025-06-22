@@ -1,0 +1,57 @@
+Single File Programming Question
+Problem Statement
+
+
+
+Imagine you are developing a messaging application where users can send messages to each other. To enhance the user experience, you decide to implement a feature that cleans up the text input before sending. 
+
+
+
+Your program must input a message and then remove all non-alphabetic characters, ensuring that only meaningful content is transmitted, thus improving communication clarity and readability.
+
+Input format :
+The input consists of a string with numbers, alphabets, and special characters.
+
+Output format :
+The output prints the string after removing all non-alphabetic characters.
+
+
+
+Refer to the sample output for formatting specifications.
+
+Code constraints :
+The length of the input string is between 1 and 100.
+
+Sample test cases :
+Input 1 :
+@Hello:)World!
+Output 1 :
+HelloWorld
+Input 2 :
+#Welco34me_Home@
+Output 2 :
+WelcomeHome
+
+ANS:
+
+#include<bits/stdc++.h>
+#include<cstring>
+using namespace std;
+
+int main(){
+    char str[100];
+    int i,j;
+	cin >> str;
+
+    for(i=0; str[i]!='\0'; ++i) {
+        while (!((str[i]>='a'&&str[i]<='z') || (str[i]>='A'&&str[i]<='Z' || str[i]=='\0')))  {
+            for(j=i;str[j]!='\0';++j)  {
+                str[j]=str[j+1];
+            }
+            str[j]='\0';
+        }
+    }
+    cout << str;
+    
+    return 0;
+}   
