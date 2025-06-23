@@ -1,0 +1,50 @@
+Single File Programming Question
+ a JAR full of candies for sale at a mall counter. JAR has the capacity N, that is JAR can contain maximum N candies when JAR is full. At any point of time. JAR can have M number of Candies where M<=N. Candies are served to the customers. JAR is never remain empty as when last k candies are left. JAR if refilled with new candies in such a way that JAR get full.
+
+Write a code to implement above scenario. Display JAR at counter with available number of candies. Input should be the number of candies one customer can order at point of time. Update the JAR after each purchase and display JAR at Counter.
+
+If Input is more than candies in JAR, return: “INVALID INPUT”
+
+Given,
+
+N=10, where N is NUMBER OF CANDIES AVAILABLE
+
+K =< 5, where k is number of minimum candies that must be inside JAR ever.
+
+Input format :
+Input consists of number of candies sold
+
+Output format :
+Output displays candies sold and available
+
+Sample test cases :
+Input 1 :
+3
+Output 1 :
+NUMBER OF CANDIES SOLD : 3
+NUMBER OF CANDIES LEFT : 7
+Input 2 :
+8
+Output 2 :
+INVALID INPUT
+NUMBER OF CANDIES LEFT : 10
+
+ANS:
+
+// You are using GCC
+#include<iostream>
+using namespace std;
+int main()
+{
+    int n;
+    cin>>n;
+     
+     if(n>5)
+     {
+         cout<<"INVALID INPUT"<<endl<<"NUMBER OF CANDIES LEFT : 10";
+         return 0;
+     }
+     
+     cout<<"NUMBER OF CANDIES SOLD : "<<n<<endl<<"NUMBER OF CANDIES LEFT : "<<10-n;
+     return 0;
+}
