@@ -1,0 +1,80 @@
+Single File Programming Question
+Problem Statement:
+
+
+
+Write a program that defines a class named Person with name, age, and sex as private attributes. Create appropriate member functions to initialize these attributes and display the information. 
+
+Note: Use classes and objects only to implement this program.
+
+Input format :
+The first line contains a string representing the name of the person.
+
+The second line contains an integer representing the age of the person.
+
+The third line contains a string representing the sex of the person (e.g., "male", "female", or other).
+
+Output format :
+The output prints the given details in uppercase separated by space.
+
+
+
+Refer to the sample output for formatting specifications.
+
+Sample test cases :
+Input 1 :
+bob
+28
+male
+Output 1 :
+BOB 28 MALE
+
+ANS:
+
+#include <iostream>
+#include <string>
+#include <algorithm> 
+using namespace std;
+// You are using GCC
+class Person
+{
+    private:
+     string name;
+     int age;
+     string sex;
+    
+    public :
+    void setDetails(string name,int age,string sex)
+    {
+        this->name=name;
+        this->age=age;
+        this->sex=sex;
+        
+    }
+    
+    string getDetailsInUppercase()
+    {
+       for(char &c:name)
+       {
+           c=toupper(c);
+       }
+       for(char &c:sex)
+       {
+           c=toupper(c);
+       }
+       
+       return name+" "+to_string(age)+" "+sex;
+        
+    }
+};
+
+int main() {
+    Person p;
+    string name, sex;
+    int age;
+    cin >> name >> age >> sex;
+    p.setDetails(name, age, sex);
+    cout << p.getDetailsInUppercase();
+
+    return 0;
+}
