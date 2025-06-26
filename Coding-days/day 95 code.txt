@@ -1,0 +1,63 @@
+Single File Programming Question
+Problem Statement
+
+
+
+Prema, a mathematics enthusiast, is interested in exploring the concept of factorials. She wants to create a program that calculates the factorial of a non-negative integer. 
+
+
+
+Help Prema develop this program.
+
+Input format :
+The input consists of an integer n, representing the integer for which the factorial should be calculated.
+
+Output format :
+The output prints the factorial of the input integer.
+
+If n<0, print "Invalid Input".
+
+
+
+Refer to the sample output for formatting specifications.
+
+Sample test cases :
+Input 1 :
+5
+Output 1 :
+120
+Input 2 :
+3
+Output 2 :
+6
+Input 3 :
+-7
+Output 3 :
+Invalid Input
+
+ANS:
+
+// You are using GCC
+#include<iostream>
+using namespace std;
+int main()
+{
+    int n;
+    cin>>n;
+    
+    if(n<0)
+    {
+        cout<<"Invalid Input";
+        return 0;
+    }
+    int a=1;
+    
+    for(int i=1;i<=n;i++)
+    {
+        a=i*a;
+        
+    }
+    cout<<a;
+    return 0;
+    
+}
