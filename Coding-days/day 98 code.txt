@@ -1,0 +1,79 @@
+Single File Programming Question
+Problem Statement
+
+
+
+Sharath is assigned to develop a program for an office word processing tool. The program should compare two input words provided by the user and determine if they are anagrams of each other.
+
+
+
+It should output a message indicating whether the words are anagrams or not, considering all characters in the words.
+
+
+
+Assist Sharath in completing the program.
+
+Input format :
+The input consists of two space-separated strings.
+
+Output format :
+The output displays a single line output which should be one of the following:
+
+"<str1> and <str2> are anagram of each other." (if they are anagrams)
+
+"<str1> and <str2> are not anagram of each other." (if they are not anagrams)
+
+
+
+Refer to the sample output for formatting specifications.
+
+Code constraints :
+The length of each string will not exceed 1000 characters.
+
+The strings can contain only lowercase alphabets.
+
+Sample test cases :
+Input 1 :
+keep peek
+Output 1 :
+keep and peek are anagram of each other.
+Input 2 :
+jake john
+Output 2 :
+jake and john are not anagram of each other.
+
+ANS:
+
+// You are using GCC
+#include<iostream>
+#include<string>
+using namespace std;
+int main()
+{
+    string a,b;
+    cin>>a>>b;
+    int c=0;
+    int l=a.length();
+    
+    for(int i=0;i<l;i++)
+    {
+        for(int j=0;j<l;j++)
+        {
+            if(a[i]==b[j])
+            {
+                c++;
+                break;
+            }
+        }
+    }
+    
+    // cout<<c;
+if(l==c)
+{
+    cout<<a<<" and "<<b<<" are anagram of each other.";
+}else{
+    
+    cout<<a<<" and "<<b<<" are not anagram of each other.";
+}
+    
+}
