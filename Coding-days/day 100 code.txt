@@ -1,0 +1,88 @@
+Problem Statement
+
+
+
+Charlie is learning templates and classes. He needs a template class called mypair that stores two values of the different data type. He wants to find the maximum and minimum values among the stored values. 
+
+
+
+Your task is to help Charlie implement a program to input two integer values and two float values, create mypair objects for both data types, and then output the maximum and minimum values for each object.
+
+Input format :
+The first line of input consists of two space separated integers, a and b, representing the elements of the first pair.
+
+The second line of input consists of two space separated floating-point numbers, x and y, representing the elements of the second pair.
+
+Output format :
+The first line of output prints the maximum and minimum of the integer pair, separated by a space.
+
+The second line of output prints the maximum and minimum of the floating-point pair, separated by a space.
+
+
+
+Refer to the sample output for formatting specifications.
+
+Code constraints :
+In this scenario, the given test cases will fall under the following constraints:
+
+1 ≤ a,b ≤ 105
+
+−100000.0 ≤ x,y ≤ 100000.0
+
+Sample test cases :
+Input 1 :
+86 42
+12.5 85.6
+Output 1 :
+86 42
+85.6 12.5
+Input 2 :
+12345 85698
+85632.2 48624.4
+Output 2 :
+85698 12345
+85632.2 48624.4
+
+ANS:
+
+// You are using GCC
+#include<iostream>
+using namespace std;
+
+template<typename T>
+class mypair {
+    T a,b;
+    
+    public:
+    
+    mypair(T first,T sec)
+    {
+        a=first;
+        b=sec;
+    }
+    
+    T getMax()
+    {
+        return (a>b) ? a:b;
+    }
+    T getMin()
+    {
+        return (a<b) ? a:b;
+    }
+};
+
+int main()
+{
+    int a,b;
+    cin>>a>>b;
+    float c,d;
+    cin>>c>>d;
+    
+    mypair<int>inp(a,b);
+    mypair<float>inf(c,d);
+    
+    cout<<inp.getMax()<<" "<<inp.getMin()<<endl;
+    cout<<inf.getMax()<<" "<<inf.getMin()<<endl;
+    
+    return 0;
+}
