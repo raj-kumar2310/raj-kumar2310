@@ -1,0 +1,80 @@
+Question No: 1
+Single File Programming Question
+Write a program to create a singly linked list and display the added elements. 
+
+Note : Insert the elements in the beginning of the list.
+
+Input format :
+Number of list elements in the first line
+
+List elements in the second line separated by space.
+
+Output format :
+Display the list as shown in the sample output.
+
+Sample test cases :
+Input 1 :
+5
+3 4 21 232 89
+Output 1 :
+89 232 21 4 3 
+
+ANS:
+
+// You are using Java
+import java.util.*;
+class Node
+{
+    int data;
+    Node next;
+    
+    Node(int val)
+    {
+        this.data = val;
+        this.next=null;
+    }
+}
+
+class Linkedlist
+{
+   static  Node head = null;
+    
+    public static void insertBig(int val)
+    {
+        Node n=new Node(val);
+        if(head==null)
+        {
+            head=n;
+        }
+        else{
+            n.next=head;
+            head=n;
+        }
+    }
+    
+    public static void print()
+    {
+        Node t=head;
+        while(t!=null)
+        {
+            System.out.print(t.data+" ");
+            t=t.next;
+        }
+    }
+    public static void main(String args[])
+    {
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        
+        for(int i=0;i<n;i++)
+        {
+            int val=sc.nextInt();
+            insertBig(val);
+        }
+    print();
+    
+    }
+    
+    
+    
+}
