@@ -1,0 +1,167 @@
+Single File Programming Question
+Problem Statement
+
+
+
+Kamal wants to create a linked list and perform the following operations on it:
+
+Insert a node at the beginning of the linked list.
+After inserting, append a node at the end of the linked list.
+Print the final linked list.
+
+
+Write a program that takes the number of nodes to be inserted, followed by their values, as input. After inserting the nodes, the program should ask for a new value and append a node with that value at the end of the linked list. Finally, the program should print the contents of the linked list.
+
+
+
+Example
+
+
+
+Input:
+
+5
+
+1 2 3 4 5
+
+6
+
+
+
+Output:
+
+Created Linked list: 5 4 3 2 1
+
+Final list: 5 4 3 2 1 6 // after appending the new value
+
+
+
+Explanation:
+
+The input specifies that there are 5 nodes, and their values are 1, 2, 3, 4, and 5 which are inserted at the beginning. So the created list is 5 4 3 2 1. 
+
+After inserting these nodes, the new value 6 is inserted at the end of the linked list. The final list is 5 4 3 2 1 6
+
+
+
+Company tags: Capgemini
+
+Input format :
+The first line consists of an integer, n, representing the number of nodes to be initially inserted into the linked list.
+
+The second line of input consists of n space-separated integers, representing the elements of the linked list.
+
+The third line of input consists of an integer, m, representing the value of the new node to be inserted at the end of the linked list.
+
+Output format :
+The first line of output prints "Created Linked list: " followed by the initial linked list elements, separated by space.
+
+The second line of output prints "Final list: " followed by the final linked list elements, after appending the new node, separated by space.
+
+
+
+Refer to the sample output for formatting specifications.
+
+Code constraints :
+In this scenario, the test cases fall under the following constraints:
+
+1 ≤ n ≤ 10
+
+1 ≤ elements, m ≤ 100
+
+Sample test cases :
+Input 1 :
+5
+1 2 3 4 5
+6
+Output 1 :
+Created Linked list: 5 4 3 2 1
+Final list: 5 4 3 2 1 6
+Input 2 :
+3
+10 20 30
+40
+Output 2 :
+Created Linked list: 30 20 10
+Final list: 30 20 10 40
+
+ANS:
+
+// You are using Java
+import java.util.*;
+class Node{
+    int data;
+    Node next;
+    Node(int val)
+    {
+        this.data=val;
+        this.next=null;
+    }
+}
+
+public class Main
+{
+    public static Node insertbig(Node head,int val)
+    {
+        Node n=new  Node(val);
+        if(head==null)
+        {
+            head= n;
+        }
+        else
+        {
+            n.next=head;
+            head=n;
+            
+        }
+        return head;
+    }
+    public static Node insertlast(Node head,int val)
+    {
+        Node n=new  Node(val);
+        if(head==null)
+        {
+            head= n;
+        }
+        else
+        {
+            Node t=head;
+            while(t.next!=null)
+            {
+                t=t.next;
+            }
+            t.next=n;
+            
+        }
+        return head;
+    }
+    
+    public static void print(Node head)
+    {
+        Node t=head;
+        while(t != null)
+        {
+            System.out.print(t.data+" ");
+            t=t.next;
+        }
+        
+    }
+    public static void main(String args[])
+    {
+        Scanner sc=new Scanner(System.in);
+        Node head=null;
+        int num=sc.nextInt();
+        for(int i=0;i<num;i++)
+        {
+            int val=sc.nextInt();
+            head=insertbig(head,val);
+        }
+        System.out.print("Created LinkedList: ");
+        print(head);
+        System.out.println();
+        int val=sc.nextInt();
+        head=insertlast(head,val);
+        System.out.print("Final LinkedList: ");
+        print(head);
+    }
+}
