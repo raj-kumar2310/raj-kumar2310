@@ -1,0 +1,120 @@
+Single File Programming Question
+Problem Statement
+
+
+
+Prasath is developing a program to manage sorted singly linked lists of sales data. The linked list should be kept sorted in ascending order. The task is to insert a new data point into the sorted linked list and display the list before and after insertion.
+
+
+
+Help Prasath in creating the program.
+
+
+
+Company Tags: Capgemini
+
+Input format :
+The first line of input contains an integer n, the number of initial data points to be inserted into the linked list.
+
+The second line contains n integers, which are the initial data points.
+
+The third line contains a single integer data, the new data point to be inserted into the linked list.
+
+Output format :
+The first line of output prints "Original data points:" followed by the linked list elements before the insertion of the new data point.
+
+The second line prints "Updated data points:" followed by the linked list elements after the insertion of the new data point.
+
+
+
+Refer to the sample output for formatting specifications.
+
+Code constraints :
+1 ≤ n ≤ 25
+
+1 ≤ initial data points, data ≤ 100
+
+Sample test cases :
+Input 1 :
+6
+25 36 47 58 69 80
+19
+Output 1 :
+Original data points: 25 36 47 58 69 80 
+Updated data points: 19 25 36 47 58 69 80 
+Input 2 :
+2
+50 100 
+75
+Output 2 :
+Original data points: 50 100 
+Updated data points: 50 75 100 
+
+ANS:
+
+// You are using Java
+import java.util.*;
+class Node
+{
+    int data;
+    Node next;
+    Node(int data)
+    {
+        this.data=data;
+        this.next=null;
+    }
+}
+
+public class Main{
+    public static Node sortadd(Node head,int data)
+    {
+        Node n=new Node(data);
+        if(head==null || head.data >n.data)
+        {
+            n.next=head;
+            head=n;
+            return n;
+        }
+        
+        Node curr=head;
+        while(curr.next != null && curr.next.data<n.data)
+        {
+            curr=curr.next;
+        }
+        
+        n.next=curr.next;
+        curr.next=n;
+        
+        return head;
+    }
+    
+    public static void print(Node head)
+    {
+        Node t=head;
+        while(t!=null)
+        {
+            System.out.print(t.data+" ");
+            t=t.next;
+        }
+    }
+    public static void main(String args[])
+    {
+        Node head=null;
+        Scanner sc=new Scanner(System.in);
+        int num=sc.nextInt();
+        for(int i=0;i<num;i++)
+        {
+            int data=sc.nextInt();
+            head=sortadd(head,data);
+        }
+        System.out.print("Original Data point: ");
+        print(head);
+        System.out.println();
+        int data=sc.nextInt();
+            head=sortadd(head,data);
+        System.out.print("Updated Data point: ");
+        print(head);
+        System.out.println();
+        
+    }
+}
