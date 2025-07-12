@@ -1,0 +1,114 @@
+Question No: 1
+Single File Programming Question
+Print Binary Values:
+
+Write a program to find the decimal number DN of a binary number BN in a linked list L.
+
+
+
+Example:
+
+Input:
+
+7
+
+1 1 0 0 0 0 1
+
+
+
+Output:
+
+97
+
+
+
+Explanation:
+
+The seventh, sixth and first bit is 1 so 64+32+1 = 97 gets printed.
+
+Input format :
+The first line of input will contain the length of the linked list LN
+
+In the second line, there are N space-separated integers, where each integer is either 0 or 1
+
+Output format :
+Prints the decimal value format of the integer represented by the list
+
+Code constraints :
+1 < N < 63
+
+Data at each node will be either 0 or 1
+
+Sample test cases :
+Input 1 :
+7
+1 1 0 0 0 0 1
+Output 1 :
+97
+Input 2 :
+5
+0 0 0 1 1
+Output 2 :
+3
+
+ANS:
+
+// You are using Java
+import java.util.*;
+class Node
+{
+    int data;
+    Node next;
+    Node(int data)
+    {
+        this.data=data;
+        this.next=null;
+    }
+}
+public class Main
+{
+    public static Node insert(Node head,int data)
+    {
+        Node n=new Node(data);
+        if(head==null)
+        {
+            head=n;
+        }
+        else
+        {
+            Node  t=head;
+            while(t.next != null)
+            {
+                t=t.next;
+            }
+            t.next=n;
+            
+        }
+        return head;
+    }
+    public static int decimalconvert(Node head)
+    {
+        int value=0;
+        Node t=head;
+        while(t != null)
+        {
+            value=value*2+t.data;
+            t=t.next;
+        }
+        return value;
+    }
+    
+    public static void main(String args[])
+    {
+        Node head=null;
+        Scanner sc=new Scanner(System.in);
+        int num=sc.nextInt();
+        for(int i=0;i<num;i++)
+        {
+            int data=sc.nextInt();
+            head=insert(head,data);
+        }
+        int result=decimalconvert(head);
+        System.out.println(result);
+    }
+}
