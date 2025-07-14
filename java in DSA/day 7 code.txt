@@ -1,0 +1,121 @@
+Single File Programming Question
+Delete Last Node:
+
+Write a program to delete the last node of the Singly Linked List. 
+
+
+
+Example :
+
+Input:
+
+10
+
+2 25 15 34 55 73 95 82 52 74
+
+
+
+Output:
+
+2 25 15 34 55 73 95 82 52 
+
+
+
+Explanation:
+
+Values in the list "2 25 15 34 55 73 95 82 52 74", delete the last node i.e 74 in the above list, and print the list.
+
+Input format :
+The first line of input denotes the list size Ls followed by the elements in the next line.
+
+Output format :
+Displays the list L after deletion.
+
+Sample test cases :
+Input 1 :
+10
+2  25  15  34  55  73  95  82  52  74
+Output 1 :
+2 25 15 34 55 73 95 82 52 
+Input 2 :
+15
+158  733  898  960  377  376  134  543  929  667  875  259  985  935  764
+Output 2 :
+158 733 898 960 377 376 134 543 929 667 875 259 985 935 
+
+ANS:
+
+// You are using Java
+import java.util.*;
+class Node
+{
+ int data;
+ Node next;
+ 
+ Node(int data)
+ {
+     this.data=data;
+     this.next=null;
+ }
+}
+
+public class Main
+{
+    public static Node insert(Node head,int data)
+    {
+        Node n=new Node(data);
+        if(head==null)
+        {
+            head=n;
+        }
+        else{
+            Node t=head;
+            while(t.next != null)
+            {
+                t=t.next;
+            }
+            t.next=n;
+            
+        }
+        return head;
+    }
+    
+    public static  Node deletelast(Node head)
+    {
+        Node t=head;
+        while(t.next.next !=null)
+        {
+            t=t.next;
+        }
+        t.next=null;
+        
+        return head;
+    }
+    
+    public static void print(Node head)
+    {
+        Node t=head;
+        while(t!=null)
+        {
+            System.out.print(t.data+" ");
+            t=t.next;
+        }
+    }
+    public static void main(String args[])
+    {
+        Node head=null;
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        for(int i=0;i<n;i++)
+        {
+            int data=sc.nextInt();
+            head=insert(head,data);
+        }
+        // print(head);
+        // System.out.println();
+        head=deletelast(head);
+        // System.out.println();
+        print(head);
+        
+    }
+}
