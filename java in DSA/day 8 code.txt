@@ -1,0 +1,117 @@
+Single File Programming Question
+Linked List Traversal:
+
+Write a program to find nth node of all unique numbers in the linked list L.
+
+
+
+Example:
+
+Input:
+
+5
+
+12 34 89 54 67
+
+3
+
+
+
+Output:
+
+89
+
+
+
+Explanation:
+
+Print the third element in the linked list, which has five elements. The third entry in the linked list above is 89, which is printed.
+
+Input format :
+The first line of input contains length N of the linked list L, followed by the elements e1,e2,e3 . . . en in the next line.
+
+The last line of input represents the position x to be deleted
+
+Output format :
+Prints the node of the desired location
+
+Sample test cases :
+Input 1 :
+5
+12 34 89 54 67
+3
+Output 1 :
+89
+Input 2 :
+6
+900 123 456 789 765 111
+2
+Output 2 :
+123
+
+ANS:
+
+// You are using Java
+import java.util.*;
+class Node
+{
+    int data;
+    Node next;
+    Node(int data)
+    {
+        this.data=data;
+        this.next=null;
+    }
+}
+
+public class Main
+{
+    public static Node insert(Node head,int data)
+    {
+        Node n=new Node(data);
+        if(head==null)
+        {
+            head=n;
+        }
+        else{
+            Node t=head;
+            while(t.next !=null)
+            {
+                t=t.next;
+            }
+            t.next=n;
+            
+        }
+        return head;
+    }
+    public static void print(Node head,int index)
+    {
+        Node t=head;
+        int c=1;
+        while(t !=null)
+        {
+            if(c==index)
+            {
+                System.out.println(t.data);
+            }
+            c++;
+            t=t.next;
+        }
+    }
+    
+    public static void main(String args[])
+    {
+        Node head=null;
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        for(int i=0;i<n;i++)
+        {
+            int data=sc.nextInt();
+            head=insert(head,data);
+            
+        }
+        int index=sc.nextInt();
+        print(head,index);
+        
+    }
+}
