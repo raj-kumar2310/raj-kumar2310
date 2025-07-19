@@ -1,0 +1,131 @@
+Single File Programming Question
+Problem Statement
+
+
+
+From the given set of numbers form a linked list and delete those nodes which have a greater value on their right side.
+
+
+
+Note: The linked list should be formed in the reverse order of the given input integers. For a better understanding refer sample input and output.
+
+Input format :
+The first input consists of an integer representing the number of elements.
+
+The second line of input consists of an integer representing the elements separated by space.
+
+Output format :
+The first line of output prints the given linked list.
+
+(Linked List)
+
+The second line of output prints the modified linked list.
+
+(Final Linked List)
+
+Sample test cases :
+Input 1 :
+5
+3 2 6 5 11
+Output 1 :
+Given Linked List 
+11 5 6 2 3 
+Modified Linked List 
+11 6 3 
+
+ANS:
+
+// You are using Java
+import java.util.*;
+class Node 
+{
+    int data;
+    Node next;
+    Node(int data)
+    {
+        this.data=data;
+        this.next=null;
+    }
+}
+
+public class Main
+{
+    public static Node insert(Node head,int data)
+    {
+        Node n=new Node(data);
+        n.next=head;
+        return n;
+    }
+    
+    public static Node reverse(Node head)
+    {
+        Node prev=null;
+        Node curr=head;
+        Node next;
+        while(curr != null)
+        {
+            next=curr.next;
+            curr.next=prev;
+            prev=curr;
+            curr=next;
+        }
+        return prev;
+    }
+    
+    public static Node modify(Node head)
+    {
+        if(head==null || head.next==null) return head;
+        
+        head=reverse(head);
+        
+        Node maxNode=head;
+        Node temp=head.next;
+        Node prev=head;
+        
+        while(temp != null)
+        {
+            if(temp.data < maxNode.data)
+            {
+                prev.next=temp.next;
+                temp=prev.next;
+            }
+            else{
+                maxNode = temp;
+                prev = temp;
+                temp=temp.next;
+            }
+        }
+        head=reverse(head);
+        return head;
+    }
+    public static void print(Node head)
+    {
+        Node t=head;
+        while(t!=null)
+        {
+            System.out.print(t.data+" ");
+            t=t.next;
+        }
+    }
+    
+    public static void main(String args[])
+    {
+        Scanner sc=new Scanner(System.in);
+        Node head=null;
+        
+        int n=sc.nextInt();
+        for(int i=0;i<n;i++)
+        {
+            int data=sc.nextInt();
+            head=insert(head,data);
+        }
+        
+        System.out.println("Given Linked List");
+        print(head);
+        System.out.println();
+        
+        head=modify(head);
+        System.out.println("Modified Linked List");
+        print(head);
+    }
+}
