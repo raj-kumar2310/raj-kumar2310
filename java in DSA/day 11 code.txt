@@ -1,0 +1,101 @@
+Single File Programming Question
+Write a program to delete a node from the end of a doubly linked list.
+
+Input format :
+Number of list elements
+
+List elements in the second line separated by space
+
+Number of elements to be deleted
+
+Output format :
+Display the list before and deletion.
+
+
+
+Refer the sample output for exact format
+
+Sample test cases :
+Input 1 :
+7
+2 3 2 3 34 21 1
+3
+Output 1 :
+2 3 2 3 34 21 1 
+2 3 2 3 
+
+ANS:
+
+// You are using Java
+import java.util.*;
+class Node
+{
+    int data;
+    Node next;
+    Node(int data)
+    {
+        this.data=data;
+        this.next=null;
+    }
+}
+class Main
+{
+    public static Node insert(Node head,int data)
+    {
+        Node n=new Node(data);
+        if(head==null)
+        {
+            head=n;
+        }
+        else{
+            Node t=head;
+            while(t.next!=null)
+            {
+                t=t.next;
+            }
+            t.next=n;
+        }
+        return head;
+    }
+    public static Node delete(Node head)
+    {
+        Node t=head;
+        while(t.next.next != null)
+        {
+            t=t.next;
+        }
+        t.next=null;
+        return head;
+    }
+    public static void print(Node head)
+    {
+        Node t=head;
+        while(t!=null)
+        {
+            System.out.print(t.data+" ");
+            t=t.next;
+        }
+    }
+    
+    public static void main(String args[])
+    {
+        Node head=null;
+        Scanner sc=new Scanner(System.in);
+        int num=sc.nextInt();
+        for(int i=0;i<num;i++)
+        {
+            int data=sc.nextInt();
+            head=insert(head,data);
+        }
+        print(head);
+        int k=sc.nextInt();
+        
+        System.out.println();
+        for(int i=0;i<k;i++)
+        {
+            head=delete(head);
+        }
+        print(head);
+        
+    }
+}
