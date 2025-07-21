@@ -1,0 +1,85 @@
+Single File Programming Question
+Write a C++ program to add a node to the beginning of a circular linked list with user input
+
+
+
+Input format :
+Number of list elements
+
+List elements in the second line separated by space
+
+Number to be inserted in the third line
+
+Output format :
+Display the list before and after insertion.
+
+
+
+Sample test cases :
+Input 1 :
+5
+23 22 12 82 12
+99
+Output 1 :
+12 82 12 22 23 
+99 12 82 12 22 23 
+
+ANS:
+
+// You are using Java
+import java.util.*;
+class Node 
+{
+    int data;
+    Node next;
+    Node prev;
+    Node (int data)
+    {
+        this.data=data;
+        this.next=null;
+        this.prev=null;
+    }
+}
+class Main 
+{
+    public static Node insert(Node head,int data)
+    {
+        Node n=new Node(data);
+        if(head==null)
+        {
+            head=n;
+        }
+        else
+        {
+            n.next=head;
+            head.prev=n;
+            head=n;
+        }
+        return head;
+    }
+    public static void print(Node head)
+    {
+        Node t=head;
+        while(t != null)
+        {
+            System.out.print(t.data+" ");
+            t=t.next;
+        }
+    }
+    public static void main(String args[])
+    {
+        Node head=null;
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        for(int i=0;i<n;i++)
+        {
+            int data=sc.nextInt();
+            head=insert(head,data);
+        }
+        print(head);
+        System.out.println();
+        int data=sc.nextInt();
+        head=insert(head,data);
+        print(head);
+    }
+}
