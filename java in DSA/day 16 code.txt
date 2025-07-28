@@ -1,0 +1,103 @@
+Single File Programming Question
+Delete Node - Circular Linked List
+
+Write a program to delete a node at the beginning of a circular linked list.
+
+Example
+
+Input
+
+7
+
+11 59 2 70 71 33 77
+
+Output
+
+59 2 70 71 33 77
+
+Explanation
+
+List has "11 59 2 70 71 33 77" values, delete the first node in the list i.e. 11 and print the list.
+
+Input format :
+The first line of input denotes the list size Ls followed by the elements in the next line.
+
+Output format :
+Displays the list L after deletion.
+
+Sample test cases :
+Input 1 :
+7
+11  59  2  70  71  33  77
+Output 1 :
+59 2 70 71 33 77 
+Input 2 :
+14
+279  138  59  264  79  164  184  103  142  272  211  270  109  285
+Output 2 :
+138 59 264 79 164 184 103 142 272 211 270 109 285 
+
+ANS:
+
+// You are using Java
+import java.util.*;
+class Node 
+{
+    int data;
+    Node next;
+    Node(int data)
+    {
+        this.data=data;
+        this.next=null;
+    }
+}
+
+public class Main 
+{
+    public static Node insert(Node head,int data)
+    {
+        Node n=new Node(data);
+        if(head==null)
+        {
+            head=n;
+        }
+        else{
+            Node t=head;
+            while(t.next != null)
+            {
+                t=t.next;
+            }
+            t.next=n;
+        }
+        return head;
+    }
+    public static Node delete(Node head)
+    {
+        if(head==null) return head;
+        
+        return head.next;
+    }
+    public static void print(Node head)
+    {
+        Node t=head;
+        while(t!=null)
+        {
+            System.out.print(t.data+" ");
+            t=t.next;
+        }
+    }
+    public static void main(String args[])
+    {
+        Node head=null;
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        for(int i=0;i<n;i++)
+        {
+            int data=sc.nextInt();
+            head=insert(head,data);
+        }
+        
+        head=delete(head);
+        print(head);
+    }
+}
