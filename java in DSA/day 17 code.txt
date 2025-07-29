@@ -1,0 +1,101 @@
+Single File Programming Question
+Vanessa is learning about doubly linked list and is eager to play around with it. She decides to find out how the elements are inserted in the list and understands that the insertion happens in the reverse order. Now she plans to print the original list and reversed list one below the other. Help her in implementing the same.
+
+Input format :
+Single line input which has 5 integers separated by a space.
+
+Output format :
+Output displays the original list and reversed list one below the other
+
+Sample test cases :
+Input 1 :
+1 2 3 4 5
+Output 1 :
+5 4 3 2 1 
+1 2 3 4 5 
+
+
+ANS:
+
+// You are using Java
+import java.util.*;
+class Node 
+{
+    int data;
+    Node next;
+    Node prev;
+    Node(int data)
+    {
+        this.data=data;
+        this.next=null;
+        this.prev=null;
+    }
+}
+class Pair
+{
+    Node head,tail;
+    Pair(Node head,Node tail)
+    {
+        this.head=head;
+        this.tail=tail;
+    }
+}
+class Main 
+{
+    public static Pair insert(Node head,Node tail,int data)
+    {
+        Node n=new Node(data);
+        
+        if(head==null)
+        {
+            head=tail=n;
+        }
+        else{
+           
+           
+               n.prev=tail;
+               tail.next=n;
+               tail=n;
+            
+            
+            
+        }
+        return new Pair(head,tail);
+    }
+    public static void reverse(Node tail)
+    {
+        Node t=tail;
+        while(t !=null)
+        {
+            System.out.print(t.data+" ");
+            t=t.prev;
+        }
+    }
+    public static void original(Node head)
+    {
+        Node t=head;
+        while(t !=null)
+        {
+            System.out.print(t.data+" ");
+            t=t.next;
+        }
+    }
+    public static void main(String args[])
+    {
+        Node head=null;
+        Node tail=null;
+        Scanner sc=new Scanner(System.in);
+        for(int i=0;i<5;i++)
+        {
+            int data=sc.nextInt();
+            // head=insert(head,tail,data);
+            Pair p=insert(head,tail,data);
+            head=p.head;
+            tail=p.tail;
+            
+        }
+        original(head);
+        System.out.println();
+        reverse(tail);
+    }
+}
