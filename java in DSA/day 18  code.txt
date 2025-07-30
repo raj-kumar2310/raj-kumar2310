@@ -1,0 +1,122 @@
+Single File Programming Question
+People from a group are asked to form a circle for an activity. Then this group has to be split into two halves so that each group does a different activity as part of the original one. The task is to split it into two halves with exact same count or if there odd number of people, the first half can have more people than the other.
+
+
+
+Consider the arrangement to be in the form a circular linked list and split accordingly.
+
+Input format :
+First line has the number of people and the second line has the number representing each person
+
+Output format :
+Output is displayed as shown in sample test case
+
+Sample test cases :
+Input 1 :
+5
+1 2 3 4 5
+Output 1 :
+5 4 3 
+2 1 
+
+ANS:
+
+import java.util.*;
+
+class Node {
+    int data;
+    Node next;
+
+    Node(int x) {
+        data = x;
+        next = null;
+    }
+}
+
+public class Main {
+
+    // Function to print circular linked list
+    public static void printCircularList(Node head) {
+        if (head == null) return;
+        Node temp = head;
+        do {
+            System.out.print(temp.data + " ");
+            temp = temp.next;
+        } while (temp != head);
+        System.out.println();
+    }
+
+    // Function to reverse a circular linked list
+    public static Node reverseList(Node head) {
+        if (head == null || head.next == head) return head;
+
+        Node prev = null;
+        Node current = head;
+        Node next;
+
+        do {
+            next = current.next;
+            current.next = prev;
+            prev = current;
+            current = next;
+        } while (current != head);
+
+        // Fix the circular connection
+        head.next = prev;
+        return prev;
+    }
+
+    // Function to create a circular linked list
+    public static Node createCircularList(List<Integer> list) {
+        if (list.isEmpty()) return null;
+
+        Node head = new Node(list.get(0));
+        Node current = head;
+
+        for (int i = 1; i < list.size(); i++) {
+            current.next = new Node(list.get(i));
+            current = current.next;
+        }
+
+        current.next = head; // Make it circular
+        return head;
+    }
+
+    // Function to split the list into two halves
+    public static Node[] splitCircularList(Node head, int n) {
+        if (head == null || n == 1) return new Node[]{head, null};
+
+        Node slow = head;
+        Node fast = head;
+
+        while (fast.next != head && fast.next.next != head) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+
+        Node secondHalf = slow.next;
+        slow.next = head;  // close first half
+        fast.next = secondHalf; // close second half
+
+        return new Node[]{head, secondHalf};
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+
+        List<Integer> list = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            list.add(sc.nextInt());
+        }
+
+        Node head = createCircularList(list);
+
+        Node[] halves = splitCircularList(head, n);
+        Node firstHalf = reverseList(halves[0]);
+        Node secondHalf = reverseList(halves[1]);
+
+        printCircularList(secondHalf);
+        printCircularList(firstHalf);
+    }
+}
