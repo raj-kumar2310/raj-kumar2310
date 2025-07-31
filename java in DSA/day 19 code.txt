@@ -1,0 +1,101 @@
+Single File Programming Question
+Lalit and his friends are playing cards sitting around a circular table. After the first game, first-person and last person exchange their position. Pranav is watching this game and he relates this with Circular Linked List. 
+
+
+
+So he decided to write a program to exchange first and last nodes in Circular Linked List. Help Pranav to complete this program.
+
+Input format :
+Number of elements in first line
+
+N number of element in second line separated by space
+
+Output format :
+Elements before the swap and after swap as shown in the sample output.
+
+Sample test cases :
+Input 1 :
+10
+3 4 5 6 7 8 1 2 3 9
+Output 1 :
+Before Swap : 3 4 5 6 7 8 1 2 3 9 
+After Swap : 9 4 5 6 7 8 1 2 3 3 
+
+ANS:
+
+import java.util.*;
+
+class Node {
+    int data;
+    Node next;
+
+    Node(int data) {
+        this.data = data;
+        this.next = null;
+    }
+}
+
+class Main {
+    public static Node Circular(List<Integer> element) {
+        if (element.isEmpty()) return null;
+
+        Node head = new Node(element.get(0));
+        Node curr = head;
+
+        for (int i = 1; i < element.size(); i++) {
+            curr.next = new Node(element.get(i));
+            curr = curr.next;
+        }
+
+        curr.next = head; // make circular
+        return head;
+    }
+
+    public static void print(Node head) {
+        if (head == null) return;
+
+        Node t = head;
+        do {
+            System.out.print(t.data + " ");
+            t = t.next;
+        } while (t != head);
+        System.out.println();
+    }
+
+    public static Node Sweap(Node head) {
+    if (head == null || head.next == head) return head;
+
+    Node curr = head;
+
+    // Find last node
+    while (curr.next != head) {
+        curr = curr.next;
+    }
+
+    // Swap values
+    int temp = head.data;
+    head.data = curr.data;
+    curr.data = temp;
+
+    return head;
+}
+
+
+    public static void main(String args[]) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        List<Integer> element = new ArrayList<>();
+
+        for (int i = 0; i < n; i++) {
+            element.add(sc.nextInt());
+        }
+
+        Node head = Circular(element);
+        System.out.print("Before Swap : ");
+        print(head);
+
+        head = Sweap(head);
+        System.out.print("After Swap : ");
+        print(head);
+    }
+}
