@@ -1,0 +1,112 @@
+Single File Programming Question
+Write a program to print the middle element of the Doubly linked list.
+
+Input format :
+The first line of the input consists of the number of elements in the list.
+
+The next input is the list of elements.
+
+Output format :
+The first line of the output prints the list.
+
+Next line prints the middle element.
+
+Note - There is an extra space at the end of the first line of the output.
+
+Sample test cases :
+Input 1 :
+5
+20 52 40 16 18
+Output 1 :
+20 52 40 16 18 
+40
+Input 2 :
+6
+99 11 77 55 22 33
+Output 2 :
+99 11 77 55 22 33 
+77 55
+
+ANS:
+
+// You are using Java
+import java.util.*;
+class Node 
+{
+    int data;
+    Node next;
+    Node prev;
+    Node(int data)
+    {
+        this.data=data;
+        this.next=null;
+        this.prev=null;
+    }
+}
+class Main 
+{
+    public static Node insert(Node head,int data)
+    {
+        Node n=new Node(data);
+        if(head==null)
+        {
+            head=n;
+        }
+        else{
+            Node t=head;
+            while(t.next != null)
+            {
+                t=t.next;
+            }
+            t.next=n;
+            n.prev=t;
+        }
+        return head;
+    }
+    public static void print(Node head)
+    {
+        Node t= head;
+        while(t !=null)
+        {
+            System.out.print(t.data+" ");
+            t=t.next;
+            
+        }
+            System.out.println();
+        
+    }
+    public static void printmid(Node head,int n)
+    {
+        Node f=head;
+        Node s=head;
+        while(f != null && f.next != null)
+        {
+            s=s.next;
+            f=f.next.next;
+        }
+        
+        if(n%2==1)
+        {
+            System.out.print(s.data);
+        }
+        else{
+            
+            System.out.print(s.prev.data+" "+s.data);
+        }
+    }
+    
+    public static void main(String args[])
+    {
+        Node head=null;
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        for(int i=0;i<n;i++)
+        {
+            int data=sc.nextInt();
+            head=insert(head,data);
+            
+        }
+        print(head);
+        printmid(head,n);
+    }
+}
