@@ -1,0 +1,53 @@
+Single File Programming Question
+Write a program to implement stack using Array.
+
+Input format :
+Size of stack in first line
+
+Stack elements in the next lines
+
+Output format :
+Display the stack elements.
+
+Sample test cases :
+Input 1 :
+5
+90
+1
+234
+89
+23
+Output 1 :
+Stack elements
+23
+89
+234
+1
+90
+
+ANS:
+
+// You are using Java
+import java.util.*;
+class Main 
+{
+    public static void main(String args[])
+    {
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        int[] stack=new int[n];
+        int  top=-1;
+        for(int i=0;i<n;i++)
+        {
+            int data=sc.nextInt();
+            stack[++top]=data;
+        }
+        
+        System.out.println("Stack elements");
+        
+        for(int i=top;i>=0;i--)
+        {
+            System.out.println(stack[i]);
+        }
+    }
+}
