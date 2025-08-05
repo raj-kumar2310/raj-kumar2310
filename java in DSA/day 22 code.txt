@@ -1,0 +1,85 @@
+Single File Programming Question
+Write a program to implement stack using linked list. 
+
+Input format :
+A number to be added in the stack followed by Y/N. If the input is Y, enter the second number. Enter N to stop the input.
+
+
+
+Refer the sample input.
+
+Output format :
+Display the stack elemnets.
+
+Sample test cases :
+Input 1 :
+20
+Y
+231
+Y
+190
+Y
+98
+N
+Output 1 :
+Stack elements
+98
+190
+231
+20
+
+ANS:
+
+// You are using Java
+import java.util.*;
+class Node 
+{
+    int data;
+    Node next;
+    Node (int data)
+    {
+        this.data=data;
+        this.next=null;
+    }
+}
+
+class Main 
+{
+    public static Node push(Node top,int data)
+    {
+        Node n=new Node(data);
+       n.next=top;
+       top=n;
+       return top;
+    }
+    public static void print(Node top)
+    {
+        Node t=top;
+        while(t!= null)
+        {
+            System.out.println(t.data);
+            t=t.next;
+        }
+    }
+    
+    public static void main(String args[])
+    {
+        Scanner sc=new Scanner(System.in);
+        Node top=null;
+        while(true)
+        {
+            int data=sc.nextInt();
+            sc.nextLine();
+            top=push(top,data);
+            String ch=sc.nextLine();
+            if(ch.equalsIgnoreCase("N"))
+            {
+                break;
+            }
+            
+        }
+        
+        System.out.println("Stack elements");
+        print(top);
+    }
+}
