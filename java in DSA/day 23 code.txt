@@ -1,0 +1,68 @@
+Single File Programming Question
+Problem statement
+
+Books in a shelf are arranged in such a way that the starting letters of their titles are displayed in front of it. Based upon these letters, students can easily identify the books they are in search of. One fine day, some students find that the books are arranged in reversed order. However, they are unable to understand the process behind the arrangement.
+
+One student suggested that since books are usually arranged in the form of stacks, the reversal will be in the LIFO format. Another student mentioned that first letters of the books formed an array of characters which is now seen in the reversed form. Help the students by writing a code by combining the two given findings to arrive at the algorithm for the rearrangement.
+
+Example
+
+Input
+
+JNCAB
+
+Output
+
+BACNJ
+
+Explanation
+
+letter="JNCAB"
+letter[0]="J" => push() => Stack=J
+letter[1]="N" => push() => Stack=JN
+letter[2]="C" => push() => Stack=JNC
+letter[3]="A" => push() => Stack=JNCA
+letter[4]="B" => push() => Stack=JNCAB
+Now, one by one, pop() and print the top-most elements.
+
+Input format :
+A single line of input which has the original set of starting letters s.
+
+Output format :
+Display the reversed letters that matches the rearranged set of books
+
+Code constraints :
+1 < s < 100
+
+Sample test cases :
+Input 1 :
+JNCAB
+Output 1 :
+BACNJ
+Input 2 :
+DEFG CVDF
+Output 2 :
+FDVC GFED
+
+ANS:
+
+// You are using Java
+import java.util.*;
+class Main 
+{
+    public static void main(String args[])
+    {
+        Scanner sc=new Scanner(System.in);
+        String a=sc.nextLine();
+        Stack<Character>st=new Stack<>();
+        for(int i=0;i<a.length();i++)
+        {
+            st.push(a.charAt(i));
+        }
+        
+        while(!st.isEmpty())
+        {
+            System.out.print(st.pop());
+        }
+    }
+}
