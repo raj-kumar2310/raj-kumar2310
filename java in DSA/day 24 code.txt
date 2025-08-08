@@ -1,0 +1,54 @@
+Single File Programming Question
+Write a program to implement a stack and search for an element in the stack.
+
+Input format :
+Number of stack elements in first line
+
+Stack elements in second line separated by space
+
+Element to be searched in third line
+
+Output format :
+Output prints whether the element is found or not
+
+Sample test cases :
+Input 1 :
+5
+1 2 3 4 5
+3
+Output 1 :
+Element found
+Input 2 :
+5
+1 2 3 4 5
+37
+Output 2 :
+Element not found
+
+ANS:
+
+// You are using Java
+import java.util.*;
+class Main 
+{
+    public static void main(String args[])
+    {
+    Scanner sc=new Scanner(System.in);
+    int n=sc.nextInt();
+    Stack<Integer>st=new Stack<>();
+    for(int i=0;i<n;i++)
+    {
+        int e=sc.nextInt();
+        st.push(e);
+    }
+    
+    int r=sc.nextInt();
+    if(st.contains(r))
+    {
+        System.out.println("Element found");
+    }else{
+        
+        System.out.println("Element not found");
+    }
+}
+}
