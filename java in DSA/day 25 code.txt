@@ -1,0 +1,100 @@
+Single File Programming Question
+Problem statement
+
+Kiran collects tokens at a museum. But the visitors do not come in the order of token numbers and hence the tokens are always jumbled. On the back of every token, he has to write the next greater token number when his shift ends. If he could not find the appropriate number, -1 is written.
+
+
+
+But he found this process time consuming as he has to manually find the greater number. Kiran is also a part-time programmer. So, he decided to implement this process in a program using stacks. 
+
+Example
+
+Input
+
+5
+
+2 7 10 19 1
+
+Output
+
+2 7
+
+7 10
+
+10 19
+
+19 -1
+
+1 -1
+
+Explanation
+
+For 2, the next greater is 7
+For 7, the next greater is 10
+For 10, the next greater is 19
+For 19, there is no next greater element so -1
+For 1, there is no next greater element so -1.
+Input format :
+The first line of input contains the length N of array a , followed by a single space N space separated Integers in the separate line
+
+Output format :
+Prints the next greater element for each value in array, if there is no greater element print -1.
+
+Code constraints :
+1 < N < 105
+
+1 < a1 , a2 , a3 . . . . aN-1 < 107
+
+Sample test cases :
+Input 1 :
+5
+2 7 10 19 1
+Output 1 :
+2 7
+7 10
+10 19
+19 -1
+1 -1
+Input 2 :
+4
+3 5 2 8 
+Output 2 :
+3 5
+5 8
+2 8
+8 -1
+
+ANS:
+
+// You are using Java
+import java.util.*;
+class Main
+{
+    public static void main(String args[])
+    {
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        int arr[]=new int[n];
+        for(int i=0;i<n;i++)
+        {
+             arr[i]=sc.nextInt();
+        }
+        Stack<Integer>st=new Stack<>();
+        int nge[]=new int[n];
+        
+        Arrays.fill(nge,-1);
+        
+        for(int i=0;i<n;i++)
+        {
+            while(!st.isEmpty() &&arr[i]>arr[st.peek()] )
+            {
+                nge[st.pop()]=arr[i];
+            }
+            st.push(i);
+        }
+        for(int i=0;i<n;i++)
+        {
+            System.out.println(arr[i]+" "+nge[i]);
+        }
+    }
+}
