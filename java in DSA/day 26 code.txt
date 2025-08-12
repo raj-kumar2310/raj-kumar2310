@@ -1,0 +1,78 @@
+Single File Programming Question
+Palindrome Using Stack
+
+Write a program to check whether the string is palindrome or not using Stack.
+
+Example
+
+Input
+
+malayalam
+
+Output
+
+malayalam is palindrome
+
+Explanation
+
+Push the string into the stack, then invert the string by popping the characters. Compare the two strings and print a palindrome if they are the same otherwise not a palindrome.
+
+Input format :
+Input consist of a string
+
+Output format :
+Output prints whether the string is palindrome or not
+
+
+
+Refer Sample output for exact format
+
+Sample test cases :
+Input 1 :
+malayalam
+Output 1 :
+malayalam is palindrome
+Input 2 :
+raser
+Output 2 :
+raser is not a palindrome
+
+ANS:
+
+// You are using Java
+import java.util.*;
+class Main 
+{
+    public static boolean palindrome(String s)
+    {
+        Stack<Character>st=new Stack<>();
+        for(char c:s.toCharArray())
+        {
+            st.push(c);
+        }
+        int i=0;
+        while(!st.isEmpty())
+        {
+            if(st.peek() != s.charAt(i))
+            {
+                return false;
+            }
+            st.pop();
+            i++;
+        }
+        return true;
+    }
+    public static void main(String args[])
+    {
+        Scanner sc=new Scanner(System.in);
+        String s=sc.nextLine();
+        if(palindrome(s))
+        {
+            System.out.println(s+" is palindrome");
+        }
+        else{
+            
+            System.out.println(s+" is not a palindrome");
+        }
+    }
+}
