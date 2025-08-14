@@ -1,0 +1,86 @@
+Single File Programming Question
+Expression Evaluation
+
+You are given with a Postfix Expression. Evaluate the Expression using Stack.
+
+Example
+
+Input
+
+10 2 3 + *
+
+Output
+
+50
+
+Explanation
+
+exp=" 10 2 3 + * "
+exp[0]="10" => push() => Stack=10
+exp[1]="2" => push() => Stack=10 2
+exp[2]="3" => push() => Stack=10 2 3
+exp[3]="+" => pop() => Stack=10 5 (perform addition on first two top most element 3+2=5)
+exp[4]="*" => pop() => Stack=50 (perform multiplication on first two top most element 10*5=50)
+Print the last value 50.
+
+
+
+
+
+Input format :
+A String representing the Expression.
+
+Output format :
+Display the Result after Evaluation.
+
+Sample test cases :
+Input 1 :
+4 5 +
+Output 1 :
+9
+Input 2 :
+5 6 * 2 +
+Output 2 :
+32
+
+ANS:
+
+// You are using Java
+import java.util.*;
+class Main 
+{
+    public static void main(String args[])
+    {
+        Scanner sc=new Scanner(System.in);
+        String s=sc.nextLine();
+        Stack<Integer>st=new Stack<>();
+        String[] token=s.split(" ");
+        for(String t:token)
+        {
+            if(t.matches("-?\\d+"))
+            {
+                st.push(Integer.parseInt(t));
+            }
+            else{
+                int b=st.pop();
+                int a=st.pop();
+                switch(t)
+                {
+                    case "+":
+                        st.push(a+b);
+                        break;
+                    case "-":
+                        st.push(a-b);
+                        break;
+                    case "*":
+                        st.push(a*b);
+                        break;
+                    case "/":
+                        st.push(a/b);
+                        break;
+                }
+            }
+        }
+        System.out.println(st.pop());
+    }
+}
