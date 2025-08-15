@@ -1,0 +1,192 @@
+Single File Programming Question
+Problem Statement
+
+
+
+Akash has implemented a simple stack using an array with a maximum size of 10.
+
+
+
+The program provides the following operations:
+
+Push: Add an integer to the stack.
+Pop: Remove an integer from the top of the stack.
+Check if Stack is Full: Determine if the stack is full.
+Check if Stack is Empty: Determine if the stack is empty.
+Exit: Terminate the program.
+
+
+Company Tags: Capgemini 
+
+Input format :
+The choice represents the operation to be performed:
+
+1: Push an integer onto the stack. The following input is the element to be pushed.
+
+2: Pop an integer from the stack.
+
+3: Check if the stack is full.
+
+4: Check if the stack is empty.
+
+5: Exit the program.
+
+Output format :
+The output prints one of the following messages:
+
+If the choice is 1 (Push), there is no output.
+
+If the choice is 2 (Pop) and the stack is empty, print "Stack is empty!".
+
+If the choice is 3 (Check if Full), and the stack is full, print "Stack is full!", and if the stack is not full, print "Stack is not full"
+
+If the choice is 4 (Check if Empty), and the stack is empty, print "Stack is empty!", and if the stack is not empty, print "Stack is not empty"
+
+If the choice is 5 (Exit), the program should terminate immediately.
+
+If the choice is more than 6, it prints "Invalid choice".
+
+
+
+Refer to the sample output for the formatting specifications.
+
+Code constraints :
+In this scenario, the test cases fall under the following constraints:
+
+Valid choice = 1, 2, 3, 4, 5
+
+1 ≤ stack elements ≤ 100
+
+Sample test cases :
+Input 1 :
+1 2
+1 6
+2
+3
+4
+5
+Output 1 :
+Stack is not full
+Stack is not empty
+Input 2 :
+1 3
+1 4
+1 5
+1 7
+1 18
+1 19
+1 20
+1 21
+1 34
+1 76
+4
+3
+5
+Output 2 :
+Stack is not empty
+Stack is full!
+Input 3 :
+1 2
+1 4
+1 5
+1 76
+1 89
+1 34
+1 23
+1 65
+1 45
+1 23
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+4
+5
+Output 3 :
+Stack is empty!
+Input 4 :
+1 6
+1 7
+9
+5
+Output 4 :
+Invalid choice
+Input 5 :
+1 4
+2
+2
+5
+Output 5 :
+Stack is empty!
+
+ANS:
+
+// You are using Java
+import java.util.*;
+class Main 
+{
+    public static void main(String args[])
+    {
+        Scanner sc=new Scanner(System.in);
+        int[] st=new int[10];
+        int top=-1;
+        while(true)
+        {
+            if(!sc.hasNextInt()) break;
+            int ch=sc.nextInt();
+            switch(ch){
+                case 1:
+                    if(sc.hasNextInt())
+                    {
+                        int e=sc.nextInt();
+                        if(top<9)
+                        {
+                        st[++top]=e;
+                        }
+                    }
+                break;
+                case 2:
+                    if(top==-1)
+                    {
+                        System.out.println("Stack is empty!");
+                    }
+                    else{
+                        top--;
+                    }
+                break;
+                case 3:
+                    if(top==9)
+                    {
+                        System.out.println("Stack is full");
+                    }
+                    else{
+                        
+                        System.out.println("Stack is not full");
+                    }
+                break;
+                case 4:
+                    if(top==-1)
+                    {
+                        System.out.println("Stack is empty!");
+                    }else{
+                        System.out.println("Stack is not empty");
+                        
+                    }
+                break;
+                case  5:
+                    return;
+                    
+                default:
+                        System.out.println("Invalid Choice!");
+                        break;
+                
+            }
+        }
+    }
+}
