@@ -1,0 +1,119 @@
+Single File Programming Question
+Infix to Prefix expression
+
+Ram wants to design software to manage his company "Sunrise Basket". A part of this software design, he wants to convert the given infix expression to prefix expression. He asked Janu to help on this code. Janu is ready to help. Ram assured that he will give only five operators (*, /, +, -,^) and he use only single character in infix expression.
+
+Also, Ram requirement is only with integer number and he won’t use any fractional numbers. Help Janu to complete the code.
+
+Example
+
+Input
+
+K*L+M/N
+
+Output
+
++*KL/MN
+
+Explanation
+
+The input infix expression is converted to a prefix expression using operator precedence.
+
+Input format :
+Infix expression as string in first line
+
+Output format :
+Prefix expression as shown in sample output
+
+Sample test cases :
+Input 1 :
+K*L+M/N
+Output 1 :
++*KL/MN
+
+
+ANS:
+
+// You are using Java
+import java.util.*;
+class Main 
+{
+    static boolean Operand(char c)
+    {
+        return Character.isLetterOrDigit(c);
+    }
+    static int precedence(char c)
+    {
+        switch(c)
+        {
+            case '^':return 3;
+            case '*':case '/': return 2;
+            case '+':case '-': return 1;
+            default:return 0;
+            
+        }
+    }
+    
+    static String postfix(String pre)
+    {
+        StringBuilder sb=new StringBuilder(pre);
+        sb.reverse();
+        pre=sb.toString();
+        
+        char[] ch=pre.toCharArray();
+        for(int i=0;i<pre.length();i++)
+        {
+            if(ch[i]=='('){
+                ch[i]=')';
+            }else if(ch[i]==')')
+            {
+                ch[i]='(';
+            }
+        }
+        
+        pre=new String(ch);
+        Stack<Character>st=new Stack<>();
+        StringBuilder res=new StringBuilder();
+        
+        for(int i=0;i<pre.length();i++)
+        {
+            char c=pre.charAt(i);
+            if(Operand(c))
+            {
+                res.append(c);
+            }
+            else if(c=='(') {
+                st.push(c);
+            }else if(c==')')
+            {
+                while(!st.isEmpty() && st.peek()!='(')
+                {
+                    res.append(st.pop());
+                }
+                st.pop();
+            }
+            else{
+                while(!st.isEmpty() && precedence(st.peek())>precedence(c))
+                {
+                    res.append(st.pop());
+                    
+                }
+                st.push(c);
+            }
+            
+        }
+        while(!st.isEmpty())
+        {
+            res.append(st.pop());
+        }
+        return res.reverse().toString();
+        
+    }
+    public static void main(String args[])
+    {
+        Scanner sc=new Scanner(System.in);
+        String pre=sc.nextLine();
+        String infix=postfix(pre);
+        System.out.println(infix);
+    }
+}
