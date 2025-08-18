@@ -1,0 +1,97 @@
+Single File Programming Question
+Problem statement
+
+Write a program to convert the given infix expression to postfix expression.
+
+Example
+
+Input
+
+a+b
+
+Output
+
+ab+
+
+Explanation
+
+Postfix representation of (a+b) is ab+
+
+Input format :
+String input representing infix expression
+
+Output format :
+Postfix representation of the given infix expression
+
+Code constraints :
+Operators used are +, -, *, /, and ^ only
+
+Sample test cases :
+Input 1 :
+a+b*(c^d-e)^(f+g*h)-i
+Output 1 :
+abcd^e-fgh*+^*+i-
+Input 2 :
+(a+b)*(c^d+e)^(f+g)*h
+Output 2 :
+ab+cd^e+fg+^*h*
+
+ANS:
+
+// You are using Java
+import java.util.*;
+class Main 
+{
+    static int precendence(char c)
+    {
+        switch(c)
+        {
+            case '^': return 3;
+            case '/': case '*': return 2;
+            case '-': case '+': return 1;
+            default:return 0;
+        }
+    }
+    public static void main(String args[])
+    {
+        Scanner sc=new Scanner(System.in);
+        String infix=sc.nextLine();
+        
+        StringBuilder sb=new StringBuilder();
+        Stack<Character>st=new Stack<>();
+        
+        for(int i=0;i<infix.length();i++)
+        {
+            char c=infix.charAt(i);
+            if(Character.isLetterOrDigit(c))
+            {
+                sb.append(c);
+            }
+            else if(c=='(')
+            {
+                st.push(c);
+            }
+            else if(c==')')
+            {
+                while(!st.isEmpty() && st.peek() != '(')
+                {
+                    sb.append(st.pop());
+                }
+                st.pop();
+            }
+            else{
+                while(!st.isEmpty() && precendence(st.peek())>= precendence(c))
+                {
+                    sb.append(st.pop());
+                }
+                st.push(c);
+            }
+        }
+        while(!st.isEmpty())
+        {
+            sb.append(st.pop());
+        }
+        
+        System.out.println(sb);
+    }
+}
