@@ -1,0 +1,66 @@
+Single File Programming Question
+Length of longest balanced parenthesis
+
+Problem statement
+
+Write a program to find the longest length of balanced parenthesis.
+
+Input format :
+The input consists of a parenthesis of type string.
+
+Output format :
+The output consists of the longest length of a balanced parenthesis.
+
+Sample test cases :
+Input 1 :
+()()
+Output 1 :
+4
+Input 2 :
+((()()()()))
+Output 2 :
+12
+
+ANS:
+
+// You are using Java
+import java.util.*;
+class Main 
+{
+    static int paranthesis(String s)
+    {
+        Stack<Integer>st=new Stack();
+        int max=0;
+        st.push(-1);
+        for(int i=0;i<s.length();i++)
+        {
+            char c=s.charAt(i);
+            if(c=='(')
+            {
+                st.push(i);
+            }
+            else
+            {
+                
+                    st.pop();
+                    if(!st.isEmpty())
+                    {
+                        max=Math.max(max,i-(st.peek()));
+                    }
+                    else 
+                    {
+                        st.push(i);
+                    }
+            }
+        }
+            return max;
+    }
+    public static void main(String args[])
+    {
+        Scanner sc=new Scanner(System.in);
+        String s=sc.nextLine();
+        int len= paranthesis(s);
+        System.out.println(len);
+        
+    }
+}
