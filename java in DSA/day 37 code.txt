@@ -1,0 +1,119 @@
+Single File Programming Question
+Problem Statement
+
+
+
+Yogi wants to convert multiple infix expressions to postfix using a stack algorithm. Write a program for him to prompt the user for the number of expressions, validate each one for proper syntax, and convert them to postfix. Finally, print each converted expression.
+
+
+
+Company Tags: TCS 
+
+Input format :
+The first line of input contains an integer n denoting the number of infix expressions to be converted.
+
+The next n lines contain the infix expressions to be converted.
+
+Output format :
+The output prints the corresponding postfix expression for n inputs on separate lines.
+
+
+
+Refer to the sample output for formatting specifications.
+
+Code constraints :
+1 ≤ n ≤ 10
+
+The infix expression consists of alphabets and special characters (+, -, *, /, ^, (, ))
+
+Sample test cases :
+Input 1 :
+2
+A+B-C
+D+E/F-G
+Output 1 :
+Postfix expression 1: AB+C-
+Postfix expression 2: DEF/+G-
+Input 2 :
+1
+((A+B)*C)-(D/E^F)
+Output 2 :
+Postfix expression 1: AB+C*DEF^/-
+
+ANS:
+
+// You are using Java
+// You are using Java
+import java.util.*;
+
+class Main {
+    // Function to return precedence
+    static int precedence(char c) {
+        switch (c) {
+            case '^': return 3;
+            case '*': case '/': return 2;
+            case '+': case '-': return 1;
+            default: return -1;
+        }
+    }
+
+    // Function to check if operator is right associative
+    static boolean isRightAssociative(char c) {
+        return c == '^';
+    }
+
+    // Function to convert infix to postfix
+    static String infixToPostfix(String exp) {
+        StringBuilder result = new StringBuilder();
+        Stack<Character> stack = new Stack<>();
+
+        for (int i = 0; i < exp.length(); i++) {
+            char c = exp.charAt(i);
+
+            // If operand, add to output
+            if (Character.isLetterOrDigit(c)) {
+                result.append(c);
+            }
+            // If '(', push to stack
+            else if (c == '(') {
+                stack.push(c);
+            }
+            // If ')', pop until '('
+            else if (c == ')') {
+                while (!stack.isEmpty() && stack.peek() != '(') {
+                    result.append(stack.pop());
+                }
+                if (!stack.isEmpty() && stack.peek() == '(') {
+                    stack.pop();
+                }
+            }
+            // If operator
+            else {
+                while (!stack.isEmpty() && precedence(c) <= precedence(stack.peek())
+                        && !isRightAssociative(c)) {
+                    result.append(stack.pop());
+                }
+                stack.push(c);
+            }
+        }
+
+        // Pop remaining operators
+        while (!stack.isEmpty()) {
+            result.append(stack.pop());
+        }
+
+        return result.toString();
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        sc.nextLine(); // consume newline
+
+        for (int i = 1; i <= n; i++) {
+            String exp = sc.nextLine().trim();
+            String postfix = infixToPostfix(exp);
+            System.out.println("Postfix expression " + i + ": " + postfix);
+        }
+    }
+}
