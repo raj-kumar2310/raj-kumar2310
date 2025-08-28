@@ -1,0 +1,202 @@
+Single File Programming Question
+Problem Statement
+
+
+
+Jhansi wants to manage a waitlist for a customer service system using a deque. The program should allow adding customers to the waitlist, removing the front customer, moving the front customer to the back, and displaying the current waitlist. 
+
+
+
+Implement this functionality with options for user input to manage the waitlist.
+
+
+
+Company Tags: HCL
+
+Input format :
+The input consists of choices and respective inputs.
+
+If the choice is 1, enter the customer's name in the next line.
+
+If the option is 2, the customer is removed from the waitlist.
+
+If the choice is 3, the customer is moved to the back of the waitlist.
+
+If the choice is 4, the current waitlist is displayed.
+
+If the choice is 5, exit.
+
+Output format :
+The output prints the results based on the given choices. 
+
+If the choice is 1, display a message indicating that the customer has been added to the waitlist.
+
+If the choice is 2, display a message indicating that the customer has been removed from the waitlist.
+
+If the choice is 3, display a message indicating that the customer has been moved to the back of the waitlist. If there are no customers, print "Error: Waitlist is empty".
+
+If the choice is 4, display the current waitlist. If there are no customers, print "Empty".
+
+If the choice is 5, display the exit message.
+
+If the choice is greater than 5, print "Invalid option!".
+
+
+
+Refer to the sample output for the exact text and format.
+
+Code constraints :
+Valid choice: 1, 2, 3, 4, 5
+
+Sample test cases :
+Input 1 :
+1
+Alice
+1
+Bob
+3
+2
+4
+5
+Output 1 :
+Alice has been added to the waitlist
+Bob has been added to the waitlist
+Alice has been moved to the back of the waitlist
+Bob has been removed from the waitlist
+Current waitlist:
+Alice
+Exiting
+Input 2 :
+1
+John
+1
+Joseph
+4
+5
+Output 2 :
+John has been added to the waitlist
+Joseph has been added to the waitlist
+Current waitlist:
+John
+Joseph
+Exiting
+Input 3 :
+1
+Alice
+2
+3
+4
+5
+Output 3 :
+Alice has been added to the waitlist
+Alice has been removed from the waitlist
+Error: Waitlist is empty
+Current waitlist:
+Empty
+Exiting
+Input 4 :
+10
+5
+Output 4 :
+Invalid option!
+Exiting
+Input 5 :
+1
+Damon
+1
+Stefan
+1
+Elena
+1
+Bonnie
+1
+Enzo
+1
+Klaus
+3
+3
+4
+5
+Output 5 :
+Damon has been added to the waitlist
+Stefan has been added to the waitlist
+Elena has been added to the waitlist
+Bonnie has been added to the waitlist
+Enzo has been added to the waitlist
+Klaus has been added to the waitlist
+Damon has been moved to the back of the waitlist
+Stefan has been moved to the back of the waitlist
+Current waitlist:
+Elena
+Bonnie
+Enzo
+Klaus
+Damon
+Stefan
+Exiting
+
+ANS:
+
+// You are using Java
+import java.util.*;
+class Main 
+{
+    public static void main(String args[])
+    {
+      Scanner sc=new Scanner(System.in);
+      Deque<String>waitlist=new ArrayDeque<>();
+      while(true)
+      {
+          int ch=sc.nextInt();
+          sc.nextLine();
+          
+          if(ch==1)
+          {
+              String name=sc.nextLine();
+              waitlist.addLast(name);
+              System.out.println(name+ " has been added to the waitlist");
+          }
+          else if(ch==2)
+          {
+              if(!waitlist.isEmpty()){
+                  String rem=waitlist.pollFirst();
+                  System.out.println(rem+" has been removed from the waitlist");
+              }else{
+                  System.out.println("Error: Waitlist is empty");
+              }
+          }
+          else if(ch==3)
+          {
+              if(!waitlist.isEmpty()){
+                  String fr=waitlist.pollFirst();
+                  waitlist.addLast(fr);
+                  System.out.println(fr+" has been moved to the back of the waitlist");
+                  
+              }else{
+                  System.out.println("Error: Waitlist is empty");
+              }
+          }else if(ch==4)
+          {
+              System.out.println("Current waitlist:");
+              if(waitlist.isEmpty())
+              {
+                  System.out.println("Empty");
+              }else{
+                  for(String i:waitlist)
+                  {
+                      System.out.println(i);
+                  }
+              }
+          }
+              else if(ch==5)
+              {
+                  System.out.println("Exiting");
+                  break;
+              }
+              else{
+                  System.out.println("Invalid option!");
+              }
+      }
+          sc.close();
+    }
+}
