@@ -1,0 +1,129 @@
+Single File Programming Question
+Ramu want to implement a fixed size queue of maximum size 5 using an array. His friend Priya has typed some code and asked Ramu to complete the missing code to implement. Help Ramu by writing suitable functions to do the basic queue operations.
+
+
+
+Structure declaration and main fucntions are already implemented. Write the suitable code for functions only.
+
+Example
+
+Input
+
+140
+
+255
+
+145
+
+985
+
+215
+
+Output
+
+140 255 145 985 215 
+
+145 985 215 
+
+Queue is empty
+
+Explanation
+
+First Enqueue 140,255,145,985,215 and display queue values. 
+
+Second Dequeue two values 140 and 255 and print all the queue values i.e.145,985,215 .
+
+Last dequeue all the elements from the queue and print "Queue is empty".
+
+
+
+Input format :
+Queue elements one below the other
+
+Output format :
+Display entire queue elements in first line
+
+Display remaining queue elements in second line (After performing dequeue 2 times)
+
+Display empty message in third line as shown in sample output(After removing all the elements from the queue)
+
+Code constraints :
+Queue size is 5
+
+Sample test cases :
+Input 1 :
+140
+255
+145
+985
+215
+Output 1 :
+140 255 145 985 215 
+145 985 215 
+Queue is empty
+
+ANS:
+
+// You are using Java
+import java.util.*;
+class Main {
+    static int size=5;
+    static int qu[]=new int[size];
+   static int fr=-1;
+   static int re=-1;
+    static void enquee(int val){
+        if(re==size-1){
+            System.out.println("Queue is full");
+        }else if(fr==-1 && re==-1){
+            fr=re=0;
+            qu[re]=val;
+        }
+        else{
+            qu[++re]=val;
+        }
+    }
+    static void deque(){
+        if(fr==-1 )
+        {
+            System.out.println("Queue is Empty");
+            return;
+            
+        }
+        else{
+            fr++;
+       if(fr >re){
+            fr=re=-1;
+        }
+    }}
+    static void display(){
+         if(fr==-1 )
+        {
+            System.out.println("Queue is Empty");
+         return;
+            
+        }
+        
+        for(int i=fr;i<=re;i++){
+            System.out.print(qu[i]+" ");
+        }
+    }
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        for(int i=0;i<size;i++){
+            int val=sc.nextInt();
+            enquee(val);
+            
+        }
+        display();
+        deque();
+        System.out.println();
+        deque();
+        display();
+        System.out.println();
+        deque();
+        deque();
+        deque();
+        display();
+    }
+    
+}
