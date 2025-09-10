@@ -1,0 +1,92 @@
+Single File Programming Question
+Implementation of queue using linked list:
+
+Write a program to insert and delete elements in the queue.
+
+Input format :
+The first line of the input consists of the value of n.
+
+Next line consists of the queue elements.
+
+Output format :
+The first line prints the front element of the queue.
+
+The next line prints the rear element.
+
+Perform a dequeue operation:
+
+The next line prints the front element.
+
+The next line prints the rear element.
+
+Sample test cases :
+Input 1 :
+5
+12 45 78 36 95
+Output 1 :
+12
+95
+45
+95
+
+ANS:
+
+// You are using Java
+import java.util.*;
+class Main {
+    static class Node{
+        int data;
+        Node next;
+        Node(int data){
+            this.data=data;
+            this.next=null;
+        }
+    }
+    static void insert(Push q,int data){
+        Node n=new Node(data);
+        if(q.fr==null){
+            q.fr=q.re=n;
+        }else{
+            q.re.next=n;
+            q.re=n;
+        }
+    }
+    static void del(Push q){
+        if(q.fr==null){
+            System.out.print("Empty");
+            
+        }
+        q.fr=q.fr.next;
+        if(q.fr == null){
+            q.re=null;
+        }
+    }
+    static void print(Push q){
+        if(q.fr==null){
+            System.out.println("Empty");
+            return;
+        }else{
+            
+            System.out.println(q.fr.data);
+            System.out.println(q.re.data);
+        }
+    }
+    static class Push{
+        Node fr=null;
+        Node re=null;
+    }
+    public static void main(String args[]){
+        Scanner sc=new Scanner(System.in);
+        Push q=new Push();
+        int n=sc.nextInt();
+        for(int i=0;i<n;i++){
+            int data=sc.nextInt();
+            insert(q,data);
+        }
+        print(q);
+        del(q);
+        print(q);
+        
+    }
+  
+}
