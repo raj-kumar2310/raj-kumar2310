@@ -1,0 +1,184 @@
+Single File Programming Question
+Problem Statement
+
+
+
+You are tasked with developing a simple inventory management system for a bookstore. The system should allow the bookstore staff to manage the inventory of books, prioritize restocking, and efficiently handle restocking operations.
+
+
+
+The program uses a priority queue to manage the inventory. Each book in the inventory is represented by its title, the current quantity available, and a restock priority. The book is restocked using restock priority. The restock priority is a value between 1 and 5, a low value indicating a higher priority. In the order of priority, 1 has high priority, the level gets reduced as the priority value increases, and 5 has low priority.
+
+
+
+Include the following options:
+
+1 - Add book to inventory
+
+2 - Restock book
+
+3 - View the next book to restock
+
+4 - Exit
+
+Input format :
+The input consists of integers representing the choice from the menu.
+
+
+
+For choice 1 (Add book to inventory), the following lines of input consists of:
+
+Book title (string with spaces allowed)
+Current quantity (integer)
+Restock priority (integer between 1 and 5, inclusive)
+
+
+For choices 2 (Restock book) and 3 (View next book to restock), no additional input is required.
+
+
+
+For choice 4 (Exit), no additional input is required.
+
+Output format :
+For choice 1, the program prints: "Book added to the inventory"
+
+For choice 2, the program prints: "Restocked book: [Book Title]"
+
+For choice 3, the program prints after restocking the book: "Next book to restock: [Book Title]"
+
+For choice 4, the program prints: "Exiting the application"
+
+
+
+If the choices are not 1, 2, 3, or 4:
+
+For invalid choices, the program prints: "Invalid choice. Please enter a valid option"
+
+
+
+For choice 3:
+
+When there are no books in the inventory, the program prints: "No books in the inventory."
+
+
+
+Refer to the sample output for formatting specifications.
+
+Code constraints :
+1 ≤ restock priority ≤ 5
+
+The book title can include spaces and should be non-empty.
+
+The choice entered by the user should be an integer corresponding to the available menu options.
+
+Sample test cases :
+Input 1 :
+1
+Wings of Fire
+5
+4
+1
+Harry Potter and the Sorcerer's Stone
+7
+2
+2
+3
+4
+Output 1 :
+Book added to the inventory
+Book added to the inventory
+Restocked book: Harry Potter and the Sorcerer's Stone
+Next book to restock: Wings of Fire
+Exiting the application
+Input 2 :
+1
+The Great Mocking Bird
+3
+4
+2
+3
+4
+Output 2 :
+Book added to the inventory
+Restocked book: The Great Mocking Bird
+No books in the inventory
+Exiting the application
+Input 3 :
+6
+4
+Output 3 :
+Invalid choice. Please enter a valid option
+Exiting the application
+Input 4 :
+2
+4
+Output 4 :
+No books in the inventory.
+Exiting the application
+
+ANS:
+
+// You are using Java
+import java.util.*;
+class Book{
+    String tit;
+    int quan;
+    int prior;
+    
+    Book(String tit,int quan,int prior){
+        this.tit=tit;
+        this.quan=quan;
+        this.prior=prior;
+    }
+}
+
+public class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        
+        PriorityQueue<Book>inven=new PriorityQueue<>((a,b)->Integer.compare(a.prior,b.prior));
+        while(true){
+            int ch=sc.nextInt();
+            // sc.nextLine();
+            
+            if(ch==1){
+                sc.nextLine();
+                String tit=sc.nextLine();
+                int quan=sc.nextInt();
+                int prior=sc.nextInt();
+                sc.nextLine();
+                
+                Book book=new Book(tit,quan,prior);
+                inven.add(book);
+                System.out.println("Book added to the inventory");
+            
+            }else if(ch == 2){
+                if(inven.isEmpty()){
+                    System.out.println("No book in the inventory.");
+                }else{
+                    Book book = inven.poll();
+                    
+                System.out.println("Restocked book: "+book.tit);
+                }
+            }
+            else if(ch == 3){
+                if(inven.isEmpty()){
+                    System.out.println("No book in the inventory.");
+                }else{
+                    Book book=inven.peek();
+                    System.out.println("Next book to restock: "+book.tit);
+                }
+                
+            }
+            else if(ch == 4){
+                System.out.println("Exiting the application");
+                break;
+            }else{
+                System.out.println("Invalid option");
+                
+            }
+        }    
+        
+        sc.close();
+    }
+}
