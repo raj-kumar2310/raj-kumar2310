@@ -1,0 +1,101 @@
+Single File Programming Question
+Problem Statement
+
+
+
+Alex is organizing a to-do list using a queue data structure for better task management. 
+
+
+
+He needs to implement a queue with the following functionalities: enqueue a task to add a new task to the end, get the front task to retrieve the description of the first task and get the rear task to retrieve the description of the last task. 
+
+
+
+Can you write a program that supports these operations using a linked list-based queue?
+
+Input format :
+The first line of input consists of an integer n, representing the number of tasks to enqueue.
+
+The following n lines consist of the descriptions of the tasks, one per line.
+
+
+
+Note: Use cin.ignore() to ignore the newline character after reading the value of n.
+
+Output format :
+The output displays the description of the tasks that are in the front and rear.
+
+
+
+Refer to the sample output for the exact text and format.
+
+Code constraints :
+2 ≤ n ≤ 20
+
+The length of each task description is at most 500 characters.
+
+Sample test cases :
+Input 1 :
+7
+Finish report
+Schedule meeting
+Send emails
+Attend training
+Prepare presentation
+Review documents
+Submit expenses
+Output 1 :
+Front Task: Finish report
+Rear Task: Submit expenses
+Input 2 :
+5
+Buy groceries
+Pay bills
+Walk the dog
+Call mom
+Do laundry
+Output 2 :
+Front Task: Buy groceries
+Rear Task: Do laundry
+
+ANS:
+
+// You are using Java
+import java.util.*;
+class Node{
+    String val;
+    Node next;
+    Node(String val){
+        this.val=val;
+        this.next=null;
+    }
+}
+
+class Main{
+        Node fr=null;
+        Node re=null;
+    void enque(String val){
+        Node n=new Node(val);
+        if(fr==null){
+            fr=re=n;
+        }else{
+            re.next=n;
+            re=n;
+        }
+    }
+    
+    public static void main(String[] args){
+        Main q=new Main();
+        Scanner sc=new Scanner(System.in);
+        int a=sc.nextInt();
+        sc.nextLine();
+        for(int i=0;i<a;i++){
+            String val=sc.nextLine();
+            q.enque(val);
+        }
+        
+        System.out.println("Front Task: "+q.fr.val);
+        System.out.println("Rear Task: "+q.re.val);
+    }
+    
+}
