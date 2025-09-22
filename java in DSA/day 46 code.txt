@@ -1,0 +1,92 @@
+Single File Programming Question
+Write a program to insert and delete an element from the queue.
+
+Input format :
+The first line of input integer N consists of capacity of the queue.1<=N<=100.
+
+The second line of input integer O consists of no.of element to be inserted in the queue.
+
+The next line of the input consists of the number of elements to be deleted from the list.
+
+Output format :
+Output displays the element removed from the queue.
+
+Sample test cases :
+Input 1 :
+3
+12
+13
+14
+2
+Output 1 :
+Element deleted from queue is : 12
+Element deleted from queue is : 13
+Input 2 :
+5
+13
+14
+15
+16
+17
+4
+Output 2 :
+Element deleted from queue is : 13
+Element deleted from queue is : 14
+Element deleted from queue is : 15
+Element deleted from queue is : 16
+
+ANS:
+
+// You are using Java
+import java.util.*;
+class Node{
+    int val;
+    Node next;
+    Node(int val){
+        this.val=val;
+        this.next=null;
+    }
+}
+
+class Main{
+    Node fr=null;
+    Node re=null;
+    
+    void enque(int val){
+        Node n=new Node(val);
+        if(fr==null){
+            fr=re=n;
+        }else{
+            re.next=n;
+            re=n;
+        }
+        
+        }
+        
+    void deque(){
+        if(fr==null){
+            System.out.println("Queue is empty");
+        }
+        else{
+            System.out.println("Element deleted from queue is : "+fr.val);
+            fr=fr.next;
+            if(fr==null){
+                re=null;
+            }
+        }
+    }
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        Main q=new Main();
+        for(int i=0;i<n;i++){
+            int val=sc.nextInt();
+            q.enque(val);   
+        }
+        
+        int c=sc.nextInt();
+        for(int i=0;i<c;i++){
+            q.deque();
+        }
+    }
+}
