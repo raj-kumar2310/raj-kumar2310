@@ -1,0 +1,97 @@
+Single File Programming Question
+Dequeue 
+
+Problem statement
+
+You are given a Queue of N Integers. Write a Program to implement DeQueue() operation using the linked list.
+
+Input format :
+The First line of input consists of N denoting the size of the Queue.
+The Second line of input consists of N space-separated integers denoting the elements of the Queue.
+Output format :
+Print the Queue after Dequeue Operation.
+
+if underflow occurs print Underflow and print Queue is empty.
+
+Code constraints :
+Queue MAXIMUM SIZE is Predefined (MAXSIZE = 25).
+
+Sample test cases :
+Input 1 :
+5
+1 2 3 4 5
+Output 1 :
+2 3 4 5 
+Input 2 :
+0
+0
+Output 2 :
+Underflow 
+Queue is empty 
+
+
+ANS:
+
+// You are using Java
+import java.util.*;
+class Node{
+    int val;
+    Node next;
+    Node(int val){
+        this.val=val;
+        this.next=null;
+    }
+}
+
+class Main{
+    Node fr=null;Node re=null;
+    void enque(int val){
+        Node n=new Node(val);
+        if(fr==null){
+            fr=re=n;
+        }else{
+            re.next=n;
+            re=n;
+        }
+    }
+    
+    void deque(){
+        if(fr==null){
+            System.out.println("Underflow");
+            System.out.println("Queue is empty");
+        }else{
+            fr=fr.next;
+            if(fr==null){
+                re=null;
+            System.out.println("Queue is empty");
+            
+            }
+        }
+    }
+    void display(){
+        if(fr==null){
+           return;
+            
+        }
+        Node t=fr;
+        while(t!=null){
+            System.out.print(t.val+" ");
+            t=t.next;
+        }
+        
+        
+    }
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        Main q=new Main();
+        
+        int n=sc.nextInt();
+        for(int i=0;i<n;i++){
+            int val=sc.nextInt();
+            q.enque(val);
+        }
+        
+        q.deque();
+        q.display();
+    }
+}
