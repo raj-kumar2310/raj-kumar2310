@@ -1,0 +1,75 @@
+Single File Programming Question
+Enqueue in Queue
+
+Problem statement
+
+You are given a Queue of N Integers. Write a Program to implement EnQueue() operation using Linked List.
+
+Input format :
+The First line of input consists of N denoting the size of the Queue.
+The Second line of input consists of N space-separated integers denoting the elements of the Queue.
+Output format :
+Print the Queue after Enqueue Operation.
+
+Sample test cases :
+Input 1 :
+5
+1 2 3 4 5
+Output 1 :
+1 2 3 4 5 
+Input 2 :
+27
+10 20 30 40 50 60 70 80 90 100 1 2 3 4 5 6 7 8 9 11 12 13 14 15 16 17 18
+Output 2 :
+10 20 30 40 50 60 70 80 90 100 1 2 3 4 5 6 7 8 9 11 12 13 14 15 16 17 18 
+
+ANS:
+
+// You are using Java
+import java.util.*;
+class Node{
+    int val;
+    Node next;
+    Node(int val){
+        this.val=val;
+        this.next=null;
+    }
+}
+
+class Main{
+    Node fr=null;
+    Node re=null;
+    void enque(int val){
+        Node n=new  Node(val);
+        if(fr==null){
+            fr=re=n;
+        }else{
+            re.next=n;
+            re=n;
+        }
+    }
+    void display(){
+        if(fr==null){
+            System.out.println("Queue is Empty");
+        }else{
+            Node t=fr;
+            while(t!= null){
+                System.out.print(t.val+" ");
+                t=t.next;
+            }
+        }
+    }
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        Main q=new Main();
+        int n=sc.nextInt();
+        for(int i=0;i<n;i++){
+            int val=sc.nextInt();
+            q.enque(val);
+        }
+        
+        q.display();
+    }
+    
+    
+}
