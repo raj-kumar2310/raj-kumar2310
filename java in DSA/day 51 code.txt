@@ -1,0 +1,131 @@
+Single File Programming Question
+Problem Statement
+
+
+
+Write a program to implement a priority queue using an array-based approach. 
+
+
+
+The priority queue should support the following operations: insert an element into the priority queue with a specified priority, remove the element with the highest priority from the priority queue, and print the elements in the order of their priorities.
+
+
+
+Company Tags: Wipro
+
+Input format :
+The first line of input consists of an integer N, representing the number of elements to be inserted into the priority queue.
+
+This is followed by N lines, each containing two space-separated integers: element and priority. 1 has the highest priority.
+
+Output format :
+The first line of output prints the initial state of the priority queue after inserting all the elements, based on priority.
+
+The second line prints the state of the priority queue after performing the dequeue operation.
+
+
+
+Refer to the sample output for the exact text and format.
+
+Code constraints :
+The priority queue can store up to 100 elements (MAX_SIZE = 100).
+
+Sample test cases :
+Input 1 :
+5
+4 2
+3 1
+6 4
+2 3
+1 5
+Output 1 :
+Priority Queue: 3 4 2 6 1 
+Priority Queue: 4 2 6 1 
+Input 2 :
+3
+9 1
+2 2
+7 3
+Output 2 :
+Priority Queue: 9 2 7 
+Priority Queue: 2 7 
+
+ANS:
+
+// You are using Java
+import java.util.*;
+class Prior{
+    static final int maxsize=100;
+    int [] elements=new int[maxsize];
+    int [] prior=new int[maxsize];
+    int size=0;
+    
+    void insert(int ele,int pri){
+        if(size==maxsize){
+            System.out.println("Priority Queue is full");
+            return;
+        }
+        
+        elements[size]=ele;
+        prior[size]=pri;
+        size++;
+    }
+    
+    void printQueue()
+    {
+        int[][] t=new int[size][2];
+        for(int i=0;i<size;i++)
+        {
+            t[i][0]=elements[i];
+            t[i][1]=prior[i];
+            
+        }
+        Arrays.sort(t,(a,b)-> Integer.compare(a[1],b[1]));
+        
+        for(int i=0;i<size;i++)
+        {
+            System.out.print(t[i][0]+" ");
+        }
+        System.out.println();
+    }
+    
+    void deque(){
+        if(size==0) return;
+        
+        int  minIn=0;
+        for(int i=0;i<size;i++){
+            if(prior[i] < prior[minIn]){
+                minIn=i;
+            }
+        }
+        
+        for(int i=0;i<size;i++){
+            elements[i]=elements[i+1];
+            prior[i]=prior[i+1];
+        }
+        size--;
+        
+    }
+}
+
+public class Main{
+    public static void main(String[] args)
+    {
+        Scanner sc=new Scanner(System.in);
+        Prior pq=new Prior();
+        
+        int n=sc.nextInt();
+        for(int i=0;i<n;i++)
+        {
+            int ele=sc.nextInt();
+            int pri=sc.nextInt();
+            pq.insert(ele,pri);
+        }
+        
+        System.out.print("Priority Queue: ");
+        pq.printQueue();
+        pq.deque();
+        System.out.print("Priority Queue: ");
+        pq.printQueue();
+    }
+}
