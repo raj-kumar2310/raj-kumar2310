@@ -1,0 +1,119 @@
+Single File Programming Question
+Problem Statement
+
+
+
+Write a program to implement a double-ended queue using an array and perform the following operations:
+
+Insert at front
+Delete at front
+
+
+Example
+
+
+
+Input:
+
+5
+
+1 2 3 4 5
+
+2
+
+Output:
+
+The front element is 5
+
+After deletion, the front element becomes 3
+
+Explanation:
+
+Elements of the deque: 5 4 3 2 1. The current front element is 5. 
+
+Then we delete the first two elements from the front of the deque (5 and 4). 
+
+After deletion, the front element becomes 3.
+
+Input format :
+The first line of input consists of the length of the deque.
+
+The second line consists of the space-separated integer values inserted into the deque.
+
+The third line consists of the number of deque elements to be deleted.
+
+Output format :
+The first line of output prints the front element of the deque.
+
+The second line prints the new front value of the deque after performing the deletion operation.
+
+If all the given elements are deleted, print -1, indicating the deque is empty.
+
+
+
+Refer to the sample output for the exact text and format.
+
+Code constraints :
+The maximum size of the deque is 100.
+
+Sample test cases :
+Input 1 :
+5
+1 2 3 4 5
+2
+Output 1 :
+The front element is 5
+After deletion, the front element becomes 3
+Input 2 :
+6
+10 20 30 40 50 60
+6
+Output 2 :
+The front element is 60
+After deletion, the front element becomes -1
+
+ANS:
+
+// You are using Java
+import java.util.*;
+class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        Deque<Integer>dq=new ArrayDeque<>();
+        for(int i=0;i<n;i++)
+        {
+            int val=sc.nextInt();
+            dq.addFirst(val);
+        }
+        
+        int del=sc.nextInt();
+        
+        if(dq.isEmpty())
+        {
+            System.out.println("The front element is -1");
+            System.out.println("After deletion, the front element becomes -1");
+            return;
+        }
+           
+            System.out.println("The front element is "+dq.peekFirst());
+            
+            
+        for(int i=0;i<del;i++)
+        {
+            dq.pollFirst();
+        }
+        
+        if(dq.isEmpty())
+        {
+            
+            System.out.println("After deletion, the front element becomes -1");
+            return;
+        }else
+        {
+            
+            System.out.println("After deletion, the front element becomes "+dq.peekFirst());
+        }
+        
+    }
+}
