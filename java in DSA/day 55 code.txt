@@ -1,0 +1,68 @@
+Single File Programming Question
+Write a program to reorder a queue. The reordered queue must be in a format so that, the first two elements are taken into account in which the greatest among them will be swapped to the higher order followed by the next two element and so on.
+
+Input format :
+Input consists of value 'N' denoting the queue size,
+
+Followed by N number of queue elements.
+
+Output format :
+Output displays the queue in the required order.
+
+(Refer sample input and output for formatting specifications).
+
+Sample test cases :
+Input 1 :
+5
+5 4 3 2 1
+Output 1 :
+Reordered queue: 
+4 5 2 3 1 
+Input 2 :
+6
+6 5 4 3 2 1
+Output 2 :
+Reordered queue: 
+5 6 3 4 1 2 
+Input 3 :
+16
+16 5 24 33 82 61 12 123 23 43 54 32 1234 76 876 54
+Output 3 :
+Reordered queue: 
+5 16 24 33 61 82 12 123 23 43 32 54 76 1234 54 876 
+
+ANS:
+
+// You are using Java
+import java.util.*;
+class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        
+        Queue<Integer>q=new LinkedList<>();
+        
+        for(int i=0;i<n;i++)
+        {
+            q.add(sc.nextInt());
+        }
+        
+        List<Integer>l=new ArrayList<>(q);
+        
+        for(int i=0;i<n-1;i=i+2){
+            if(l.get(i) > l.get(i+1)){
+                int t=l.get(i);
+                l.set(i,l.get(i+1));
+                l.set(i+1,t);
+                
+            }
+        }
+        
+            System.out.println("Reordered queue:");
+        for(int i=0;i<n;i++)
+        {
+            System.out.print(l.get(i)+" ");
+        }
+        
+    }
+}
