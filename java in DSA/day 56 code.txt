@@ -1,0 +1,61 @@
+Single File Programming Question
+Reverse the N
+
+Problem statement
+
+You are given a Queue containing N Integers and an integer K. Reverse the order of the first K elements of the Queue, leaving the other elements in the same relative order.
+
+Input format :
+First line of the Input consists of Queue Size N.
+
+Second line of the input consists of N Elements in the Queue.
+
+Third line of Input consists of the integer K.
+
+Output format :
+Print the Elements of the Queue after Reversing the order of K elements.
+
+Sample test cases :
+Input 1 :
+8
+2 4 6 8 10 12 14 16
+4
+Output 1 :
+8 6 4 2 10 12 14 16 
+
+ANS:
+
+// You are using Java
+import java.util.*;
+class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        Queue<Integer>q=new LinkedList<>();
+        for(int i=0;i<n;i++)
+        {
+            q.add(sc.nextInt());
+        }
+        
+        Stack<Integer>st=new Stack<>();
+        
+        int k=sc.nextInt();
+        
+        for(int i=0;i<k;i++){
+            st.push(q.remove());
+        }
+        
+        while(!st.isEmpty()){
+            q.add(st.pop());
+        }
+        
+        
+        for(int i=0;i<n-k;i++){
+            q.add(q.remove());
+        }
+        
+        while(!q.isEmpty()){
+            System.out.print(q.remove()+" ");
+        }
+    }
+}
