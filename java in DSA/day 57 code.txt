@@ -1,0 +1,50 @@
+Single File Programming Question
+Reverse a queue using stack
+
+Problem statement
+
+You are given a Queue containing N elements. Reverse the Elements of the Queue using Stack.
+
+Input format :
+First line of the input consists of Queue Size N.
+
+Second line of the input consists of N Elements in the Queue.
+
+Output format :
+Print the Elements of the Queue after Reverse.
+
+Sample test cases :
+Input 1 :
+5
+2 4 6 8 10
+Output 1 :
+10 8 6 4 2 
+
+ANS:
+
+// You are using Java
+import java.util.*;
+class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        
+        int n=sc.nextInt();
+        
+        Queue<Integer>q=new LinkedList<>();
+        
+        for(int i=0;i<n;i++)
+        {
+            q.add(sc.nextInt());
+        }
+        
+        Stack<Integer>st=new Stack<>();
+        
+        while(!q.isEmpty()){
+            st.push(q.remove());
+        }
+        
+        while(!st.isEmpty()){
+            System.out.print(st.pop()+" ");
+        }
+    }
+}
