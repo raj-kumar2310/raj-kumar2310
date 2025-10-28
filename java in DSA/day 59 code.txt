@@ -1,0 +1,55 @@
+Single File Programming Question
+Rakesh gets to know that binary numbers are formed with just 0 and 1. He gets excited and decides to find all the binary numbers starting from 1 by adding/replacing a 0 or 1. 
+
+For example, after 1, he adds a 0 to it and arrives 10. Then, he replaces 0 with 1 to get 11 as the next digit and so on. Upon seeing the work, his mentor planned to play a game with him where Rakesh will be given a number N and he has to arrive at the first N binary numbers using this method.
+
+To check the correctness of Rakesh, his mentor decided to build a code that does the same process. Since he is not well-versed in programming he has employed you to do the same. Since you are good at data structures, you think queues will be of good use in this scenario.
+
+
+
+Input format :
+Single line input to get a positive integer
+
+Output format :
+Output displays the first N binary values starting from 1.
+
+Code constraints :
+N > 0.
+
+Sample test cases :
+Input 1 :
+5
+Output 1 :
+1
+10
+11
+100
+101
+Input 2 :
+3
+Output 2 :
+1
+10
+11
+
+ANS:
+
+// You are using Java
+import java.util.*;
+class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        
+        Queue<String>q=new LinkedList<>();
+        
+        q.add("1");
+        
+        for(int i=0;i<n;i++){
+            String a=q.remove();
+            System.out.println(a);
+            q.add(a+"0");
+            q.add(a+"1");
+        }
+    }
+}
