@@ -1,0 +1,87 @@
+Single File Programming Question
+Problem statement:
+
+Implementation of binary search tree :
+
+Write a Program to implement a binary search tree.
+
+Input format :
+The input should have numbers (until the user enters a negative value)
+
+Output format :
+The output prints the tree values.
+
+Sample test cases :
+Input 1 :
+6
+3
+2
+1
+4
+7
+8
+9
+10
+-1
+Output 1 :
+Tree values are:
+1 2 3 4 6 7 8 9 10 
+Input 2 :
+6
+3
+2
+1
+-1
+Output 2 :
+Tree values are:
+1 2 3 6 
+
+ANS:
+
+// You are using Java
+import java.util.*;
+class Node{
+    int data;
+    Node l,r;
+    Node(int data){
+        this.data=data;
+        l=r=null;
+    }
+}
+
+class Main{
+    static Node insert(Node root,int data){
+        if(root == null){
+            return new Node(data);
+        }
+        
+        if(data < root.data){
+            root.l=insert(root.l,data);
+        }else if(data > root.data){
+            root.r=insert(root.r,data);
+        }
+        
+        return root;
+    }
+    
+    static void inorder(Node root){
+        if(root!=null){
+            inorder(root.l);
+            System.out.print(root.data+" ");
+            inorder(root.r);
+        }
+    }
+    public static void main(String[] args){
+        Node root=null;
+        Scanner sc=new Scanner(System.in);
+        while(true){
+            int data=sc.nextInt();
+            if(data <0)break;
+            root=insert(root,data);
+        }
+        
+        System.out.println("Tree values are:");
+        inorder(root);
+    }
+    
+}
