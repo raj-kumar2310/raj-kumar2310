@@ -1,0 +1,97 @@
+Single File Programming Question
+Problem statement:
+
+Binary tree - Find Max
+
+Write a C++ program to find the maximum element in the tree.
+
+Input format :
+The input should have numbers (until the user enters a negative value)
+
+Output format :
+The output prints the maximum element.
+
+Sample test cases :
+Input 1 :
+6
+3
+1
+4
+2
+-1
+Output 1 :
+Maximum element is 6
+Input 2 :
+6
+3
+1
+4
+2
+9
+7
+8
+10
+15
+13
+-1
+Output 2 :
+Maximum element is 15
+
+ANS:
+
+// You are using Java
+import java.util.*;
+class Node{
+    int val;
+    Node l;
+    Node r;
+    
+    Node(int val){
+        this.val=val;
+        l=r=null;
+    }
+}
+
+class Main{
+    static Node insert(Node root,int val){
+        if(root==null){
+            return new Node(val);
+        }
+        
+        if(val < root.val){
+            root.l=insert(root.l,val);
+            
+        }else if(val > root.val){
+            root.r=insert(root.r,val);
+        }
+        
+        return root;
+    }
+    
+    static int find(Node root){
+        if(root==null){
+            return Integer.MIN_VALUE;
+        }
+        
+        while(root.r != null){
+            root=root.r;
+        }
+        
+        return root.val;
+    }
+    
+    public static void main(String []args){
+        Scanner sc=new Scanner(System.in);
+        Node root=null;
+        
+        while(true){
+            int val=sc.nextInt();
+            if(val <0)break;
+            root=insert(root,val);
+        }
+        
+        int max=find(root);
+        
+        System.out.println("Maximum element is " + max);
+    }
+}
