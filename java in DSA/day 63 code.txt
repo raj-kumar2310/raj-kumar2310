@@ -1,0 +1,86 @@
+Single File Programming Question
+Geetha wants to insert the alphabets in a BST irrespective of their cases(i.e treat upper and lower cases equally). Then later, she wants to print the upper case letters in ascending order and the lower case letters in descending order. Help Geetha to write a suitable program to complete this task.
+
+Input format :
+First line of input is a number of elements(N) in BST
+
+N number of elements in second line separated by space
+
+Output format :
+Upper case letters in ascending order
+
+Lower case letters in descending order
+
+Code constraints :
+Only alphabets
+
+Sample test cases :
+Input 1 :
+12
+s B X i V d a M l Z r f
+Output 1 :
+B M V X Z 
+s r l i f d a  
+
+ANS:
+
+// You are using Java
+import java.util.*;
+class Node{
+    char val;
+    Node l,r;
+    
+    Node(char val){
+        this.val=val;
+        l=r=null;
+    }
+}
+
+class Main{
+    static Node insert(Node root,char val){
+        if(root == null){
+            return new Node(val);
+        }
+        
+        if(Character.toLowerCase(val) < Character.toLowerCase(root.val)){
+            root.l=insert(root.l,val);
+        }else if(Character.toLowerCase(val) > Character.toLowerCase(root.val)){
+            root.r=insert(root.r,val);
+        }
+        
+        return root;
+    }
+    
+    static void inorderupp(Node root){
+        if(root != null){
+            inorderupp(root.l);
+            if(Character.isUpperCase(root.val)){
+            System.out.print(root.val +" ");}
+            inorderupp(root.r);
+        }
+    }
+    
+    static void inorderlo(Node root){
+        if(root != null){
+            inorderlo(root.r);
+            if(Character.isLowerCase(root.val)){
+            System.out.print(root.val +" ");}
+            inorderlo(root.l);
+        }
+    }
+    public static void main(String []args){
+        Node root=null;
+        Scanner sc=new Scanner(System.in);
+        
+        int n=sc.nextInt();
+        
+        for(int i=0;i<n;i++){
+            char val=sc.next().charAt(0);
+            root=insert(root,val);
+        }
+        
+       inorderupp(root);
+       System.out.println();
+       inorderlo(root);
+    }
+}
