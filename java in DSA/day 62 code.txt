@@ -1,0 +1,99 @@
+Single File Programming Question
+Binary Search Tree - Height
+
+Problem statement
+
+Create a binary search tree consisting of only positive values & print the height of the tree.
+
+Note
+
+An infinite line of integer input representing the nodes of the binary search tree. If any value less than 1 is encountered, the input loop has to break and print the height of the tree. 
+
+Example
+
+Input
+
+2 3 1 0
+
+Output
+
+2
+
+Explanation
+
+This BST has 2 levels in it. 2 is the root and 3 and 1 are the right and left child respectively. Hence the height is 2.
+
+Input format :
+Read a line of integers.
+
+Output format :
+Print the height of the tree.
+
+Sample test cases :
+Input 1 :
+2 3 1 0 
+Output 1 :
+2
+Input 2 :
+2 3 1 4 0
+Output 2 :
+3
+
+ANS:
+
+// You are using Java
+import java.util.*;
+class Node{
+    int val;
+    Node l,r;
+    
+    Node(int val){
+        this.val=val;
+        l=r=null;
+    }
+}
+
+class Main{
+    static Node insert(Node root,int val){
+        if(root == null){
+            return new Node(val);
+        }
+        
+        if(val < root.val){
+            root.l=insert(root.l,val);
+        }
+        else if(val > root.val){
+            root.r=insert(root.r,val);
+        }
+        
+        return root;
+        
+    }
+    
+    static int Height(Node root){
+        if(root == null){
+            return 0;
+        }
+        
+        return 1+Math.max(Height(root.l),Height(root.r));
+    }
+    
+    public static void main(String []args){
+        Scanner sc=new Scanner(System.in);
+        Node root=null;
+         
+        while(true){
+            int val=sc.nextInt();
+            if(val < 1)break;
+            
+            root=insert(root,val);
+            
+        }
+        
+       System.out.println(Height(root));
+     
+        
+    }
+}
+
+
