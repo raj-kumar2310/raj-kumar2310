@@ -1,0 +1,108 @@
+Single File Programming Question
+Write a program to remove element in a binary search tree.
+
+Input format :
+First line contains an integer, n denoting the number of nodes in a tree.
+
+Each of the n subsequent lines contains an integer,data, denoting the value of an element that must be added to the BST.
+
+Third line contains the element to be deleted.
+
+Output format :
+BST with element removed.
+
+Sample test cases :
+Input 1 :
+7
+20 10 5 15 30 25 35
+5
+Output 1 :
+AFTER DELETION
+10 15 20 25 30 35 
+
+ANS:
+
+// You are using Java
+import java.util.*;
+
+class Node{
+    int val;
+    Node l,r;
+    
+    Node(int val){
+        this.val=val;
+        l=r=null;
+    }
+}
+
+class Main{
+    static Node insert(Node root,int val){
+        if(root == null)return new Node(val);
+        
+        if(val > root.val){
+            root.r=insert(root.r,val);
+        }else if(val < root.val){
+            root.l=insert(root.l,val);
+            
+        }
+        
+        return root;
+        
+    }
+    
+    static Node delete(Node root,int k){
+        
+        if(root == null) return root;
+        
+        if(k < root.val){
+            root.l=delete(root.l,k);
+        }
+        else if(k > root.val){
+            root.r=delete(root.r,k);
+            
+        }else{
+            if(root.l == null)return root.r;
+            else if(root.r == null)return root.l;
+            
+            Node t=root.r;
+            
+            while(t.l != null){
+                t=t.l;
+                root.val=t.val;
+                root.r=delete(root.r,t.val);
+            }
+            
+            
+        }
+        
+        return root;
+        
+    }
+    
+    static void print(Node root){
+        if(root != null){
+            print(root.l);
+            System.out.print(root.val+" ");
+            print(root.r);
+        }
+    }
+    
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        Node root=null;
+        
+        int n=sc.nextInt();
+        for(int i=0;i<n;i++){
+            int val=sc.nextInt();
+            root=insert(root,val);
+        }
+        
+        int k=sc.nextInt();
+        
+        root=delete(root,k);
+        
+        System.out.println("AFTER DELETION");
+        print(root);
+        
+    }
+}
