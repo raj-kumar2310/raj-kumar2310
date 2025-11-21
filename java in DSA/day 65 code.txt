@@ -1,0 +1,108 @@
+Single File Programming Question
+Binary Search Tree - Search
+
+Problem statement
+
+Create a binary search tree consisting of only positive values & search for the element in the tree.
+
+Note
+
+An infinite line of integer input represents the nodes of the binary search tree. If any value less than 1 is encountered, the input loop has to break and get the search element from the user and search for the same in the tree. 
+
+Example
+
+Input
+
+2 3 1 0 2
+
+Output
+
+Yes
+
+Explanation
+
+Search element 2 is present in the tree. Hence the output is "Yes". Otherwise, it must be "No".
+
+Input format :
+Read a line of integers.
+
+Output format :
+Yes or No message to be printed.
+
+Sample test cases :
+Input 1 :
+2 3 1 0 2
+Output 1 :
+Yes
+Input 2 :
+2 3 1 0 4
+Output 2 :
+No
+
+ANS:
+
+// You are using Java
+import java.util.*;
+
+class Node{
+    int val;
+    Node l,r;
+    
+    Node(int val){
+        this.val=val;
+        this.l=null;
+        this.r=null;
+    }
+}
+
+class Main{
+    
+    static Node insert(Node root,int val){
+        if(root == null){
+            return new Node(val);
+        }
+        
+        if(val > root.val){
+            root.r = insert(root.r,val);
+        }else if(val < root.val){
+            root.l = insert(root.l,val);
+        }
+        
+        return root;
+    }
+    
+    static boolean search(Node root,int k){
+        if(root == null)return false;
+        
+        if(root.val == k)return true;
+        
+        if(k < root.val){
+            return search(root.l,k);
+        }else{
+            return search(root.r,k);
+        }
+        
+    }
+    
+    public static void main(String []args){
+        Scanner sc=new Scanner(System.in);
+        Node root=null;
+        
+        while(sc.hasNextInt()){
+            int val=sc.nextInt();
+            if(val < 1)break;
+            
+            root=insert(root,val);
+        }
+        
+        int k=sc.nextInt();
+        
+        if(search(root,k)){
+            System.out.println("Yes");
+        }else{
+            System.out.println("No");
+            
+        }
+    }
+    
+}
