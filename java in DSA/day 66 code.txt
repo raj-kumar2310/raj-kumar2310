@@ -1,0 +1,123 @@
+Single File Programming Question
+Problem Statement
+
+
+
+Kathir is learning about binary search trees (BSTs) in his computer science class. He has just implemented a simple program to create a binary search tree and calculate the sum of all its leaf nodes. Can you help him validate his code and solve some scenarios to test it?
+
+
+
+For example, consider a tree with the following structure:
+
+   5
+
+   / \
+
+  3  7
+
+  / \  \
+
+ 2  4  9
+
+
+
+In this tree, the leaf nodes are 2, 4, and 9. The program should compute the sum of these leaf node elements, which is 2 + 4 + 9 = 15.
+
+Input format :
+The input consists of a series of positive integers as input, each on a separate line.
+
+The input terminates when Kathir enters -1. This signifies the end of input.
+
+You can assume that the input integers are unique.
+
+Output format :
+The output displays the sum of all the leaf nodes in the binary search tree.
+
+
+
+Refer to the sample output for the formatting specifications.
+
+Code constraints :
+All input integers will be positive integers (greater than 0).
+
+The number of nodes in the binary tree is at most 100.
+
+The value of each node is at most 100.
+
+Sample test cases :
+Input 1 :
+5
+3
+7
+2
+4
+9
+-1
+Output 1 :
+Sum of all leaf nodes are 15
+Input 2 :
+6
+3
+1
+4
+2
+-1
+Output 2 :
+Sum of all leaf nodes are 6
+
+ANS:
+
+// You are using Java
+import java.util.*;
+class Node{
+    int val;
+    Node l;
+    Node r;
+    
+    Node(int val){
+        this.val=val;
+        this.l=null;
+        this.r=null;
+    }
+}
+
+class Main{
+    static Node insert(Node root,int val){
+        if(root==null){
+            return new Node(val);
+        }
+        
+        if(val < root.val){
+            root.l=insert(root.l,val);
+        }else if(val > root.val){
+            root.r=insert(root.r,val);
+        }
+        
+        return root;
+    }
+    
+    static int sum(Node root){
+        if(root == null)return 0;
+        
+        if(root.l == null && root.r == null){
+            return root.val;
+        }
+        
+        return sum(root.l)+sum(root.r);
+    }
+    
+    public static void main(String []args){
+        Scanner sc=new Scanner(System.in);
+        Node root=null;
+        
+        while(sc.hasNextInt()){
+            int val=sc.nextInt();
+            if(val < 0)break;
+            root=insert(root,val);
+        }
+        
+        System.out.print("Sum of all leaf nodes are ");
+        System.out.println(sum(root));
+        
+    }
+}
