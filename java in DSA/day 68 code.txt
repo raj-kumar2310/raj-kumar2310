@@ -1,0 +1,97 @@
+Single File Programming Question
+Problem Statement
+
+
+
+Romit, a student studying data structures, wants to explore the concept of left subtrees within binary search trees (BST).
+
+
+
+He plans to create a program that builds a BST, inserts data into it while keeping track of the number of elements added to the left subtree, and finally counts the nodes in the left subtree.
+
+Input format :
+The first line of input consists of an integer N, representing the number of elements to insert into the BST.
+
+The second line consists of N space-separated integers, representing the data to be inserted into the BST.
+
+Output format :
+The output prints the number of nodes in the left subtree of the BST.
+
+
+
+Refer to the sample output for formatting specifications.
+
+Code constraints :
+The given test cases will fall under the following constraints:
+
+1 ≤ N ≤ 20
+
+1 ≤ data ≤ 1000
+
+The input data values are distinct.
+
+Sample test cases :
+Input 1 :
+3
+5 3 7
+Output 1 :
+1
+Input 2 :
+6
+10 8 15 6 9 12
+Output 2 :
+3
+
+
+ANS:
+
+// You are using Java
+import java.util.*;
+class Node{
+    int val;
+    Node l,r;
+    
+    Node(int val){
+        this.val=val;
+        this.r=null;
+        this.l=null;
+    }
+}
+
+class Main{
+    static Node insert(Node root,int val){
+        if(root == null){
+            return new Node(val);
+        }
+        
+        if(root.val > val){
+            root.l=insert(root.l,val);
+        }else if(root.val < val){
+            root.r=insert(root.r,val);
+        }
+        return root;
+    }
+    
+    static int level(Node root){
+        if(root == null)return 0;
+        
+        return 1+level(root.l)+level(root.r);
+    }
+    
+    public static void main(String []args){
+        Scanner sc=new Scanner(System.in);
+        Node root=null;
+            int l=sc.nextInt();
+        
+        for(int i=0;i<l;i++){
+            int val=sc.nextInt();
+            root=insert(root,val);
+        }
+        
+        
+        int ans=level(root.l);
+        System.out.println(ans);
+    }
+    
+    
+}
