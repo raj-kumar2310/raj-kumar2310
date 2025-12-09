@@ -1,0 +1,134 @@
+Single File Programming Question
+Problem Statement
+
+
+
+Ragul wants to write a program that performs a specific operation on a binary tree. The program should take an array of elements as input and construct a binary tree. Once the tree is constructed, the program should reverse the alternate levels of the binary tree. Finally, it should print the in-order traversal of the modified tree.
+
+Input format :
+The first line will contain an integer n, representing the number of elements in the array.
+
+The second line will contain n space-separated integers, representing the elements of the array.
+
+Output format :
+The output will be a single line containing the elements of the binary tree after reversing the alternate levels, displayed in the in-order traversal. The elements should be separated by spaces.
+
+
+
+Refer to the sample output for the formatting specifications.
+
+Code constraints :
+1 <= n <= 10
+
+1 <= array elements <= 1000
+
+Sample test cases :
+Input 1 :
+4 
+1 2 3 4
+Output 1 :
+4 3 1 2 
+
+
+ANS:
+
+import java.util.*;
+
+class Node {
+    int val;
+    Node l, r;
+
+    Node(int val) {
+        this.val = val;
+    }
+}
+
+public class Main {
+
+    static Node buildTree(int[] arr) {
+        if (arr.length == 0) return null;
+
+        Node root = new Node(arr[0]);
+        Queue<Node> q = new LinkedList<>();
+        q.add(root);
+
+        int i = 1;
+        while (!q.isEmpty() && i < arr.length) {
+
+            Node cur = q.poll();
+
+            // left child
+            cur.l = new Node(arr[i++]);
+            q.add(cur.l);
+
+            if (i >= arr.length) break;
+
+            // right child
+            cur.r = new Node(arr[i++]);
+            q.add(cur.r);
+        }
+
+        return root;
+    }
+
+    static void collect(Node root, List<List<Node>> levels) {
+
+        Queue<Node> q = new LinkedList<>();
+        q.add(root);
+
+        while (!q.isEmpty()) {
+
+            int size = q.size();
+            List<Node> lev = new ArrayList<>();
+
+            for (int i = 0; i < size; i++) {
+                Node cur = q.poll();
+                lev.add(cur);
+
+                if (cur.l != null) q.add(cur.l);
+                if (cur.r != null) q.add(cur.r);
+            }
+            levels.add(lev);
+        }
+    }
+
+    static void reverseAlternate(Node root) {
+        List<List<Node>> levels = new ArrayList<>();
+        collect(root, levels);
+
+        for (int lv = 1; lv < levels.size(); lv += 2) {
+            List<Node> l = levels.get(lv);
+            int i = 0, j = l.size() - 1;
+            while (i < j) {
+                int t = l.get(i).val;
+                l.get(i).val = l.get(j).val;
+                l.get(j).val = t;
+                i++;
+                j--;
+            }
+        }
+    }
+
+    static void inorder(Node root, List<Integer> res) {
+        if (root == null) return;
+        inorder(root.l, res);
+        res.add(root.val);
+        inorder(root.r, res);
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+        int[] arr = new int[n];
+        for (int i = 0; i < n; i++) arr[i] = sc.nextInt();
+
+        Node root = buildTree(arr);
+        reverseAlternate(root);
+
+        List<Integer> result = new ArrayList<>();
+        inorder(root, result);
+
+        for (int x : result) System.out.print(x + " ");
+    }
+}
