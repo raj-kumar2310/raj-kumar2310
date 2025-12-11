@@ -1,0 +1,146 @@
+Single File Programming Question
+Problem Statement
+
+
+
+Write a program that constructs a binary search tree (BST) using a given set of integer values, deletes a specified key value, and prints the in-order traversal of the BST both before and after the deletion.
+
+Input format :
+The first line consists of the input number of nodes, n.
+
+The second line consists of the space-separated input node values.
+
+The third line consists of the node value to be deleted.
+
+Output format :
+The output prints the node values in the in-order traversal before and after the deletion of the key value.
+
+If the key value is not present in the tree, the output prints the in-order traversal of the original tree as it is.
+
+
+
+Refer to the sample output for formatting specifications.
+
+Code constraints :
+The given test cases will fall under the following constraints.
+
+1 ≤ n ≤ 50.
+
+0≤key values≤105.
+
+1≤delKey≤10^5.
+
+Sample test cases :
+Input 1 :
+5
+10 30 5 6 7
+30
+Output 1 :
+Before deletion of key value: 5 6 7 10 30 
+After deleting key value 30: 5 6 7 10 
+Input 2 :
+3
+10 60 20
+12
+Output 2 :
+Before deletion of key value: 10 20 60 
+After deleting key value 12: 10 20 60 
+
+ANS:
+
+// You are using Java
+import java.util.*;
+class Node{
+    int val;
+    Node l,r;
+    
+    Node(int val){
+        this.val=val;
+        this.l=null;
+        this.r=null;
+    }
+}
+
+class Main{
+    static Node insert(Node root,int val){
+        Node n=new Node(val);
+        if(root == null){
+            return n;
+        }
+        
+        if(val < root.val){
+            root.l=insert(root.l,val);
+        }
+        else if(val > root.val){
+            root.r=insert(root.r,val);
+        }
+        
+        return root;
+        
+    }
+    static Node delete(Node root,int key){
+        if(root==null)return root;
+        
+        if(key < root.val){
+            root.l=delete(root.l,key);
+        }else if(key > root.val){
+            root.r=delete(root.r,key);
+            
+        }else{
+            if(root.r == null)return root.l;
+            else if(root.l==null)return root.r;
+            
+            Node t=root.r;
+            while(t.l != null)t=t.l;
+            
+            root.val=t.val;
+            
+            root.r=delete(root.r,t.val);
+        }
+        
+        return root;
+    }
+    
+    static boolean search(Node root,int key){
+        if(root == null)return false;
+        
+        if(root.val == key)return true;
+        
+        if(key < root.val)return search(root.l,key);
+        else return search(root.r,key);
+    }
+    
+    static void inorder(Node root) {
+        if (root != null) {
+            inorder(root.l);
+            System.out.print(root.val + " ");
+            inorder(root.r);
+        }
+    }
+    
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        Node root=null;
+        
+        int n=sc.nextInt();
+        
+        for(int i=0;i<n;i++){
+            int val=sc.nextInt();
+            root=insert(root,val);
+        }
+        
+        int key=sc.nextInt();
+        
+        System.out.print("Before deletion of key value: ");
+        inorder(root);
+        System.out.println();
+
+        
+        if (search(root, key)) {
+            root = delete(root, key);
+        }
+
+        System.out.print("After deleting key value " + key + ": ");
+        inorder(root);
+    }
+}
