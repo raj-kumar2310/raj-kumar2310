@@ -1,0 +1,91 @@
+Single File Programming Question
+Problem Statement
+
+
+
+You are provided with a collection of lowercase letters. Your objective is to create a Binary Search Tree (BST) from these letters.
+
+
+
+Once the BST is constructed, perform an in-order traversal of the tree to display the characters in ascending alphabetical order.
+
+Input format :
+The first line of input consists of a positive integer N, representing the number of letters.
+
+The second line consists of N characters, representing the letters to be inserted into the tree.
+
+Output format :
+The output prints the in-order traversal of the given characters.
+
+Code constraints :
+1 ≤ N ≤ 26
+
+The input characters will be in lowercase.
+
+Sample test cases :
+Input 1 :
+5
+k b a c m
+Output 1 :
+a b c k m 
+Input 2 :
+7
+y q w e g h k
+Output 2 :
+e g h k q w y 
+
+ANS:
+
+// You are using Java
+import java.util.*;
+class Node{
+    char val;
+    Node l,r;
+    
+    Node(char val){
+        this.val=val;
+        this.r=null;
+        this.l=null;
+    }
+}
+
+class Main{
+    static Node insert(Node root,char val){
+        if(root == null){
+            return new Node(val);
+        }
+        
+        if(val < root.val){
+            root.l=insert(root.l,val);
+        }
+        else if(val > root.val){
+            
+            root.r=insert(root.r,val);
+        }
+        
+        return root;
+    }
+    
+    static void dispaly(Node root){
+        if(root != null){
+        
+        dispaly(root.l);
+        System.out.print(root.val+" ");
+        dispaly(root.r);
+            
+        }
+    }
+    
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        Node root=null;
+        int n=sc.nextInt();
+        
+        for(int i=0;i<n;i++){
+            char val=sc.next().charAt(0);
+            root=insert(root,val);
+        }
+        
+        dispaly(root);
+    }
+}
