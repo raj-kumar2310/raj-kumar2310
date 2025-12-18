@@ -1,0 +1,144 @@
+Single File Programming Question
+Problem Statement
+
+
+
+Preethi is fascinated by trees, especially binary search trees. She wants to create a binary search tree (BST) of characters and perform deletion operations on it. She wants you to help her write a program.
+
+
+
+Preethi needs a program that allows her to:
+
+Create a binary search tree by inserting a series of characters.
+Delete a specific character from the binary search tree.
+Print the characters in the BST in an in-order traversal.
+
+
+Note
+
+Each character inserted into the binary search tree is a number, special character, lowercase letter, or uppercase letter. The characters are inserted based on their respective ASCII value.
+All inserted characters into the binary search tree will be unique.
+Input format :
+The first line of input consists of the number of characters N.
+
+The second line of input consists of N unique characters separated by a space.
+
+The third line of input consists of the character M to be deleted.
+
+Output format :
+The output displays the in-order traversal of the given inputs after deleting the character M.
+
+
+
+Refer to the sample output for formatting specifications.
+
+Code constraints :
+1 ≤ N ≤ 50
+
+Sample test cases :
+Input 1 :
+5
+Z E W T Y
+Y
+Output 1 :
+E T W Z 
+Input 2 :
+7
+A 2 B b # c D 
+#
+Output 2 :
+2 A B D b c 
+Input 3 :
+5
+t 4 % u K
+u
+Output 3 :
+% 4 K t 
+
+ANS:
+
+// You are using Java
+import java.util.*;
+class Node{
+    char val;
+    Node l,r;
+    
+    Node(char val){
+        this.val=val;
+        this.r=null;
+        this.l=null;
+    }
+}
+
+class Main{
+    static Node insert(Node root,char val){
+        if(root==null){
+            return new Node(val);
+        }
+        
+        if(val < root.val){
+            root.l=insert(root.l,val);
+        }else if(val > root.val){
+            root.r=insert(root.r,val);
+        }
+        
+        return root;
+    }
+    
+    static Node min(Node root){
+        Node t=root;
+        
+        while(t.l != null){
+            t=t.l;
+        }
+        
+        return t;
+        
+    }
+    
+    static Node delete(Node root,char k){
+        if(root==null)return root;
+        
+        if(k < root.val){
+            root.l=delete(root.l,k);
+        }
+        else if(k > root.val){
+            root.r=delete(root.r,k);
+        }else{
+            if(root.l==null){
+                return root.r;
+            }else if(root.r==null){
+                return root.l;
+            }
+            
+            Node t=min(root.r);
+            root.val=t.val;
+            root.r=delete(root.r,t.val);
+        }
+        
+        return root;
+    }
+    
+    static void dis(Node root){
+        if(root != null){
+            dis(root.l);
+            System.out.print(root.val+" ");
+            dis(root.r);
+        }
+    }
+    
+    public static void main(String[] args){
+        Node root=null;
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        for(int i=0;i<n;i++){
+            char val=sc.next().charAt(0);
+            root=insert(root,val);
+        }
+        
+        char k=sc.next().charAt(0);
+        root=delete(root,k);
+        
+        dis(root);
+    }
+}
