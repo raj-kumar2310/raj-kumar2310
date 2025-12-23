@@ -1,0 +1,109 @@
+Single File Programming Question
+Binary Search Tree - Kth smallest number
+
+Problem statement
+
+Create a binary search tree consisting of only positive values & print the Kth smallest number in the tree.
+
+Note
+
+An infinite line of integer input represents the nodes of the binary search tree. If any value less than 1 is encountered, the input loop has to break and get the value of K. Then print the Kth smallest number in the tree.
+
+Example
+
+Input
+
+2 3 1 0 2
+
+Output
+
+2
+
+Explanation
+
+The 2nd smallest number in the tree is 2.
+
+Input format :
+Read a line of integers.
+
+Output format :
+Print the Kth smallest element in the tree.
+
+Sample test cases :
+Input 1 :
+2 3 1 0 2
+Output 1 :
+2
+Input 2 :
+2 4 5 3 7 -1 4
+Output 2 :
+5
+
+ANS:
+
+// You are using Java
+import java.util.*;
+class Node{
+    int val;
+    Node l,r;
+    Node(int val){
+        this.val=val;
+        this.l=null;
+        this.r=null;
+    }
+}
+class Main{
+    static Node insert(Node root,int val)
+    {
+        if(root == null){
+            return new Node(val); 
+        }
+        
+        if(val < root.val){
+            root.l=insert(root.l,val);
+        }
+        else if(val > root.val){
+            
+            root.r=insert(root.r,val);
+        }
+    
+        return root;
+    }
+    
+    static int ans=-1;
+    static int co=0;
+    
+    static void inorder(Node root,int k)
+    {
+        if(root==null || ans != -1)return;
+        
+        inorder(root.l,k);
+        
+        co++;
+        
+        if(co==k){
+            ans=root.val;
+            return;
+        }
+        
+        inorder(root.r,k);
+    }
+    
+    public static void main(String[] args)
+    {
+        Scanner sc=new Scanner(System.in);
+        Node root=null;
+        
+        while(true){
+            int val=sc.nextInt();
+            if(val < 1)break;
+            
+            root=insert(root,val);
+        }
+        
+        int k=sc.nextInt();
+        inorder(root,k);
+        System.out.print(ans);
+    }
+    
+}
