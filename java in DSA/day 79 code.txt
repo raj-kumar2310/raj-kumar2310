@@ -1,0 +1,130 @@
+Single File Programming Question
+Write a program to represent the given graph in the form of a matrix.
+
+Note
+
+The graph can be either directed or undirected.
+
+Example
+
+Input
+
+4
+
+4
+
+yes
+
+1 2 6
+
+2 3 7
+
+3 4 8
+
+2 4 9
+
+Output
+
+0 6 0 0 
+
+0 0 7 9 
+
+0 0 0 8 
+
+0 0 0 0
+
+Explanation
+
+Its a directed graph so weight values are updated only from source to destination.
+
+Input format :
+Number of vertices
+
+Number of edges
+
+Directed or Not
+
+Edges with the weight
+
+Output format :
+Matrix representation of the graph
+
+Sample test cases :
+Input 1 :
+4
+
+4
+
+yes
+
+1 2 6
+
+2 3 7
+
+3 4 8
+
+2 4 9
+Output 1 :
+0 6 0 0 
+0 0 7 9 
+0 0 0 8 
+0 0 0 0 
+Input 2 :
+4
+
+4
+
+no
+
+1 2 6
+
+2 3 7
+
+3 4 8
+
+2 4 9
+Output 2 :
+0 6 0 0 
+6 0 7 9 
+0 7 0 8 
+0 9 8 0 
+
+
+ANS:
+// You are using Java
+import java.util.*;
+class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int V = sc.nextInt();      
+        int e = sc.nextInt();    
+        String dir = sc.next();    
+        
+        int[][] mat=new int[V][V];
+        
+        for(int i=0;i<e;i++)
+        {
+
+           int u=sc.nextInt();            
+           int v=sc.nextInt();            
+           int w=sc.nextInt(); 
+
+           mat[u-1][v-1]=w;
+           
+             if(dir.equalsIgnoreCase("no")){
+                     mat[v-1][u-1]=w;
+    
+         } 
+        }
+    
+        for(int i=0;i<V;i++){
+            for(int j=0;j<V;j++){
+                System.out.print(mat[i][j]+" ");
+            }
+            
+            System.out.println();
+        }
+        
+    }
+    
+}
