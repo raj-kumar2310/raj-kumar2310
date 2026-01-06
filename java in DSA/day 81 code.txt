@@ -1,0 +1,86 @@
+Question No: 1
+Single File Programming Question
+Given a directed graph with the vertices and edges between the vertices as the input.verify it consists of cycle or not.vertex starts with 0,1,2....N-1.
+
+Input format :
+Single line input separated by space.the first integer N1 denotes the total number of vertices(i.e. nodes).The Second integer N2 denotes the total number of Edges After that, the user wants to get the two number form the edge between the two nodes.and get next two numbers and form the edge and so on.Directed graph specified by if the input is (0 1 ) the direction of path from (0 to 1 )and not( 1 to 0).
+
+Output format :
+Print YES or NO according to the graph.
+
+Code constraints :
+Integers only.
+
+Sample test cases :
+Input 1 :
+4 3 0 1 1 2 2 0
+Output 1 :
+YES
+Input 2 :
+4 3 0 1 1 2 2 3
+Output 2 :
+NO
+
+ANS:
+
+// You are using Java
+import java.util.*;
+class Man{
+    static boolean hasCycle(int v,List<List<Integer>>adj,boolean[] visit,boolean[] recStack)
+    {
+        visit[v]=true;
+        recStack[v]=true;
+        
+        for(int nei:adj.get(v)){
+            if(!visit[nei]){
+                if(hasCycle(nei,adj,visit,recStack)){
+                    return true;
+                }
+            }
+            else if(recStack[nei]){
+                return true;
+            }
+        }
+        
+        recStack[v]=false;
+        return false;
+    }
+    
+    public static void main(String[] args)
+    {
+        Scanner sc=new Scanner(System.in);
+        int v=sc.nextInt();
+        int e=sc.nextInt();
+        
+        List<List<Integer>>adj=new ArrayList<>();
+        
+        for(int i=0;i<v;i++)
+        {
+            adj.add(new ArrayList<>());
+        }
+        
+        for(int i=0;i<e;i++)
+        {
+            int u=sc.nextInt();
+            int V=sc.nextInt();
+            
+            adj.get(u).add(V);
+        }
+        
+        boolean[] visit=new boolean[v];
+        boolean[] recStack=new boolean[v];
+        
+        for(int i=0;i<v;i++)
+        {
+            if(!visit[i]){
+                if(hasCycle(i,adj,visit,recStack)){
+                    System.out.println("YES");
+                    return;
+                }
+            }
+        }
+        
+         System.out.println("NO");
+        
+    }
+}
