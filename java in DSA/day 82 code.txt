@@ -1,0 +1,100 @@
+Single File Programming Question
+Assuming N nodes numbered 0 to N - 1, create a undirected graph taking as input the edges of the graph. Print "Graph is a Tree" if the graph is a tree i.e acyclic and connected, else print "Graph is not a Tree";
+
+Input format :
+A number N > 0
+
+Input the number of edges, E > 0
+
+Input the E edges of the graph
+
+
+
+Output format :
+If the graph is a tree print "Graph is a Tree"
+
+else print "Graph is not a Tree";
+
+
+
+Code constraints :
+Input a number N > 0.
+
+Sample test cases :
+Input 1 :
+3
+2
+0 1
+1 2
+Output 1 :
+Graph is a Tree
+Input 2 :
+3
+1
+0 1
+Output 2 :
+Graph is not a Tree
+
+ANS:
+
+
+// You are using Java
+import java.util.*;
+class Main{
+    static boolean hasCycle(int node ,int p,List<List<Integer>>adj,boolean[] visit)
+    {
+        visit[node]=true;
+        
+        for(int nei:adj.get(node)){
+            if(!visit[nei]){
+                if(hasCycle(nei,node,adj,visit)){
+                    return true;
+                }
+            }else if(nei != p){
+                return true;
+            }
+        }
+        
+        return false;
+    }
+    
+    public static void main(String[] args)
+    {
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        int e=sc.nextInt();
+        
+        List<List<Integer>>adj=new ArrayList<>();
+        
+        for(int i=0;i<n;i++){
+            adj.add(new ArrayList<>());
+        }
+        
+        for(int i=0;i<e;i++)
+        {
+            int u=sc.nextInt();
+            int v=sc.nextInt();
+            
+            adj.get(u).add(v);
+            adj.get(v).add(u);
+        }
+        
+        boolean[] visit=new boolean[n];
+        
+        if(hasCycle(0,-1,adj,visit)){
+            System.out.println("Graph is not a Tree");
+            return;
+        }
+        
+        for(boolean v:visit){
+            if(!v){
+                
+            System.out.println("Graph is not a Tree");
+            return;
+            }
+        }
+        
+            System.out.println("Graph is a Tree");
+        
+    }
+}
