@@ -1,0 +1,76 @@
+Single File Programming Question
+An undirected graph is given.write a program to count the number of unreachable nodes. vertex starts from 0 to N-1.
+
+Input format :
+Single line input separated by space.the first integer N1 denotes the total number of vertices(i.e. nodes).The Second integer N2 denotes the total number of Edges After that, the user wants to get the two number form the edge between the two nodes.and get next two numbers and form the edge and so on.
+
+Output format :
+Print the total number of unreachable nodes.
+
+Code constraints :
+Integers only.
+
+Sample test cases :
+Input 1 :
+4 2 0 1 1 2
+Output 1 :
+1
+Input 2 :
+4 2 0 1 1 3
+Output 2 :
+3
+
+
+ANS:
+
+// You are using Java
+import java.util.*;
+class Main{
+    static void dfs(int node,List<List<Integer>>gr,boolean[] visit){
+        visit[node]=true;
+        for(int nei:gr.get(node)){
+            if(!visit[nei]){
+                dfs(nei,gr,visit);
+            }
+        }
+    }
+    
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        
+        int n=sc.nextInt();
+        int e=sc.nextInt();
+        
+        List<List<Integer>>gr=new ArrayList<>();
+        
+        for(int i=0;i<n;i++){
+            gr.add(new ArrayList<>());
+        }
+        
+        boolean[] visit=new boolean[n];
+        
+        for(int i=0;i<e;i++){
+            int u=sc.nextInt();
+            int v=sc.nextInt();
+            
+            gr.get(u).add(v);
+            gr.get(v).add(u);
+            
+        }
+        
+        if (n > 0) {
+            dfs(e, gr, visit);
+        }
+        
+        int un=0;
+        
+        for(int i=0;i<n;i++){
+            if(!visit[i]){
+                un++;
+            }
+        }
+        
+        System.out.println(un);
+        
+    }
+}
