@@ -1,0 +1,132 @@
+Single File Programming Question
+Problem Statement
+
+
+
+Shailu is developing a navigation application designed to assist users in locating the shortest route between two points within a city. The city's layout is represented as a graph, where each location serves as a vertex and the roads connecting them are represented as edges.
+
+
+
+Your objective is to create a program that employs the Breadth-First Search (BFS) algorithm to determine the shortest path between a specified source location and a destination location.									
+
+Input format :
+The first line consists of two integers v and e, representing the number of locations (vertices) in the city and the number of roads (edges) connecting the locations.
+
+The next e lines contain two space-separated integers src and dest, denoting a road (edge) between location src and location dest.
+
+The next line consists of an integer source, indicating the starting location.
+
+The last line consists of an integer destination, indicating the destination location.
+
+Output format :
+The output is displayed in the following format:
+
+
+
+The first line consists of "Shortest path length is: X", where X represents the shortest path length.
+
+The second line consists of "Path is: ", followed by the nodes in the shortest path, space-separated.
+
+
+
+Refer to the sample output for the exact format.
+
+Code constraints :
+The test cases will fall under the following constraints:
+
+1 ≤ v ≤ 10
+
+0 ≤ e ≤ v * (v - 1) / 2
+
+0 ≤ source, destination < v
+
+Sample test cases :
+Input 1 :
+6 7
+1 1
+1 2
+1 3
+1 4
+2 4
+3 5
+4 5
+4 
+5
+Output 1 :
+Shortest path length is: 1
+Path is: 4 5 
+
+
+ANS:
+
+// You are using Java
+import java.util.*;
+class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        
+        int v=sc.nextInt();
+        int e=sc.nextInt();
+        
+        ArrayList<ArrayList<Integer>>gr=new ArrayList<>();
+        
+        for(int i=0;i<v;i++){
+            gr.add(new ArrayList<>());
+        }
+        
+        for(int i=0;i<e;i++){
+            int u=sc.nextInt();
+            int w=sc.nextInt();
+            
+            gr.get(u).add(w);
+            gr.get(w).add(u);
+            
+        }
+        
+        int src=sc.nextInt();
+        int des=sc.nextInt();
+        
+        boolean[] visit=new boolean[v];
+        int[] p=new int[v];
+        
+        Arrays.fill(p,-1);
+        
+        Queue<Integer>q=new LinkedList<>();
+        q.add(src);
+        visit[src]=true;
+        
+        while(!q.isEmpty()){
+            int curr=q.poll();
+            
+            if(curr==des)break;
+            
+            for(int nei:gr.get(curr)){
+                if(!visit[nei]){
+                    visit[nei]=true;
+                    p[nei]=curr;
+                    q.add(nei);
+                }
+                
+            }
+        }
+        
+        ArrayList<Integer>path=new ArrayList<>();
+        int t=des;
+        
+        while(t!=-1){
+            path.add(t);
+            t=p[t];
+        }
+        
+        Collections.reverse(path);
+        
+        System.out.println("Shortest path length is:"+(path.size()-1));
+        System.out.print("Path is: ");
+        
+        for(int n:path){
+            System.out.print(n+" ");
+        }
+        
+        
+    }
+}
