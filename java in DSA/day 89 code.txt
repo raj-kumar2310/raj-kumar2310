@@ -1,0 +1,87 @@
+Single File Programming Question
+Create a directed graph with N number of vertices and E number of edges.In the graph, S is a source vertex and D is a destination vertex.Write a program to print all paths from given source to destination.
+
+
+
+Input format :
+Single line input separated by space.the first integer N denotes the total number of vertices(i.e. nodes).The Second integer E denotes the total number of Edges.After that E*2 number of integers is a Edges.
+
+node name should be in 0 to N-1.The last two number is source vertex S and destination vertex D.
+
+Output format :
+Print the possible path from source vertex S to destination vertex D.
+
+Code constraints :
+Integers only.
+
+Sample test cases :
+Input 1 :
+4 6 0 1 0 2 0 3 2 0 2 1 1 3 2 3
+Output 1 :
+2 0 1 3 
+2 0 3 
+2 1 3 
+
+
+ANS:
+
+// You are using Java
+import java.util.*;
+
+class Main{
+
+static ArrayList<ArrayList<Integer>>gr;
+static boolean[] visit;
+static ArrayList<Integer>path;
+
+static void dfs(int curr,int dest){
+    path.add(curr);
+    if(curr==dest){
+        for(int node:path){
+            System.out.print(node+" ");
+        }
+        System.out.println();
+    }else{
+        for(int nei:gr.get(curr)){
+            if(!visit[nei]){
+                visit[nei]=true;
+                dfs(nei,dest);
+                visit[nei]=false;
+            }
+        }
+    }
+    
+    path.remove(path.size()-1);
+}
+
+public static void main(String[] args){
+    Scanner sc=new Scanner(System.in);
+    
+    int N=sc.nextInt();
+    int E=sc.nextInt();
+    
+    gr=new ArrayList<>();
+    
+    for(int i=0;i<N;i++){
+        gr.add(new ArrayList<>());
+    }
+    
+    for(int i=0;i<E;i++){
+        
+        int u=sc.nextInt();
+        int w=sc.nextInt();
+        gr.get(u).add(w);
+    }
+    
+    int s=sc.nextInt();
+    int d=sc.nextInt();
+    
+    visit=new boolean[N];
+    path=new ArrayList<>();
+    
+    visit[s]=true;
+    dfs(s,d);
+}
+
+
+}
