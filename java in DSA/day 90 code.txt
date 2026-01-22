@@ -1,0 +1,105 @@
+Single File Programming Question
+Subset Using Hashing
+
+Problem Statement
+
+Write a program to find whether the array is a subset or not using Hashing technique.
+
+Example
+
+Input
+
+6
+
+4
+
+11 1 13 21 3 7
+
+11 3 7 1
+
+Output
+
+Subset
+
+Explanation
+
+Since all of the values in the second list are also present in the first list, it is a subset.
+
+Input format :
+Input consists of integer 'm' followed by integer 'n' denoting the size of array arr1 and arr2 respectively,
+
+followed by 'm' number of array elements of arr1, followed by 'n' number of array elements of arr2.
+
+Output format :
+Output displays a message indicating whether the arr2 of subset or arr1 or not.
+
+Sample test cases :
+Input 1 :
+6
+4
+11 1 13 21 3 7
+11 3 7 1
+Output 1 :
+Subset
+Input 2 :
+6
+5
+11 1 13 21 3 7
+11 3 7 1 19
+Output 2 :
+Not a subset
+
+ANS:
+
+// You are using Java
+import java.util.*;
+class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        int m=sc.nextInt();
+        int arr[]=new int[n];
+        int arr1[]=new int[m];
+        
+        for(int i=0;i<n;i++)
+        {
+            arr[i]=sc.nextInt();
+            
+        }
+        
+        for(int i=0;i<m;i++)
+        {
+            arr1[i]=sc.nextInt();
+            
+        }
+        
+        HashSet<Integer>set=new HashSet<>();
+        
+        for(int i=0;i<n;i++)
+        {
+            set.add(arr[i]);
+        }
+        
+        boolean in=true;
+        
+        
+        for(int i=0;i<m;i++)
+        {
+
+            if(!set.contains(arr1[i])){
+                in=false;
+                  break;
+                    }
+        }
+        
+        if(in){
+             System.out.println("Subset");
+        } else {
+            System.out.println("Not a subset");
+        
+        }
+        
+        
+        
+    }
+}
