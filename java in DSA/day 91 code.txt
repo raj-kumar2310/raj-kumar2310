@@ -1,0 +1,75 @@
+Single File Programming Question
+Write a program to implement the linear probing hashing to insert an element into hash table.
+
+Note
+
+Use hash function as arr[i]%n [n -number of elements]
+
+Number of  element to be insert is same as size of hash table
+
+Example
+
+Input
+
+5 // Table size and number of element to be insert
+
+5 6 4 8 12
+
+Output
+
+5 6 12 8 4 
+
+Explanation
+
+Use above hash function to store value inside hash table. Print the value from zeroth index.
+
+Input format :
+First input N denotes the number of elements , next N number of input separated by space is an array elements.
+
+Output format :
+Single line output separated by space print the Hash table.
+
+Code constraints :
+Integers only.
+
+Sample test cases :
+Input 1 :
+5 
+5 6 4 8 12
+Output 1 :
+5 6 12 8 4 
+Input 2 :
+7
+13 22 14 26 37 44 69
+Output 2 :
+14 22 37 44 69 26 13
+
+ANS:
+
+// You are using Java
+import java.util.*;
+class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        
+        int arr[]=new int[n];
+        Arrays.fill(arr,-1);
+        
+        for(int i=0;i<n;i++){
+            int k=sc.nextInt();
+            
+            int index=k%n;
+            
+            while(arr[index]!=-1){
+                index=(index+1)%n;
+            }
+            
+            arr[index]=k;
+        }
+        
+        for(int i=0;i<n;i++){
+            System.out.print(arr[i]+" ");
+        }
+    }
+}
