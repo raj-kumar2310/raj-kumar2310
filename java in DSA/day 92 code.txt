@@ -1,0 +1,71 @@
+Single File Programming Question
+Problem statement
+
+Write a program to implement hashing by using separate chaining.
+
+Note: consider the table size as 3.
+
+Input format :
+The first line of the input consists of the value of n.
+
+The next inputs are the elements.
+
+Output format :
+The output prints the table.
+
+Refer sample input and output for formatting specifications.
+
+Sample test cases :
+Input 1 :
+5
+10 12 6 24 31
+Output 1 :
+chain[0]-->12 -->6 -->24 -->NULL
+chain[1]-->10 -->31 -->NULL
+chain[2]-->NULL
+Input 2 :
+8
+10 12 6 24 31 35 42 50
+Output 2 :
+chain[0]-->12 -->6 -->24 -->42 -->NULL
+chain[1]-->10 -->31 -->NULL
+chain[2]-->35 -->50 -->NULL
+
+ANS:
+
+// You are using Java
+import java.util.*;
+class Main{
+public static void main(String[] args){
+    Scanner sc=new Scanner(System.in);
+    int n=sc.nextInt();
+    int tb=3;
+    
+    LinkedList<Integer>[] t=new LinkedList[tb];
+    
+    for(int i=0;i<tb;i++){
+        t[i]=new LinkedList<>();
+    }
+    
+    for(int i=0;i<n;i++){
+        int k=sc.nextInt();
+        int index=k%tb;
+        t[index].add(k);
+    }
+    
+    for(int i=0;i<tb;i++){
+        System.out.print("chain["+i+"]-->");
+        if(t[i].isEmpty()){
+            System.out.print("NULL");
+        }else{
+            for(int val:t[i]){
+            System.out.print(val+"-->");
+                
+            }
+            System.out.print("NULL");
+        }
+        System.out.println();
+    }
+    
+}
+}
