@@ -1,0 +1,85 @@
+Single File Programming Question
+Problem statement
+
+Write a program to implement hashing by double hashing.
+
+Hint :
+
+Hash Function1 =key%TABLE_SIZE;
+
+Hash Fucntion 2 = 7-(key %7);
+
+Note: Consider the table size as 10.
+
+Input format :
+The first line of the input consists of the value of n.
+
+The next n inputs are the elements.
+
+Output format :
+The output prints the hash table.
+
+Refer to sample input and output for formatting specifications.
+
+Sample test cases :
+Input 1 :
+3
+12 22 32
+Output 1 :
+Element at position 0: 0
+Element at position 1: 0
+Element at position 2: 12
+Element at position 3: 0
+Element at position 4: 0
+Element at position 5: 32
+Element at position 6: 0
+Element at position 7: 0
+Element at position 8: 22
+Element at position 9: 0
+Input 2 :
+5
+12 98 45 36 77
+Output 2 :
+Element at position 0: 0
+Element at position 1: 0
+Element at position 2: 12
+Element at position 3: 0
+Element at position 4: 0
+Element at position 5: 45
+Element at position 6: 36
+Element at position 7: 77
+Element at position 8: 98
+Element at position 9: 0
+
+
+ANS:
+
+// You are using Java
+import java.util.*;
+class Main{
+    static int ts=10;
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        int arr[]=new int[ts];
+        
+        for(int i=0;i<n;i++){
+            int k=sc.nextInt();
+            int h1=k%ts;
+            int h2=7-(k%7);
+            int index=h1;
+                
+            int j=1;
+            
+            while(arr[index]!=0){
+                index=(h1+j*h2)%ts;j++;
+            }
+            
+            arr[index]=k;
+        }
+        
+        for (int i = 0; i < ts; i++) {
+            System.out.println("Element at position " + i + ": " + arr[i]);
+        }
+    }
+}
