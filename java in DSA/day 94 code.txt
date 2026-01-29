@@ -1,0 +1,81 @@
+Single File Programming Question
+Count the frequency of alphabetical characters in the given string using hashing technique. Special characters and white spaces are not taken into account. Make sure that time complexity of your code does not exceed O(N). Where, N is the length of the string. Capital and small alphabets are treated as same.
+
+Example
+
+Input
+
+APple
+
+Output
+
+a - 1
+
+e - 1
+
+l - 1
+
+p - 2
+
+Explanation
+
+In chronological order, display the character and the frequency of occurrence of each character.
+
+Input format :
+Input consists of a string.
+
+Output format :
+Output displays the frequency of each character in the string.
+
+Sample test cases :
+Input 1 :
+APple
+Output 1 :
+a - 1
+e - 1
+l - 1
+p - 2
+Input 2 :
+Placement Season
+Output 2 :
+a - 2
+c - 1
+e - 3
+l - 1
+m - 1
+n - 2
+o - 1
+p - 1
+s - 2
+t - 1
+
+
+ANS:
+
+// You are using Java
+import java.util.*;
+class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int fre[]=new int[26];
+        
+        String s=sc.nextLine();
+        
+        s=s.toLowerCase();
+        
+        for(int i=0;i<s.length();i++){
+            char ch=s.charAt(i);
+            
+            if(ch >= 'a' && ch<='z'){
+                fre[ch-'a']++;
+            }
+        }
+        
+        for(int i=0;i<26;i++){
+            if(fre[i]>0){
+                System.out.println((char)(i+'a')+" - "+fre[i]);
+            }
+        }
+        
+    }
+}
