@@ -1,0 +1,75 @@
+Single File Programming Question
+Max Distance Between Same Elements
+
+Problem Description:
+
+Given an array with repeated elements, the task is to find the maximum distance between two occurrences of an element.
+
+Example:
+
+Sample Input : 
+
+n = 12
+
+arr[] = {3, 2, 1, 2, 1, 4, 5, 8, 6, 7, 4, 2}
+
+Sample Output: 10
+
+Explanation:
+
+maximum distance for 2 is 11-1 = 10 
+
+maximum distance for 1 is 4-2 = 2 
+
+maximum distance for 4 is 10-5 = 5  
+
+Input format :
+The first line represents the size of elements in an array
+
+The Second line represents the elements inside an array
+
+Output format :
+The output represents the maximum distance between two occurrences of an element.
+
+Code constraints :
+1 = n <= 100
+
+
+
+1 <= a[i] < = 1000
+
+Sample test cases :
+Input 1 :
+12
+3 2 1 2 1 4 5 8 6 7 4 2
+Output 1 :
+10
+
+ANS:
+
+// You are using Java
+import java.util.*;
+class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        
+        int n=sc.nextInt();
+        int arr[]=new int[n];
+        for(int i=0;i<n;i++){
+            arr[i]=sc.nextInt();
+        }
+        
+        HashMap<Integer,Integer>ma=new HashMap<>();
+        int m=0;
+        for(int i=0;i<n;i++){
+            if(!ma.containsKey(arr[i])){
+                ma.put(arr[i],i);
+            }else{
+                int dm=i-ma.get(arr[i]);
+                m=Math.max(dm,m);
+            }
+        }
+        
+        System.out.println(m);
+    }
+}
