@@ -1,0 +1,93 @@
+❓ Problem Statement
+
+You are given a singly linked list.
+Write a program to insert a new element BEFORE a given position p in the linked list.
+
+📌 Constraints / Rules
+
+Use struct (not class)
+
+Use only void functions (no return values)
+
+Pass the head of the linked list using reference (Node*& head)
+
+If p = 1, insert the element at the beginning
+
+If the position is invalid, the list should remain unchanged
+
+Sample Input
+5
+10 20 30 40 50
+99
+3
+
+Expected Output
+10 20 99 30 40 50
+
+ANS:
+
+// You are using Java
+import java.util.*;
+class Node{
+    int val;
+    Node next;
+    Node(int val){
+        this.val=val;
+        this.next=null;
+    }
+}
+
+class Main{
+    static Node insert(Node h,int val){
+        Node n=new Node(val);
+        if(h==null){
+            return n;
+        }
+        
+        
+            Node t=h;
+            while(t.next !=null){
+                t=t.next;
+            }
+            t.next=n;
+        
+        return h;
+    }
+    public static Node inmid(Node h,int val,int p){
+        if(h==null)return h;
+        Node n=new Node(val);
+
+        int i=1;
+        Node t=h;
+        while(i<p){
+            t=t.next;
+            i++;
+        }
+        n.next=t.next;
+        t.next=n;
+        return h;
+        
+    }
+    static void print(Node h){
+        Node t=h;
+        while(t!=null){
+            System.out.print(t.val+" ");
+            t=t.next;
+        }
+    }
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        Node h=null;
+        int n=sc.nextInt();
+        for(int i=0;i<n;i++){
+            int val=sc.nextInt();
+            h=insert(h,val);
+        }
+        print(h);
+        System.out.println();
+        int val=sc.nextInt();
+        int p=sc.nextInt();
+        h=inmid(h,val,p);
+        print(h);
+    }
+}
