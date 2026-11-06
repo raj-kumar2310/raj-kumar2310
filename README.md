@@ -37,3 +37,25 @@ src="https://github-readme-stats-7v4k.vercel.app/api/top-langs/?username=raj-kum
 alt="Top Languages"/>
 
 </div>
+
+
+<h2 align="center">🐍 Contribution Snake</h2>
+
+<div align="center">
+
+<picture>
+  <source
+    media="(prefers-color-scheme: dark)"
+    srcset="https://raw.githubusercontent.com/raj-kumar2310/raj-kumar2310/output/github-snake-dark.svg" />
+
+  <source
+    media="(prefers-color-scheme: light)"
+    srcset="https://raw.githubusercontent.com/raj-kumar2310/raj-kumar2310/output/github-snake.svg" />
+
+  <img
+    alt="GitHub Contribution Snake"
+    src="https://raw.githubusercontent.com/raj-kumar2310/raj-kumar2310/output/github-snake.svg"
+    width="100%" />
+</picture>
+
+</div>
